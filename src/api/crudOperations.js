@@ -21,14 +21,20 @@ const deleteSingleEntity = async (endpoint, id) => {
 }
 
 const getSingleEntity = async (endpoint, id, options) => {
+  // Parse both string or object options
+  // See https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams
+  const searchParams = new URLSearchParams(options).toString()
+
+  let url = `/${endpoint}/`
+
+  if (id) {
+    url = `${url}${id}/`
+  }
+  if (searchParams) {
+    url = `${url}?${searchParams}`
+  }
+
   try {
-    let url = `/${endpoint}/`
-    if (id) {
-      url = `${url}${id}/`
-    }
-    if (options) {
-      url = `${url}${options}`
-    }
     const response = await cloudboltApi.get(url)
     return ResponseParser.getSingle(response)
   } catch (error) {
@@ -37,11 +43,18 @@ const getSingleEntity = async (endpoint, id, options) => {
 }
 
 const getMultipleEntities = async (endpoint, options) => {
-  if (!options) {
-    options = ''
+  // Parse both string or object options
+  // See https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams
+  const searchParams = new URLSearchParams(options).toString()
+
+  let url = `/${endpoint}/`
+
+  if (searchParams) {
+    url = `${url}?${searchParams}`
   }
+
   try {
-    const response = await cloudboltApi.get(`/${endpoint}/${options}`)
+    const response = await cloudboltApi.get(url)
     return ResponseParser.getList(response)
   } catch (error) {
     return handleError(error)
@@ -49,11 +62,12 @@ const getMultipleEntities = async (endpoint, options) => {
 }
 
 const patchEntity = async (endpoint, id, payload) => {
+  let url = `/${endpoint}/`
+  if (id) {
+    url = `${url}${id}/`
+  }
+
   try {
-    let url = `/${endpoint}/`
-    if (id) {
-      url = `${url}${id}/`
-    }
     const response = await cloudboltApi.patch(url, payload)
     return ResponseParser.getSingle(response)
   } catch (error) {
@@ -62,11 +76,12 @@ const patchEntity = async (endpoint, id, payload) => {
 }
 
 const updateEntity = async (endpoint, id, payload) => {
+  let url = `/${endpoint}/`
+  if (id) {
+    url = `${url}${id}/`
+  }
+
   try {
-    let url = `/${endpoint}/`
-    if (id) {
-      url = `${url}${id}/`
-    }
     const response = await cloudboltApi.put(url, payload)
     return ResponseParser.getSingle(response)
   } catch (error) {
