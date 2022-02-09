@@ -1,11 +1,21 @@
 import crud from '~/api/crudOperations'
 
-const USER_URL = 'v3/cmp/user'
-const EULA_URL = 'v3/cmp/eula'
-
 export default {
-  getCurrentUser: async () => await crud.getItemByEndpoint(USER_URL),
-  getEulaInfo: async () => await crud.getItemByEndpoint(EULA_URL),
+  getCurrentUser: async () => await crud.getItemByEndpoint('v3/cmp/user'),
+
+  getEulaInfo: async () => await crud.getItemByEndpoint('v3/cmp/eula'),
   updateEulaInfo: async (payload) =>
-    await crud.updateItemByEndpoint(EULA_URL, payload)
+    await crud.updateItemByEndpoint('v3/cmp/eula', payload),
+
+  getWidgets: async (userId) => {
+    const data = await crud.getItemByEndpoint(
+      `cmp/users/${userId}/dashboardWidgets`
+    )
+    const widgets = JSON.parse(data?.widgetsJson)
+    return widgets
+  },
+  updateWidgets: async (userId, widgets) =>
+    await crud.updateEntity(`cmp/users/${userId}/dashboardWidgets`, {
+      widgetsJson: widgets
+    })
 }

@@ -1,8 +1,5 @@
 import crud from '~/api/crudOperations'
 
-const LOGIN_URL = 'v3/cmp/apiToken'
-const REFRESH_URL = 'v3/cmp/apiTokenRefresh'
-
 function createTokenRequestBody(username, password) {
   let domain = null
   const retObject = {}
@@ -31,14 +28,14 @@ export default {
 
   obtainToken: async (username, password) => {
     const requestBody = createTokenRequestBody(username, password)
-    let response = await crud.createNewItem(LOGIN_URL, requestBody)
+    let response = await crud.createNewItem('v3/cmp/apiToken', requestBody)
     const token = response.token
     return token
   },
 
   // Get a new token using an existing token
   refreshToken: async () => {
-    let response = await crud.createNewItem(REFRESH_URL, null)
+    let response = await crud.createNewItem('v3/cmp/apiTokenRefresh', null)
     if (response?.token) {
       return response?.token
     }
