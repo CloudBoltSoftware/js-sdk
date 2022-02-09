@@ -40,30 +40,4 @@ describe('LicensingService', () => {
     expect(crud.getItemByEndpoint).toBeCalledWith(GET_LICENSING_STATUS_URL)
     expect(response.status).toBe('somestatus')
   })
-
-  it('getLicenseDaysRemaining calls getLicenses and returns days remaining', async () => {
-    let expDate = new Date()
-    expDate.setDate(expDate.getDate() + 5)
-    jest.spyOn(crud, 'getItems').mockResolvedValue({
-      items: [
-        {
-          expirationDate: expDate.getTime()
-        }
-      ]
-    })
-
-    const result = await LicensingService.getLicenseDaysRemaining()
-
-    expect(result).toBe('5 days')
-  })
-
-  it('getLicenseDaysRemaining calls getLicenses and returns days remaining', async () => {
-    jest.spyOn(crud, 'getItems').mockResolvedValue({
-      items: []
-    })
-
-    const result = await LicensingService.getLicenseDaysRemaining()
-
-    expect(result).toBe('NaN years')
-  })
 })
