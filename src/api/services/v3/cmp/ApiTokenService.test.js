@@ -1,14 +1,14 @@
 import crud from '~/api/crudOperations'
-import AuthTokenService from './AuthTokenService'
+import ApiTokenService from './ApiTokenService'
 
 const LOGIN_URL = 'v3/cmp/apiToken'
 const REFRESH_URL = 'v3/cmp/apiTokenRefresh'
 
-describe('AuthTokenService', () => {
+describe('ApiTokenService', () => {
   it('obtainToken calls API and returns a token', async () => {
     jest.spyOn(crud, 'createNewItem').mockResolvedValue({ token: 'token' })
 
-    const response = await AuthTokenService.obtainToken(
+    const response = await ApiTokenService.obtainToken(
       'testuser',
       'testpassword'
     )
@@ -26,7 +26,7 @@ describe('AuthTokenService', () => {
   it('obtainToken calls API with domain in request if username is an email address', async () => {
     jest.spyOn(crud, 'createNewItem').mockResolvedValue({ token: 'token' })
 
-    const response = await AuthTokenService.obtainToken(
+    const response = await ApiTokenService.obtainToken(
       'testuser@domain.com',
       'testpassword'
     )
@@ -45,7 +45,7 @@ describe('AuthTokenService', () => {
   it('refreshToken calls API and returns a token if API provides one', async () => {
     jest.spyOn(crud, 'createNewItem').mockResolvedValue({ token: 'token' })
 
-    const response = await AuthTokenService.refreshToken(
+    const response = await ApiTokenService.refreshToken(
       'testuser@domain.com',
       'testpassword'
     )
@@ -57,7 +57,7 @@ describe('AuthTokenService', () => {
   it('refreshToken calls API and returns nothing if API does not provide a token', async () => {
     jest.spyOn(crud, 'createNewItem').mockResolvedValue({})
 
-    const response = await AuthTokenService.refreshToken(
+    const response = await ApiTokenService.refreshToken(
       'testuser@domain.com',
       'testpassword'
     )
@@ -70,7 +70,7 @@ describe('AuthTokenService', () => {
     jest.spyOn(crud, 'createNewItem').mockRejectedValue('test error')
     jest.spyOn(console, 'error').mockImplementation(() => {})
     try {
-      await AuthTokenService.refreshToken('testuser', 'testpassword')
+      await ApiTokenService.refreshToken('testuser', 'testpassword')
     } catch (err) {
       expect(crud.createNewItem).toBeCalledWith(REFRESH_URL, null)
       expect(err).toBe('test error')
