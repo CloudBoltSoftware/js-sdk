@@ -1,5 +1,5 @@
 import { cloudboltApi } from './baseApi'
-import crudOperations from './crudOperations'
+import crud from './crudOperations'
 import ResponseParser from './helpers/ResponseParser'
 
 const testEndpoint = 'testEndpoint'
@@ -26,13 +26,13 @@ const testPayload = {
   test: 'test'
 }
 
-describe('crudOperations', () => {
+describe('crud', () => {
   describe('deleteItemById', () => {
     it('calls cloudboltApi.delete and returns parsed response', async () => {
       jest.spyOn(cloudboltApi, 'delete').mockResolvedValue(responseData)
       jest.spyOn(ResponseParser, 'getSingle').mockReturnValue(parsedResponse)
 
-      const response = await crudOperations.deleteItemById(testEndpoint, testId)
+      const response = await crud.deleteItemById(testEndpoint, testId)
 
       expect(cloudboltApi.delete).toBeCalledWith(`/${testEndpoint}/${testId}/`)
       expect(ResponseParser.getSingle).toBeCalledWith(
@@ -47,7 +47,7 @@ describe('crudOperations', () => {
       jest.spyOn(console, 'error').mockImplementation(() => {})
 
       try {
-        await crudOperations.deleteItemById(testEndpoint, testId)
+        await crud.deleteItemById(testEndpoint, testId)
       } catch (error) {
         expect(cloudboltApi.delete).toBeCalledWith(
           `/${testEndpoint}/${testId}/`
@@ -63,7 +63,7 @@ describe('crudOperations', () => {
       jest.spyOn(cloudboltApi, 'get').mockResolvedValue(responseData)
       jest.spyOn(ResponseParser, 'getSingle').mockReturnValue(parsedResponse)
 
-      const response = await crudOperations.getItemById(testEndpoint, testId)
+      const response = await crud.getItemById(testEndpoint, testId)
 
       expect(cloudboltApi.get).toBeCalledWith(`/${testEndpoint}/${testId}/`)
       expect(ResponseParser.getSingle).toBeCalledWith(
@@ -76,11 +76,7 @@ describe('crudOperations', () => {
       jest.spyOn(cloudboltApi, 'get').mockResolvedValue(responseData)
       jest.spyOn(ResponseParser, 'getSingle').mockReturnValue(parsedResponse)
 
-      const response = await crudOperations.getItemById(
-        testEndpoint,
-        testId,
-        testOptions
-      )
+      const response = await crud.getItemById(testEndpoint, testId, testOptions)
 
       expect(cloudboltApi.get).toBeCalledWith(
         `/${testEndpoint}/${testId}/${testOptions}`
@@ -97,7 +93,7 @@ describe('crudOperations', () => {
       jest.spyOn(console, 'error').mockImplementation(() => {})
 
       try {
-        await crudOperations.getItemById(testEndpoint, testId)
+        await crud.getItemById(testEndpoint, testId)
       } catch (error) {
         expect(cloudboltApi.get).toBeCalledWith(`/${testEndpoint}/${testId}/`)
         expect(ResponseParser.getErrorMessage).toBeCalledWith(errorData)
@@ -111,7 +107,7 @@ describe('crudOperations', () => {
       jest.spyOn(cloudboltApi, 'get').mockResolvedValue(responseData)
       jest.spyOn(ResponseParser, 'getSingle').mockReturnValue(parsedResponse)
 
-      const response = await crudOperations.getItemByEndpoint(testEndpoint)
+      const response = await crud.getItemByEndpoint(testEndpoint)
 
       expect(cloudboltApi.get).toBeCalledWith(`/${testEndpoint}/`)
       expect(ResponseParser.getSingle).toBeCalledWith(
@@ -124,10 +120,7 @@ describe('crudOperations', () => {
       jest.spyOn(cloudboltApi, 'get').mockResolvedValue(responseData)
       jest.spyOn(ResponseParser, 'getSingle').mockReturnValue(parsedResponse)
 
-      const response = await crudOperations.getItemByEndpoint(
-        testEndpoint,
-        testOptions
-      )
+      const response = await crud.getItemByEndpoint(testEndpoint, testOptions)
 
       expect(cloudboltApi.get).toBeCalledWith(`/${testEndpoint}/${testOptions}`)
       expect(ResponseParser.getSingle).toBeCalledWith(
@@ -142,7 +135,7 @@ describe('crudOperations', () => {
       jest.spyOn(console, 'error').mockImplementation(() => {})
 
       try {
-        await crudOperations.getItemByEndpoint(testEndpoint)
+        await crud.getItemByEndpoint(testEndpoint)
       } catch (error) {
         expect(cloudboltApi.get).toBeCalledWith(`/${testEndpoint}/`)
         expect(ResponseParser.getErrorMessage).toBeCalledWith(errorData)
@@ -156,7 +149,7 @@ describe('crudOperations', () => {
       jest.spyOn(cloudboltApi, 'get').mockResolvedValue(responseData)
       jest.spyOn(ResponseParser, 'getList').mockReturnValue(parsedResponse)
 
-      const response = await crudOperations.getItems(testEndpoint)
+      const response = await crud.getItems(testEndpoint)
 
       expect(cloudboltApi.get).toBeCalledWith(`/${testEndpoint}/`)
       expect(ResponseParser.getList).toBeCalledWith(
@@ -169,7 +162,7 @@ describe('crudOperations', () => {
       jest.spyOn(cloudboltApi, 'get').mockResolvedValue(responseData)
       jest.spyOn(ResponseParser, 'getList').mockReturnValue(parsedResponse)
 
-      const response = await crudOperations.getItems(testEndpoint, testOptions)
+      const response = await crud.getItems(testEndpoint, testOptions)
 
       expect(cloudboltApi.get).toBeCalledWith(`/${testEndpoint}/${testOptions}`)
       expect(ResponseParser.getList).toBeCalledWith(
@@ -184,7 +177,7 @@ describe('crudOperations', () => {
       jest.spyOn(console, 'error').mockImplementation(() => {})
 
       try {
-        await crudOperations.getItems(testEndpoint)
+        await crud.getItems(testEndpoint)
       } catch (error) {
         expect(cloudboltApi.get).toBeCalledWith(`/${testEndpoint}/`)
         expect(ResponseParser.getErrorMessage).toBeCalledWith(errorData)
@@ -198,10 +191,7 @@ describe('crudOperations', () => {
       jest.spyOn(cloudboltApi, 'post').mockResolvedValue(responseData)
       jest.spyOn(ResponseParser, 'getSingle').mockReturnValue(parsedResponse)
 
-      const response = await crudOperations.createNewItem(
-        testEndpoint,
-        testPayload
-      )
+      const response = await crud.createNewItem(testEndpoint, testPayload)
 
       expect(cloudboltApi.post).toBeCalledWith(
         `/${testEndpoint}/`,
@@ -219,7 +209,7 @@ describe('crudOperations', () => {
       jest.spyOn(console, 'error').mockImplementation(() => {})
 
       try {
-        await crudOperations.createNewItem(testEndpoint, testPayload)
+        await crud.createNewItem(testEndpoint, testPayload)
       } catch (error) {
         expect(cloudboltApi.post).toBeCalledWith(
           `/${testEndpoint}/`,
@@ -236,7 +226,7 @@ describe('crudOperations', () => {
       jest.spyOn(cloudboltApi, 'patch').mockResolvedValue(responseData)
       jest.spyOn(ResponseParser, 'getSingle').mockReturnValue(parsedResponse)
 
-      const response = await crudOperations.patchItemById(
+      const response = await crud.patchItemById(
         testEndpoint,
         testId,
         testPayload
@@ -258,7 +248,7 @@ describe('crudOperations', () => {
       jest.spyOn(console, 'error').mockImplementation(() => {})
 
       try {
-        await crudOperations.patchItemById(testEndpoint, testId, testPayload)
+        await crud.patchItemById(testEndpoint, testId, testPayload)
       } catch (error) {
         expect(cloudboltApi.patch).toBeCalledWith(
           `/${testEndpoint}/${testId}/`,
@@ -275,7 +265,7 @@ describe('crudOperations', () => {
       jest.spyOn(cloudboltApi, 'put').mockResolvedValue(responseData)
       jest.spyOn(ResponseParser, 'getSingle').mockReturnValue(parsedResponse)
 
-      const response = await crudOperations.updateItemById(
+      const response = await crud.updateItemById(
         testEndpoint,
         testId,
         testPayload
@@ -297,7 +287,7 @@ describe('crudOperations', () => {
       jest.spyOn(console, 'error').mockImplementation(() => {})
 
       try {
-        await crudOperations.updateItemById(testEndpoint, testId, testPayload)
+        await crud.updateItemById(testEndpoint, testId, testPayload)
       } catch (error) {
         expect(cloudboltApi.put).toBeCalledWith(
           `/${testEndpoint}/${testId}/`,
@@ -314,7 +304,7 @@ describe('crudOperations', () => {
       jest.spyOn(cloudboltApi, 'put').mockResolvedValue(responseData)
       jest.spyOn(ResponseParser, 'getSingle').mockReturnValue(parsedResponse)
 
-      const response = await crudOperations.updateItemByEndpoint(
+      const response = await crud.updateItemByEndpoint(
         testEndpoint,
         testPayload
       )
@@ -335,7 +325,7 @@ describe('crudOperations', () => {
       jest.spyOn(console, 'error').mockImplementation(() => {})
 
       try {
-        await crudOperations.updateItemByEndpoint(testEndpoint, testPayload)
+        await crud.updateItemByEndpoint(testEndpoint, testPayload)
       } catch (error) {
         expect(cloudboltApi.put).toBeCalledWith(
           `/${testEndpoint}/`,
@@ -354,7 +344,7 @@ describe('crudOperations', () => {
       const fakeFile = 'text'
       const fakeFileName = 'fileName'
 
-      await crudOperations.upload(testEndpoint, fakeFile, fakeFileName)
+      await crud.upload(testEndpoint, fakeFile, fakeFileName)
 
       expect(cloudboltApi.post).toHaveBeenCalled()
     })
@@ -368,7 +358,7 @@ describe('crudOperations', () => {
       const fakeFileName = 'fileName'
 
       try {
-        await crudOperations.upload(testEndpoint, fakeFile, fakeFileName)
+        await crud.upload(testEndpoint, fakeFile, fakeFileName)
       } catch (error) {
         expect(cloudboltApi.post).toHaveBeenCalled()
         expect(ResponseParser.getErrorMessage).toBeCalledWith(errorData)
@@ -383,7 +373,7 @@ describe('crudOperations', () => {
 
       const fakeFileName = 'fileName'
 
-      await crudOperations.download(testEndpoint, testId, fakeFileName)
+      await crud.download(testEndpoint, testId, fakeFileName)
 
       expect(cloudboltApi.post).toHaveBeenCalled()
     })
@@ -396,7 +386,7 @@ describe('crudOperations', () => {
       const fakeFileName = 'fileName'
 
       try {
-        await crudOperations.download(testEndpoint, testId, fakeFileName)
+        await crud.download(testEndpoint, testId, fakeFileName)
       } catch (error) {
         expect(cloudboltApi.post).toHaveBeenCalled()
         expect(ResponseParser.getErrorMessage).toBeCalledWith(errorData)

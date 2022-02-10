@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios'
 // import router from '~/router'
 // import { ERROR_GATEWAY_TIMEOUT, ERROR_UPGRADING_APP } from '~/router/paths'
 // import store from '~/store'
@@ -8,11 +8,11 @@ import axios from "axios";
 //   sessionActions
 // } from '~/store/methods'
 
-export const BASE_URL = "/api";
+export const BASE_URL = '/api'
 
 export const cloudboltApi = axios.create({
-  baseURL: BASE_URL,
-});
+  baseURL: BASE_URL
+})
 
 // export const _requestInterceptor = async (payload) => {
 //   const AUTHORIZATION = 'Authorization'

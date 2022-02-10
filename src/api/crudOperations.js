@@ -126,72 +126,83 @@ const handleError = (error) => {
 }
 // #endregion
 
+// #region base api methods
+/* ************************************************************************ */
+/* ***************************** DELETE CALLS ***************************** */
+/* ************************************************************************ */
+
+export const deleteItemById = (endpoint, id) => {
+  return deleteSingleEntity(endpoint, id)
+}
+
+/* ************************************************************************ */
+/* ******************************* GET CALLS ****************************** */
+/* ************************************************************************ */
+
+export const getItemById = (endpoint, id, options) => {
+  return getSingleEntity(endpoint, id, options)
+}
+
+export const getItemByEndpoint = (endpoint, options) => {
+  // to be used by endpoints where no ID is applicable or necessary like EULA
+  return getSingleEntity(endpoint, null, options)
+}
+
+export const getItems = (endpoint, options) => {
+  return getMultipleEntities(endpoint, options)
+}
+
+/* ************************************************************************ */
+/* ****************************** POST CALLS ****************************** */
+/* ************************************************************************ */
+
+export const createNewItem = (endpoint, payload) => {
+  return createEntity(endpoint, payload)
+}
+
+/* ************************************************************************ */
+/* ****************************** PATCH CALLS ***************************** */
+/* ************************************************************************ */
+
+export const patchItemById = (endpoint, id, payload) => {
+  return patchEntity(endpoint, id, payload)
+}
+
+/* ************************************************************************ */
+/* ******************************* PUT CALLS ****************************** */
+/* ************************************************************************ */
+
+export const updateItemById = (endpoint, id, payload) => {
+  return updateEntity(endpoint, id, payload)
+}
+
+export const updateItemByEndpoint = (endpoint, payload) => {
+  // to be used by endpoints where no ID is applicable or necessary like EULA
+
+  return updateEntity(endpoint, null, payload)
+}
+
+/* ************************************************************************ */
+/* ***************************** FILE TRANSFER **************************** */
+/* ************************************************************************ */
+export const upload = (endpoint, file, keyName) => {
+  return uploadFile(endpoint, file, keyName)
+}
+
+export const download = (endpoint, id, filename) => {
+  return downloadFile(endpoint, id, filename)
+}
+// #endregion
+
 export default {
-  // #region base api methods
-  /* ************************************************************************ */
-  /* ***************************** DELETE CALLS ***************************** */
-  /* ************************************************************************ */
-
-  deleteItemById(endpoint, id) {
-    return deleteSingleEntity(endpoint, id)
-  },
-
-  /* ************************************************************************ */
-  /* ******************************* GET CALLS ****************************** */
-  /* ************************************************************************ */
-
-  getItemById(endpoint, id, options) {
-    return getSingleEntity(endpoint, id, options)
-  },
-
-  getItemByEndpoint(endpoint, options) {
-    // to be used by endpoints where no ID is applicable or necessary like EULA
-    return getSingleEntity(endpoint, null, options)
-  },
-
-  getItems(endpoint, options) {
-    return getMultipleEntities(endpoint, options)
-  },
-
-  /* ************************************************************************ */
-  /* ****************************** POST CALLS ****************************** */
-  /* ************************************************************************ */
-
-  createNewItem(endpoint, payload) {
-    return createEntity(endpoint, payload)
-  },
-
-  /* ************************************************************************ */
-  /* ****************************** PATCH CALLS ***************************** */
-  /* ************************************************************************ */
-
-  patchItemById(endpoint, id, payload) {
-    return patchEntity(endpoint, id, payload)
-  },
-
-  /* ************************************************************************ */
-  /* ******************************* PUT CALLS ****************************** */
-  /* ************************************************************************ */
-
-  updateItemById(endpoint, id, payload) {
-    return updateEntity(endpoint, id, payload)
-  },
-
-  updateItemByEndpoint(endpoint, payload) {
-    // to be used by endpoints where no ID is applicable or necessary like EULA
-
-    return updateEntity(endpoint, null, payload)
-  },
-
-  /* ************************************************************************ */
-  /* ***************************** FILE TRANSFER **************************** */
-  /* ************************************************************************ */
-  upload(endpoint, file, keyName) {
-    return uploadFile(endpoint, file, keyName)
-  },
-
-  download(endpoint, id, filename) {
-    return downloadFile(endpoint, id, filename)
-  }
-  // #endregion
+  deleteItemById,
+  getItemById,
+  getItemByEndpoint,
+  getItems,
+  createNewItem,
+  patchItemById,
+  updateItemById,
+  updateItemByEndpoint,
+  upload,
+  download
 }
