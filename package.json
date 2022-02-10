@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "co:login": "aws codeartifact login --tool npm --repository cloudbolt-npm --domain cloudbolt --domain-owner 499620025628",
+    "husky:install": "husky install",
     "lint": "eslint .",
     "lint:fix": "eslint --fix --ext .js .",
     "precommit": "npm run lint",
-    "prepare": "husky install",
+    "prepare": "concurrently \"npm run husky:install\" \"npm run co:login\"",
     "test": "jest --silent"
   },
   "repository": {
