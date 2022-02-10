@@ -1,4 +1,4 @@
-import { api } from '~/api/baseApi'
+import { baseApi } from '~/api/baseApi'
 import crud from '~/api/crudOperations'
 
 export default {
@@ -25,5 +25,5 @@ export default {
   getServers: (options) =>
     crud.getItems('v3/dashboard/servers', { page_size: 20, ...options }),
 
-  postOrderAction: (url) => api({ method: 'post', url, baseURL: '/' })
+  postOrderAction: (url) => baseApi({ method: 'post', url, baseURL: '/' })
 }

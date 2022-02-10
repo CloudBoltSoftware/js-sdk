@@ -8,9 +8,9 @@ import axios from 'axios'
 //   sessionActions
 // } from '~/store/methods'
 
-export const BASE_URL = '/api'
+const BASE_URL = '/api'
 
-export const cloudboltApi = axios.create({
+export const baseApi = axios.create({
   baseURL: BASE_URL
 })
 

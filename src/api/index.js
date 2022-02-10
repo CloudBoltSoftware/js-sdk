@@ -6,7 +6,7 @@ import UiExtensionComponentsService from './services/v3/cmp/UiExtensionComponent
 import UserService from './services/v3/cmp/UserService'
 import DashboardService from './services/v3/DashboardService'
 
-export { cloudboltApi as baseApi } from './baseApi'
+export { baseApi } from './baseApi'
 export { default as crud } from './crudOperations'
 
 export default {

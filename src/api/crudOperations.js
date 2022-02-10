@@ -1,10 +1,10 @@
-import { cloudboltApi } from '~/api/baseApi'
+import { baseApi } from '~/api/baseApi'
 import ResponseParser from './helpers/ResponseParser'
 
 // #region CRUD helpers
 const createEntity = async (endpoint, payload) => {
   try {
-    const response = await cloudboltApi.post(`/${endpoint}/`, payload)
+    const response = await baseApi.post(`/${endpoint}/`, payload)
     return ResponseParser.getSingle(response)
   } catch (error) {
     return handleError(error)
@@ -13,7 +13,7 @@ const createEntity = async (endpoint, payload) => {
 
 const deleteSingleEntity = async (endpoint, id) => {
   try {
-    const response = await cloudboltApi.delete(`/${endpoint}/${id}/`)
+    const response = await baseApi.delete(`/${endpoint}/${id}/`)
     return ResponseParser.getSingle(response)
   } catch (error) {
     return handleError(error)
@@ -35,7 +35,7 @@ const getSingleEntity = async (endpoint, id, options) => {
   }
 
   try {
-    const response = await cloudboltApi.get(url)
+    const response = await baseApi.get(url)
     return ResponseParser.getSingle(response)
   } catch (error) {
     return handleError(error)
@@ -54,7 +54,7 @@ const getMultipleEntities = async (endpoint, options) => {
   }
 
   try {
-    const response = await cloudboltApi.get(url)
+    const response = await baseApi.get(url)
     return ResponseParser.getList(response)
   } catch (error) {
     return handleError(error)
@@ -68,7 +68,7 @@ const patchEntity = async (endpoint, id, payload) => {
   }
 
   try {
-    const response = await cloudboltApi.patch(url, payload)
+    const response = await baseApi.patch(url, payload)
     return ResponseParser.getSingle(response)
   } catch (error) {
     return handleError(error)
@@ -82,7 +82,7 @@ const updateEntity = async (endpoint, id, payload) => {
   }
 
   try {
-    const response = await cloudboltApi.put(url, payload)
+    const response = await baseApi.put(url, payload)
     return ResponseParser.getSingle(response)
   } catch (error) {
     return handleError(error)
@@ -99,7 +99,7 @@ const uploadFile = async (endpoint, file, keyName) => {
         'Content-Disposition': `attachment; filename=${file.name}`
       }
     }
-    await cloudboltApi.post(`/${endpoint}/`, formData, config)
+    await baseApi.post(`/${endpoint}/`, formData, config)
   } catch (error) {
     return handleError(error)
   }
@@ -108,7 +108,7 @@ const uploadFile = async (endpoint, file, keyName) => {
 const downloadFile = async (endpoint, id, filename) => {
   try {
     const url = `/${endpoint}/${id}/export/`
-    const response = await cloudboltApi.post(url, {}, { responseType: 'blob' })
+    const response = await baseApi.post(url, {}, { responseType: 'blob' })
     const blob = new Blob([response.data], { type: 'application/zip' })
     const link = document.createElement('a')
     link.href = URL.createObjectURL(blob)
