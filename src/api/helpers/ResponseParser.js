@@ -20,6 +20,11 @@ export default {
   ENDPOINT,
   HREF,
   SELF,
+  /**
+   *
+   * @param {any} error
+   * @returns {string}
+   */
   getErrorMessage: (error) => {
     if (
       !error?.[RESPONSE]?.[DATA]?.[ERRORS] ||
@@ -49,15 +54,33 @@ export default {
     return errorMessage
   },
 
+  /**
+   *
+   * @param {any} item
+   * @param {string} linkName
+   * @returns {Array<string> | string}
+   */
   getLinkHrefFromItem: (item, linkName) => {
     const link = item?.[LINKS]?.[linkName]
     return Array.isArray(link) ? link.map((item) => item.href) : link[HREF]
   },
 
+  /**
+   *
+   * @param {array} itemList
+   * @param {string} linkAttribute
+   * @returns
+   */
   getLinkAttributesFromItemList: (itemList, linkAttribute) => {
     return itemList.map((item) => item[LINKS][linkAttribute])
   },
 
+  /**
+   *
+   * @param {*} response
+   * @param {string} listField
+   * @returns {{ items: Array, pageInfo: { page: number, totalElements: number }}}
+   */
   getList: (response, listField) => {
     const selfLinkTitle = response[DATA]?.[LINKS]?.[SELF]?.[TITLE] || ''
     const hasPage = selfLinkTitle.match(/Page\s(\d+)\sof/)
@@ -71,6 +94,12 @@ export default {
     return { items, pageInfo }
   },
 
+  /**
+   *
+   * @param {*} response
+   * @param {string} [responseValueField]
+   * @returns
+   */
   getSingle: (response, responseValueField = '') => {
     const responseFieldArr = responseValueField.split('.').filter(Boolean)
     const responsePathArray = [DATA, ...responseFieldArr]
@@ -81,6 +110,11 @@ export default {
 }
 
 // Unexpected CloudBolt API error format or we got an unexpected JS error
+/**
+ *
+ * @param {any} error
+ * @returns {string}
+ */
 function logAndReturnUnknownError(error) {
   // TODO: Handle/Log error to wherever we're logging errors instead of the console
   console.error(error)

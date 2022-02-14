@@ -1,4 +1,4 @@
-import api from '~/api'
+import * as api from './api'
 
 export { baseApi, crud } from '~/api'
 

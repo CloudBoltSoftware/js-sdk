@@ -1,5 +1,11 @@
 import crud from '~/api/crudOperations'
 
+/**
+ *
+ * @param {string} username - pulls domain from username if in the format username@domain
+ * @param {string} password
+ * @returns {{ username: string, password: string, domain: string}}
+ */
 function createTokenRequestBody(username, password) {
   let domain = null
   const retObject = {}
@@ -22,10 +28,12 @@ function createTokenRequestBody(username, password) {
 }
 
 export default {
-  /* ************************************************************************ */
-  /* ****************************** POST CALLS ****************************** */
-  /* ************************************************************************ */
-
+  /**
+   *
+   * @param {string} username
+   * @param {string} password
+   * @returns {string | undefined} - Returns the api token or undefined
+   */
   obtainToken: async (username, password) => {
     const requestBody = createTokenRequestBody(username, password)
     let response = await crud.createNewItem('v3/cmp/apiToken', requestBody)
@@ -34,6 +42,10 @@ export default {
   },
 
   // Get a new token using an existing token
+  /**
+   *
+   * @returns {string | undefined} - Returns the api token or undefined
+   */
   refreshToken: async () => {
     let response = await crud.createNewItem('v3/cmp/apiTokenRefresh', null)
     if (response?.token) {
