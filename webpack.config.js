@@ -3,10 +3,13 @@ const path = require('path')
 module.exports = {
   entry: path.resolve(__dirname, 'src/index.js'),
   output: {
-    path: path.resolve(__dirname, 'dist'),
     filename: 'cb-api-helper.js',
-    library: '$',
-    libraryTarget: 'umd'
+    path: path.resolve(__dirname, 'dist'),
+    clean: true,
+    library: {
+      name: 'cbApiHelper',
+      type: 'umd'
+    }
   },
   resolve: {
     alias: {
@@ -22,5 +25,5 @@ module.exports = {
       }
     ]
   },
-  mode: 'development'
+  mode: 'production'
 }
