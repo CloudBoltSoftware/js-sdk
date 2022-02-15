@@ -8,10 +8,27 @@ import UiExtensionComponentsService from './api/services/v3/cmp/UiExtensionCompo
 import UserService from './api/services/v3/cmp/UserService'
 import DashboardService from './api/services/v3/DashboardService'
 
+/**
+ * Used to set the Authorization header with the Bearer token
+ * @param {string} authToken
+ */
+const setAuthHeader = (authToken) => {
+  baseApi.defaults.headers.common['Authorization'] = `Bearer ${authToken}`
+}
+
+/**
+ * Used to clear the Authorization header
+ */
+const clearAuthHeader = () => {
+  baseApi.defaults.headers.common['Authorization'] = ''
+}
+
 export default {
   base: {
     instance: baseApi,
-    crud: crud
+    crud,
+    setAuthHeader,
+    clearAuthHeader
   },
   v3: {
     cmp: {
