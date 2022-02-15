@@ -1,6 +1,6 @@
 {
   "name": "@cloudbolt/cb-api-helper",
-  "version": "0.1.11",
+  "version": "0.1.14",
   "scripts": {
     "co:login": "aws codeartifact login --tool npm --repository cloudbolt-npm --domain cloudbolt --domain-owner 499620025628",
     "husky:install": "husky install",
@@ -15,8 +15,8 @@
     "prepare": "concurrently \"npm run husky:install\" \"npm run co:login\"",
     "test": "jest --silent"
   },
-  "main": "dist/cb-api-helper.js",
-  "types": "dist/types/index.d.ts",
+  "main": "lib/cb-api-helper.js",
+  "types": "types/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/CloudBoltSoftware/cb-api-helper.git"
@@ -54,5 +54,14 @@
       "npm run lint",
       "git add"
     ]
-  }
+  },
+  "files": [
+    "lib/**/*",
+    "types/**/*",
+    "src/**/*",
+    "package.json",
+    "README.md",
+    "webpack.config.js",
+    "!src/**/*.test.js"
+  ]
 }
