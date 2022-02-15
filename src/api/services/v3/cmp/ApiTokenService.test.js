@@ -1,4 +1,4 @@
-import crud from '~/api/crudOperations'
+import crud from '../../../crudOperations'
 import ApiTokenService from './ApiTokenService'
 
 const LOGIN_URL = 'v3/cmp/apiToken'

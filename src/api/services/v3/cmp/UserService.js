@@ -1,4 +1,4 @@
-import crud from '~/api/crudOperations'
+import crud from '../../../crudOperations'
 
 export default {
   getCurrentUser: async () => await crud.getItemByEndpoint('v3/cmp/user'),

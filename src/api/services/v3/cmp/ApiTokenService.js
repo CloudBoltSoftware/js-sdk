@@ -1,4 +1,4 @@
-import crud from '~/api/crudOperations'
+import crud from '../../../crudOperations'
 
 /**
  *

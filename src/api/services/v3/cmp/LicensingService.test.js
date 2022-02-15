@@ -1,5 +1,5 @@
-import crud from '~/api/crudOperations'
-import { RETRIEVE_ALL_DATA_AND_SORT_BY_NAME } from '~/api/helpers/RestOptionsBuilder'
+import crud from '../../../crudOperations'
+import { RETRIEVE_ALL_DATA_AND_SORT_BY_NAME } from '../../../helpers/RestOptionsBuilder'
 import LicensingService from './LicensingService'
 
 const GET_LICENSES_URL = 'v3/cmp/productLicenses'

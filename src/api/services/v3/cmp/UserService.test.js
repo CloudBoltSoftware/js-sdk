@@ -1,4 +1,4 @@
-import crud from '~/api/crudOperations'
+import crud from '../../../crudOperations'
 import UserService from './UserService'
 
 const USER_URL = 'v3/cmp/user'

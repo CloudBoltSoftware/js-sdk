@@ -1,4 +1,4 @@
-import { baseApi } from '~/api/baseApi'
+import { baseApi } from './baseApi'
 import ResponseParser from './helpers/ResponseParser'
 
 // #region CRUD helpers

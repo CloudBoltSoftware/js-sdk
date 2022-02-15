@@ -1,4 +1,4 @@
-import crud from '~/api/crudOperations'
+import crud from '../../../crudOperations'
 
 export default {
   getEulaInfo: async () => await crud.getItemByEndpoint('v3/cmp/eula'),

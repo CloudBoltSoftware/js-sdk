@@ -1,11 +1,14 @@
 {
   "name": "@cloudbolt/cb-api-helper",
-  "version": "0.1.6",
+  "version": "0.1.11",
   "scripts": {
     "co:login": "aws codeartifact login --tool npm --repository cloudbolt-npm --domain cloudbolt --domain-owner 499620025628",
     "husky:install": "husky install",
-    "build": "webpack",
-    "build:typings": "tsc",
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "npm run type-check -- --watch",
+    "build": "npm run build:types && npm run build:js",
+    "build:types": "tsc --emitDeclarationOnly",
+    "build:js": "webpack",
     "lint": "eslint .",
     "lint:fix": "eslint --fix --ext .js .",
     "precommit": "npm run lint",
@@ -13,20 +16,20 @@
     "test": "jest --silent"
   },
   "main": "dist/cb-api-helper.js",
+  "types": "dist/types/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/CloudBoltSoftware/cb-api-helper.git"
   },
   "dependencies": {
-    "@babel/runtime": "^7.17.2",
     "axios": "^0.25.0",
     "ramda": "^0.28.0"
   },
   "devDependencies": {
     "@babel/core": "^7.17.2",
     "@babel/eslint-parser": "^7.17.0",
-    "@babel/plugin-transform-runtime": "^7.17.0",
     "@babel/preset-env": "^7.16.11",
+    "@babel/preset-typescript": "^7.16.7",
     "babel-jest": "^27.5.1",
     "babel-loader": "^8.2.3",
     "concurrently": "^7.0.0",

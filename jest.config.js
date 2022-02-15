@@ -4,9 +4,6 @@ module.exports = {
     '**/*.spec.{j,t}s?(x)',
     '**/*.test.{j,t}s?(x)'
   ],
-  moduleNameMapper: {
-    '^~(.*)$': '<rootDir>/src$1'
-  },
   collectCoverage: true,
   collectCoverageFrom: ['<rootDir>/src/**/*.js'],
   coveragePathIgnorePatterns: ['/node_modules/'],

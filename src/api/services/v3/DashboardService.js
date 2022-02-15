@@ -1,5 +1,5 @@
-import { baseApi } from '~/api/baseApi'
-import crud from '~/api/crudOperations'
+import { baseApi } from '../../baseApi'
+import crud from '../../crudOperations'
 
 export default {
   getBlueprints: (options) =>

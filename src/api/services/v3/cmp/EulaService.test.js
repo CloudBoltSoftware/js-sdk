@@ -1,4 +1,4 @@
-import crud from '~/api/crudOperations'
+import crud from '../../../crudOperations'
 import EulaService from './EulaService'
 
 const EULA_URL = 'v3/cmp/eula'

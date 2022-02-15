@@ -1,4 +1,4 @@
-import crud from '~/api/crudOperations'
+import crud from '../../../crudOperations'
 import ProductInfoService from './ProductInfoService'
 
 const PRODUCT_INFO_URL = 'v3/cmp/productInfo'
