@@ -1,5 +1,5 @@
 import { baseApi } from './baseApi'
-import crud from './crudOperations'
+import crud, { setErrorHandler } from './crudOperations'
 import ResponseParser from './helpers/ResponseParser'
 
 const testEndpoint = 'testEndpoint'
@@ -12,19 +12,11 @@ const responseData = {
 const parsedResponse = {
   test: 'testData'
 }
-const errorData = {
-  response: {
-    data: {
-      errors: [{ message: 'Test Error Message' }]
-    },
-    status: 401
-  }
-}
-const parsedError = 'Test Error Message'
 const testOptions = '?sortBy=id'
 const testPayload = {
   test: 'test'
 }
+const simpleError = 'error'
 
 describe('crud', () => {
   describe('deleteItemById', () => {
@@ -41,17 +33,14 @@ describe('crud', () => {
       expect(response).toBe(parsedResponse)
     })
 
-    it('catches error and handles it', async () => {
-      jest.spyOn(baseApi, 'delete').mockRejectedValue(errorData)
-      jest.spyOn(ResponseParser, 'getErrorMessage').mockReturnValue(parsedError)
-      jest.spyOn(console, 'error').mockImplementation(() => {})
+    it('catches error and throws it by default', async () => {
+      jest.spyOn(baseApi, 'delete').mockRejectedValue(simpleError)
 
       try {
         await crud.deleteItemById(testEndpoint, testId)
       } catch (error) {
         expect(baseApi.delete).toBeCalledWith(`/${testEndpoint}/${testId}/`)
-        expect(ResponseParser.getErrorMessage).toBeCalledWith(errorData)
-        expect(console.error).toBeCalledWith(parsedError)
+        expect(error).toBe(simpleError)
       }
     })
   })
@@ -85,17 +74,16 @@ describe('crud', () => {
       expect(response).toBe(parsedResponse)
     })
 
-    it('catches error and handles it', async () => {
-      jest.spyOn(baseApi, 'get').mockRejectedValue(responseData)
-      jest.spyOn(ResponseParser, 'getErrorMessage').mockReturnValue(parsedError)
-      jest.spyOn(console, 'error').mockImplementation(() => {})
+    it('catches error and throws it by default', async () => {
+      jest.spyOn(baseApi, 'get').mockRejectedValue(simpleError)
 
       try {
-        await crud.getItemById(testEndpoint, testId)
+        await crud.getItemById(testEndpoint, testId, testOptions)
       } catch (error) {
-        expect(baseApi.get).toBeCalledWith(`/${testEndpoint}/${testId}/`)
-        expect(ResponseParser.getErrorMessage).toBeCalledWith(errorData)
-        expect(console.error).toBeCalledWith(parsedError)
+        expect(baseApi.get).toBeCalledWith(
+          `/${testEndpoint}/${testId}/${testOptions}`
+        )
+        expect(error).toBe(simpleError)
       }
     })
   })
@@ -127,17 +115,14 @@ describe('crud', () => {
       expect(response).toBe(parsedResponse)
     })
 
-    it('catches error and handles it', async () => {
-      jest.spyOn(baseApi, 'get').mockRejectedValue(responseData)
-      jest.spyOn(ResponseParser, 'getErrorMessage').mockReturnValue(parsedError)
-      jest.spyOn(console, 'error').mockImplementation(() => {})
+    it('catches error and throws it by default', async () => {
+      jest.spyOn(baseApi, 'get').mockRejectedValue(simpleError)
 
       try {
-        await crud.getItemByEndpoint(testEndpoint)
+        await crud.getItemByEndpoint(testEndpoint, testOptions)
       } catch (error) {
-        expect(baseApi.get).toBeCalledWith(`/${testEndpoint}/`)
-        expect(ResponseParser.getErrorMessage).toBeCalledWith(errorData)
-        expect(console.error).toBeCalledWith(parsedError)
+        expect(baseApi.get).toBeCalledWith(`/${testEndpoint}/${testOptions}`)
+        expect(error).toBe(simpleError)
       }
     })
   })
@@ -169,17 +154,14 @@ describe('crud', () => {
       expect(response).toBe(parsedResponse)
     })
 
-    it('catches error and handles it', async () => {
-      jest.spyOn(baseApi, 'get').mockRejectedValue(responseData)
-      jest.spyOn(ResponseParser, 'getErrorMessage').mockReturnValue(parsedError)
-      jest.spyOn(console, 'error').mockImplementation(() => {})
+    it('catches error and throws it by default', async () => {
+      jest.spyOn(baseApi, 'get').mockRejectedValue(simpleError)
 
       try {
-        await crud.getItems(testEndpoint)
+        await crud.getItems(testEndpoint, testOptions)
       } catch (error) {
-        expect(baseApi.get).toBeCalledWith(`/${testEndpoint}/`)
-        expect(ResponseParser.getErrorMessage).toBeCalledWith(errorData)
-        expect(console.error).toBeCalledWith(parsedError)
+        expect(baseApi.get).toBeCalledWith(`/${testEndpoint}/${testOptions}`)
+        expect(error).toBe(simpleError)
       }
     })
   })
@@ -201,20 +183,17 @@ describe('crud', () => {
       expect(response).toBe(parsedResponse)
     })
 
-    it('catches error and handles it', async () => {
-      jest.spyOn(baseApi, 'post').mockRejectedValue(responseData)
-      jest.spyOn(ResponseParser, 'getErrorMessage').mockReturnValue(parsedError)
-      jest.spyOn(console, 'error').mockImplementation(() => {})
+    it('catches error and throws it by default', async () => {
+      jest.spyOn(baseApi, 'post').mockRejectedValue(simpleError)
 
       try {
-        await crud.createNewItem(testEndpoint, testPayload)
+        await await crud.createNewItem(testEndpoint, testPayload)
       } catch (error) {
         expect(baseApi.post).toBeCalledWith(
           `/${testEndpoint}/`,
           expect.objectContaining({ test: 'test' })
         )
-        expect(ResponseParser.getErrorMessage).toBeCalledWith(errorData)
-        expect(console.error).toBeCalledWith(parsedError)
+        expect(error).toBe(simpleError)
       }
     })
   })
@@ -240,10 +219,8 @@ describe('crud', () => {
       expect(response).toBe(parsedResponse)
     })
 
-    it('catches error and handles it', async () => {
-      jest.spyOn(baseApi, 'patch').mockRejectedValue(responseData)
-      jest.spyOn(ResponseParser, 'getErrorMessage').mockReturnValue(parsedError)
-      jest.spyOn(console, 'error').mockImplementation(() => {})
+    it('catches error and throws it by default', async () => {
+      jest.spyOn(baseApi, 'patch').mockRejectedValue(simpleError)
 
       try {
         await crud.patchItemById(testEndpoint, testId, testPayload)
@@ -252,8 +229,7 @@ describe('crud', () => {
           `/${testEndpoint}/${testId}/`,
           expect.objectContaining({ test: 'test' })
         )
-        expect(ResponseParser.getErrorMessage).toBeCalledWith(errorData)
-        expect(console.error).toBeCalledWith(parsedError)
+        expect(error).toBe(simpleError)
       }
     })
   })
@@ -279,10 +255,8 @@ describe('crud', () => {
       expect(response).toBe(parsedResponse)
     })
 
-    it('catches error and handles it', async () => {
-      jest.spyOn(baseApi, 'put').mockRejectedValue(responseData)
-      jest.spyOn(ResponseParser, 'getErrorMessage').mockReturnValue(parsedError)
-      jest.spyOn(console, 'error').mockImplementation(() => {})
+    it('catches error and throws it by default', async () => {
+      jest.spyOn(baseApi, 'patch').mockRejectedValue(simpleError)
 
       try {
         await crud.updateItemById(testEndpoint, testId, testPayload)
@@ -291,8 +265,7 @@ describe('crud', () => {
           `/${testEndpoint}/${testId}/`,
           expect.objectContaining({ test: 'test' })
         )
-        expect(ResponseParser.getErrorMessage).toBeCalledWith(errorData)
-        expect(console.error).toBeCalledWith(parsedError)
+        expect(error).toBe(simpleError)
       }
     })
   })
@@ -317,10 +290,8 @@ describe('crud', () => {
       expect(response).toBe(parsedResponse)
     })
 
-    it('catches error and handles it', async () => {
-      jest.spyOn(baseApi, 'put').mockRejectedValue(responseData)
-      jest.spyOn(ResponseParser, 'getErrorMessage').mockReturnValue(parsedError)
-      jest.spyOn(console, 'error').mockImplementation(() => {})
+    it('catches error and throws it by default', async () => {
+      jest.spyOn(baseApi, 'put').mockRejectedValue(simpleError)
 
       try {
         await crud.updateItemByEndpoint(testEndpoint, testPayload)
@@ -329,13 +300,17 @@ describe('crud', () => {
           `/${testEndpoint}/`,
           expect.objectContaining({ test: 'test' })
         )
-        expect(ResponseParser.getErrorMessage).toBeCalledWith(errorData)
-        expect(console.error).toBeCalledWith(parsedError)
+        expect(error).toBe(simpleError)
       }
     })
   })
 
   describe('upload', () => {
+    beforeEach(() => {
+      const entries = jest.fn()
+      const append = jest.fn()
+      global.FormData = () => ({ entries, append })
+    })
     it('calls baseApi.post', async () => {
       jest.spyOn(baseApi, 'post').mockResolvedValue(responseData)
 
@@ -347,25 +322,28 @@ describe('crud', () => {
       expect(baseApi.post).toHaveBeenCalled()
     })
 
-    it('catches error and handles it', async () => {
-      jest.spyOn(baseApi, 'post').mockRejectedValue(responseData)
-      jest.spyOn(ResponseParser, 'getErrorMessage').mockReturnValue(parsedError)
-      jest.spyOn(console, 'error').mockImplementation(() => {})
-
-      const fakeFile = 'text'
-      const fakeFileName = 'fileName'
+    it('catches error and throws it by default', async () => {
+      jest.spyOn(baseApi, 'post').mockRejectedValue(simpleError)
 
       try {
+        const fakeFile = 'text'
+        const fakeFileName = 'fileName'
+
         await crud.upload(testEndpoint, fakeFile, fakeFileName)
       } catch (error) {
         expect(baseApi.post).toHaveBeenCalled()
-        expect(ResponseParser.getErrorMessage).toBeCalledWith(errorData)
-        expect(console.error).toBeCalledWith(parsedError)
+        expect(error).toBe(simpleError)
       }
     })
   })
 
   describe('download', () => {
+    beforeEach(() => {
+      const createObjectURL = jest.fn()
+      const revokeObjectURL = jest.fn()
+      global.Blob = () => ({})
+      global.URL = { createObjectURL, revokeObjectURL }
+    })
     it('calls baseApi.post', async () => {
       jest.spyOn(baseApi, 'post').mockResolvedValue(responseData)
 
@@ -376,19 +354,34 @@ describe('crud', () => {
       expect(baseApi.post).toHaveBeenCalled()
     })
 
-    it('catches error and handles it', async () => {
-      jest.spyOn(baseApi, 'post').mockResolvedValue(responseData)
-      jest.spyOn(ResponseParser, 'getErrorMessage').mockReturnValue(parsedError)
-      jest.spyOn(console, 'error').mockImplementation(() => {})
-
-      const fakeFileName = 'fileName'
+    it('catches error and throws it by default', async () => {
+      jest.spyOn(baseApi, 'post').mockRejectedValue(simpleError)
 
       try {
+        const fakeFileName = 'fileName'
+
         await crud.download(testEndpoint, testId, fakeFileName)
       } catch (error) {
         expect(baseApi.post).toHaveBeenCalled()
-        expect(ResponseParser.getErrorMessage).toBeCalledWith(errorData)
-        expect(console.error).toBeCalledWith(parsedError)
+        expect(error).toBe(simpleError)
+      }
+    })
+  })
+
+  describe('error handling', () => {
+    it('can be overridden with custom error handler', async () => {
+      jest.spyOn(baseApi, 'get').mockRejectedValue(simpleError)
+      jest.spyOn(console, 'error').mockImplementation(() => {})
+      setErrorHandler((error) => {
+        console.error(error)
+      })
+
+      try {
+        await crud.getItemById(testEndpoint, testId)
+      } catch (error) {
+        expect(baseApi.get).toBeCalledWith(`/${testEndpoint}/${testId}/`)
+        expect(error).toBeNull()
+        expect(console.error).toBeCalledWith(simpleError)
       }
     })
   })
