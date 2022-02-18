@@ -1,5 +1,5 @@
 import { baseApi } from './api/baseApi'
-import crud from './api/crudOperations'
+import crud, { setErrorHandler } from './api/crudOperations'
 import ApiTokenService from './api/services/v3/cmp/ApiTokenService'
 import EulaService from './api/services/v3/cmp/EulaService'
 import LicensingService from './api/services/v3/cmp/LicensingService'
@@ -23,22 +23,25 @@ const clearAuthHeader = () => {
   baseApi.defaults.headers.common['Authorization'] = ''
 }
 
-export default {
-  base: {
-    instance: baseApi,
-    crud,
-    setAuthHeader,
-    clearAuthHeader
-  },
-  v3: {
-    cmp: {
-      apiToken: ApiTokenService,
-      eula: EulaService,
-      licensing: LicensingService,
-      productInfo: ProductInfoService,
-      uiExtensions: UiExtensionComponentsService,
-      users: UserService
+export const createApi = () => {
+  return {
+    base: {
+      instance: baseApi,
+      crud,
+      setAuthHeader,
+      clearAuthHeader,
+      setErrorHandler
     },
-    dashboard: DashboardService
+    v3: {
+      cmp: {
+        apiToken: ApiTokenService,
+        eula: EulaService,
+        licensing: LicensingService,
+        productInfo: ProductInfoService,
+        uiExtensions: UiExtensionComponentsService,
+        users: UserService
+      },
+      dashboard: DashboardService
+    }
   }
 }

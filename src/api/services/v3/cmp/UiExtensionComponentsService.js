@@ -1,6 +1,10 @@
 import crud from '../../../crudOperations'
 
 export default {
+  /**
+   * Retrieves the dashboard UI Extensions a user has access to
+   * @returns
+   */
   getAvailableXuis: async () => {
     const data = await crud.getItems('v3/cmp/uiExtensionComponents', {
       // We just need enabled dashboard xuis

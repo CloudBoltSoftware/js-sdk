@@ -29,7 +29,7 @@ function createTokenRequestBody(username, password) {
 
 export default {
   /**
-   *
+   * Uses login credentials to retrieve an API token
    * @param {string} username
    * @param {string} password
    * @returns {string | undefined} - Returns the api token or undefined
@@ -41,9 +41,8 @@ export default {
     return token
   },
 
-  // Get a new token using an existing token
   /**
-   *
+   * Get a new token using an existing API token
    * @returns {string | undefined} - Returns the api token or undefined
    */
   refreshToken: async () => {

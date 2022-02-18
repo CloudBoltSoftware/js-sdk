@@ -1,10 +1,34 @@
 import { baseApi } from './baseApi'
 import ResponseParser from './helpers/ResponseParser'
 
+/**
+ * Default Error Handler - throws error by default
+ * @param {any} error
+ */
+const defaultErrorHandler = (error) => {
+  throw error
+}
+
+let handleError = defaultErrorHandler
+
+/**
+ * Set error handler with a callback function
+ * @param {errorHandlerCallback} callback
+ */
+export const setErrorHandler = (callback) => {
+  handleError = callback
+}
+
+/**
+ * Error handler callback to do something with the error
+ * @callback errorHandlerCallback
+ * @param {any} error - The error that was caught
+ */
+
 // #region CRUD helpers
 
 /**
- *
+ * Create an entity
  * @param {string} endpoint
  * @param {any} payload
  * @returns
@@ -19,7 +43,7 @@ const createEntity = async (endpoint, payload) => {
 }
 
 /**
- *
+ * Delete an entity
  * @param {string} endpoint
  * @param {string | number} id
  * @returns
@@ -34,7 +58,7 @@ const deleteSingleEntity = async (endpoint, id) => {
 }
 
 /**
- *
+ * Get an entity
  * @param {string} endpoint
  * @param {string | number} id
  * @param {any | string} options
@@ -63,7 +87,7 @@ const getSingleEntity = async (endpoint, id, options) => {
 }
 
 /**
- *
+ * Get multiple entities
  * @param {string} endpoint
  * @param {any | string} options
  * @returns
@@ -88,7 +112,7 @@ const getMultipleEntities = async (endpoint, options) => {
 }
 
 /**
- *
+ * Patch an entity
  * @param {string} endpoint
  * @param {string | number} id
  * @param {any} payload
@@ -109,7 +133,7 @@ const patchEntity = async (endpoint, id, payload) => {
 }
 
 /**
- *
+ * Update an entity
  * @param {string} endpoint
  * @param {string | number} id
  * @param {any} payload
@@ -130,7 +154,7 @@ const updateEntity = async (endpoint, id, payload) => {
 }
 
 /**
- *
+ * Upload file to a location
  * @param {string} endpoint
  * @param {any} file
  * @param {string} keyName
@@ -153,7 +177,7 @@ const uploadFile = async (endpoint, file, keyName) => {
 }
 
 /**
- *
+ * Download file from a location
  * @param {string} endpoint
  * @param {string | number} id
  * @param {string} filename
@@ -174,16 +198,12 @@ const downloadFile = async (endpoint, id, filename) => {
   }
 }
 
-const handleError = (error) => {
-  // TODO: Handle/Log error to wherever we're logging errors instead of the console
-  console.error(ResponseParser.getErrorMessage(error))
-}
 // #endregion
 
 // #region base api methods
 
 /**
- *
+ * Delete an item
  * @param {string} endpoint
  * @param {string | number} id
  * @returns
@@ -193,7 +213,7 @@ export const deleteItemById = (endpoint, id) => {
 }
 
 /**
- *
+ * Get an item by an ID
  * @param {string} endpoint
  * @param {string | number} id
  * @param {any | string} options
@@ -204,18 +224,17 @@ export const getItemById = (endpoint, id, options) => {
 }
 
 /**
- *
+ * Get an item by an endpoint (typically used by endpoints when no ID is applicable or necesary)
  * @param {string} endpoint
  * @param {any | string} options
  * @returns
  */
 export const getItemByEndpoint = (endpoint, options) => {
-  // to be used by endpoints where no ID is applicable or necessary like EULA
   return getSingleEntity(endpoint, null, options)
 }
 
 /**
- *
+ * Get multiple items
  * @param {string} endpoint
  * @param {any | string} options
  * @returns
@@ -225,7 +244,7 @@ export const getItems = (endpoint, options) => {
 }
 
 /**
- *
+ * Create an item
  * @param {string} endpoint
  * @param {any} payload
  * @returns
@@ -246,7 +265,7 @@ export const patchItemById = (endpoint, id, payload) => {
 }
 
 /**
- *
+ * Update an item by ID
  * @param {string} endpoint
  * @param {string | number} id
  * @param {any} payload
@@ -257,19 +276,17 @@ export const updateItemById = (endpoint, id, payload) => {
 }
 
 /**
- *
+ * Update item by endpoint (typically used by endpoints when no ID is applicable or necesary)
  * @param {string} endpoint
  * @param {any} payload
  * @returns
  */
 export const updateItemByEndpoint = (endpoint, payload) => {
-  // to be used by endpoints where no ID is applicable or necessary like EULA
-
   return updateEntity(endpoint, null, payload)
 }
 
 /**
- *
+ * Upload a file to a location
  * @param {string} endpoint
  * @param {any} file
  * @param {string} keyName
@@ -280,7 +297,7 @@ export const upload = (endpoint, file, keyName) => {
 }
 
 /**
- *
+ * Download a file from a location
  * @param {string} endpoint
  * @param {string | number} id
  * @param {string} filename
