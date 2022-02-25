@@ -147,7 +147,16 @@ describe('ResponseParser', () => {
           data: {
             _links: {
               self: {
-                title: 'Page 2 of'
+                href: '/api/v3/cmp/blueprints/?page=2&attributes=pk&page_size=3',
+                title: 'List of Blueprints - Page 2 of 10'
+              },
+              previous: {
+                href: '/api/v3/cmp/blueprints/?page=1&attributes=pk&page_size=3',
+                title: 'Previous List Page'
+              },
+              next: {
+                href: '/api/v3/cmp/blueprints/?page=3&attributes=pk&page_size=3',
+                title: 'Next List Page'
               }
             },
             _embedded: {
@@ -164,7 +173,7 @@ describe('ResponseParser', () => {
               ],
               somethingElse: []
             },
-            total: 50
+            total: 30
           }
         },
         'findMe'
@@ -173,7 +182,13 @@ describe('ResponseParser', () => {
       expect(response.items.length).toBe(3)
       expect(response.items[0].name).toBe('item 1')
       expect(response.pageInfo.page).toBe(2)
-      expect(response.pageInfo.totalElements).toBe(50)
+      expect(response.pageInfo.nextPage).toBe(
+        '/api/v3/cmp/blueprints/?page=3&attributes=pk&page_size=3'
+      )
+      expect(response.pageInfo.previousPage).toBe(
+        '/api/v3/cmp/blueprints/?page=1&attributes=pk&page_size=3'
+      )
+      expect(response.pageInfo.totalElements).toBe(30)
     })
 
     it('returns items and pageInfo if Page is not included', () => {
@@ -199,7 +214,7 @@ describe('ResponseParser', () => {
               ],
               somethingElse: []
             },
-            total: 50
+            total: 30
           }
         },
         'findMe'
@@ -208,7 +223,9 @@ describe('ResponseParser', () => {
       expect(response.items.length).toBe(3)
       expect(response.items[0].name).toBe('item 1')
       expect(response.pageInfo.page).toBe(1)
-      expect(response.pageInfo.totalElements).toBe(50)
+      expect(response.pageInfo.nextPage).toBe('')
+      expect(response.pageInfo.previousPage).toBe('')
+      expect(response.pageInfo.totalElements).toBe(30)
     })
 
     it('handles empty response', () => {

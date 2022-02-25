@@ -11,6 +11,8 @@ const RESPONSE = 'response'
 const SELF = 'self'
 const TITLE = 'title'
 const TOTAL_ELEMENTS = 'total'
+const LINK_NEXT = 'next'
+const LINK_PREV = 'previous'
 
 // TODO: incorporate i18n for these user visible strings
 const SUCCESS = 'Success!'
@@ -79,16 +81,20 @@ export default {
    *
    * @param {*} response
    * @param {string} listField
-   * @returns {{ items: Array, pageInfo: { page: number, totalElements: number }}}
+   * @returns {{ items: Array, pageInfo: { page: number, nextPage: string, previousPage: string, totalElements: number }}}
    */
   getList: (response, listField) => {
     const selfLinkTitle = response[DATA]?.[LINKS]?.[SELF]?.[TITLE] || ''
+    const nextPage = response[DATA]?.[LINKS]?.[LINK_NEXT]?.[HREF] || ''
+    const previousPage = response[DATA]?.[LINKS]?.[LINK_PREV]?.[HREF] || ''
     const hasPage = selfLinkTitle.match(/Page\s(\d+)\sof/)
     const responsePageNum = hasPage ? parseInt(hasPage[1]) : 1
 
     const items = response[DATA]?.[EMBEDDED]?.[listField] || []
     const pageInfo = {
       page: responsePageNum,
+      nextPage,
+      previousPage,
       totalElements: response[DATA]?.[TOTAL_ELEMENTS]
     }
     return { items, pageInfo }
