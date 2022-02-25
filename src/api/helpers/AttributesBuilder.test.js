@@ -3,11 +3,11 @@ import { AttributesBuilder } from './AttributesBuilder'
 describe('AttributesBuilder', () => {
   it('build returns the list of attributes if defined', () => {
     const attrBuilder = new AttributesBuilder()
-    attrBuilder.addAdditionalAttributes('test')
+    attrBuilder.addAdditionalAttributes('pk')
 
     const attributes = attrBuilder.build()
 
-    expect(attributes).toBe('attributes=test')
+    expect(attributes).toBe('attributes=pk')
   })
 
   it('build returns undefined attributes not defined', () => {
@@ -15,16 +15,16 @@ describe('AttributesBuilder', () => {
 
     const attributes = attrBuilder.build()
 
-    expect(attributes).toBeUndefined()
+    expect(attributes).toBe('')
   })
 
-  it('addAdditionalAttributes replaces the attributes', () => {
+  it('addAdditionalAttributes adds multipe attributes', () => {
     const attrBuilder = new AttributesBuilder()
-    attrBuilder.addAdditionalAttributes('test')
-    attrBuilder.addAdditionalAttributes('replaced')
+    attrBuilder.addAdditionalAttributes('id')
+    attrBuilder.addAdditionalAttributes('group')
 
     const attributes = attrBuilder.build()
 
-    expect(attributes).toBe('attributes=replaced')
+    expect(attributes).toBe('attributes=id,group')
   })
 })

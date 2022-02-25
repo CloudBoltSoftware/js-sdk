@@ -1,12 +1,15 @@
+const ATTRIBUTES = 'attributes'
 export class AttributesBuilder {
-  attributes
+  attributes = []
 
-  addAdditionalAttributes(attributes) {
-    this.attributes = attributes
+  addAdditionalAttributes(attribute) {
+    this.attributes.push(attribute)
     return this
   }
 
   build() {
-    return this.attributes ? `attributes=${this.attributes}` : undefined
+    return this.attributes.length
+      ? `${ATTRIBUTES}=${this.attributes.join(',')}`
+      : ''
   }
 }
