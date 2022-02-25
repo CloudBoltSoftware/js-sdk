@@ -127,7 +127,7 @@ describe('ResponseParser', () => {
         'someOtherItem'
       )
 
-      expect(response).toBe('http://domain.com/link3')
+      expect(response[0]).toBe('http://domain.com/link3')
     })
   })
 

@@ -58,11 +58,11 @@ export default {
    *
    * @param {any} item
    * @param {string} linkName
-   * @returns {Array<string> | string}
+   * @returns {Array<string>}
    */
   getLinkHrefFromItem: (item, linkName) => {
     const link = item?.[LINKS]?.[linkName]
-    return Array.isArray(link) ? link.map((item) => item.href) : link[HREF]
+    return Array.isArray(link) ? link.map((item) => item.href) : [link[HREF]]
   },
 
   /**
