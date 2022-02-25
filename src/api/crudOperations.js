@@ -25,6 +25,17 @@ export const setErrorHandler = (callback) => {
  * @param {any} error - The error that was caught
  */
 
+/**
+ * Returns the URLSearchParams as a string
+ * @param {any | string} options
+ * @returns string
+ */
+const getUrlSearchParamsFromOptions = (options) => {
+  // Parse both string or object options
+  // See https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams
+  return new URLSearchParams(options).toString()
+}
+
 // #region CRUD helpers
 
 /**
@@ -65,9 +76,7 @@ const deleteSingleEntity = async (endpoint, id) => {
  * @returns
  */
 const getSingleEntity = async (endpoint, id, options) => {
-  // Parse both string or object options
-  // See https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams
-  const searchParams = new URLSearchParams(options).toString()
+  const searchParams = getUrlSearchParamsFromOptions(options)
 
   let url = `/${endpoint}/`
 
@@ -93,9 +102,7 @@ const getSingleEntity = async (endpoint, id, options) => {
  * @returns
  */
 const getMultipleEntities = async (endpoint, options) => {
-  // Parse both string or object options
-  // See https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams
-  const searchParams = new URLSearchParams(options).toString()
+  const searchParams = getUrlSearchParamsFromOptions(options)
 
   let url = `/${endpoint}/`
 
