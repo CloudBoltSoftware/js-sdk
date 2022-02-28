@@ -4,13 +4,11 @@ module.exports = {
     '**/*.spec.{j,t}s?(x)',
     '**/*.test.{j,t}s?(x)'
   ],
-  moduleNameMapper: {
-    '^~(.*)$': '<rootDir>/src$1'
-  },
   collectCoverage: true,
   collectCoverageFrom: ['<rootDir>/src/**/*.js'],
   coveragePathIgnorePatterns: ['/node_modules/'],
-  coverageReporters: ['text']
+  coverageReporters: ['text'],
+  testEnvironment: 'jsdom'
   //TODO: Uncomment and determine thresholds
   // Certain areas can have different thresholds
   // https://jestjs.io/docs/configuration#coveragethreshold-object

@@ -1,19 +1,67 @@
 {
-  "name": "cb-api-helper",
-  "version": "0.1.0",
-  "private": true,
+  "name": "@cloudbolt/cb-api-helper",
+  "version": "0.1.22",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "co:login": "aws codeartifact login --tool npm --repository cloudbolt-npm --domain cloudbolt --domain-owner 499620025628",
+    "husky:install": "husky install",
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "npm run type-check -- --watch",
+    "build": "npm run build:types && npm run build:js",
+    "build:types": "tsc --emitDeclarationOnly",
+    "build:js": "webpack",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix --ext .js .",
+    "precommit": "npm run lint",
+    "prepare": "concurrently \"npm run husky:install\" \"npm run co:login\"",
+    "test": "jest --silent"
+  },
+  "main": "lib/cb-api-helper.js",
+  "types": "types/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CloudBoltSoftware/cb-api-helper.git"
   },
   "dependencies": {
-    "axios": "^0.25.0"
+    "axios": "^0.25.0",
+    "ramda": "^0.28.0"
   },
   "devDependencies": {
     "@babel/core": "^7.17.2",
     "@babel/eslint-parser": "^7.17.0",
+    "@babel/plugin-transform-runtime": "^7.17.0",
     "@babel/preset-env": "^7.16.11",
+    "@babel/preset-typescript": "^7.16.7",
+    "babel-jest": "^27.5.1",
+    "babel-loader": "^8.2.3",
+    "concurrently": "^7.0.0",
     "eslint": "^8.8.0",
     "eslint-config-prettier": "^8.3.0",
-    "prettier": "^2.5.1"
-  }
+    "husky": "^7.0.4",
+    "jest": "^27.5.1",
+    "jsdoc": "~3.6.10",
+    "prettier": "^2.5.1",
+    "pretty-quick": "^3.1.3",
+    "typescript": "^4.5.5",
+    "webpack": "^5.68.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-merge": "^5.8.0"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js}": [
+      "npm run lint",
+      "git add"
+    ]
+  },
+  "files": [
+    "lib/**/*",
+    "types/**/*",
+    "src/**/*",
+    "package.json",
+    "README.md",
+    "webpack.config.js",
+    "!src/**/*.test.js"
+  ]
 }
