@@ -1,4 +1,4 @@
-import { baseApi } from './api/baseApi'
+import { baseApi, clearAuthHeader, setAuthHeader } from './api/baseApi'
 import crud, { setErrorHandler } from './api/crudOperations'
 import ApiTokenService from './api/services/v3/cmp/ApiTokenService'
 import EulaService from './api/services/v3/cmp/EulaService'
@@ -7,21 +7,6 @@ import ProductInfoService from './api/services/v3/cmp/ProductInfoService'
 import UiExtensionComponentsService from './api/services/v3/cmp/UiExtensionComponentsService'
 import UserService from './api/services/v3/cmp/UserService'
 import DashboardService from './api/services/v3/DashboardService'
-
-/**
- * Used to set the Authorization header with the Bearer token
- * @param {string} authToken
- */
-const setAuthHeader = (authToken) => {
-  baseApi.defaults.headers.common['Authorization'] = `Bearer ${authToken}`
-}
-
-/**
- * Used to clear the Authorization header
- */
-const clearAuthHeader = () => {
-  baseApi.defaults.headers.common['Authorization'] = ''
-}
 
 export const createApi = () => {
   return {
