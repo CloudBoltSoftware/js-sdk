@@ -6,15 +6,16 @@ This is a package to simplify making calls to the CloudBolt API. It can be insta
 
 ## How to connect to this CodeArtifact repository to be able to install this and other private CloudBolt packages
 
-1. Go to [cloudbolt-npm](https://console.aws.amazon.com/codesuite/codeartifact/d/499620025628/cloudbolt/r/cloudbolt-npm?region=us-east-1) and click the `View connection instructions` button.
-2. Select `npm` from the list of options to be able to install this package.
-3. Follow the instructions there and be sure to include the `.npmrc` file in your project.
-4. Recommend adding a command to the prepare step to ensure the aws cli command is run to login to this repository prior to any install or publish. View this project's package.json and look at the `co:login` and `prepare` scripts for an example of this.
+Amazon recommended instructions are at [cloudbolt-npm](https://console.aws.amazon.com/codesuite/codeartifact/d/499620025628/cloudbolt/r/cloudbolt-npm?region=us-east-1). Click the `View connection instructions` button then select `npm` from the list of options. These steps are copied below with reccomendations for our organization's aws cli and sso setup.
+
+1. Add a new `co:login` npm script in your `project.json`: `"aws sso login && aws codeartifact login --tool npm --repository cloudbolt-npm --domain cloudbolt --domain-owner 499620025628"`. This ensures your aws cli is logged in before setting the project's npm repo.
+1. Add or edit a `prepare` npm script in your `project.json`. This ensures the aws cli is logged in and is using the CloudBolt private npm repo whenever installing or publishing.
+    - If you don't already have a `prepare` script, add the following `prepare` script: `"rpm run co:login"`.
+    - If you do already have a `prepare` script, use `concurrently` to run `co:login` at the same time. For example: `"concurrently \"npm run husky:install\" \"npm run co:login\""`.
 
 ## How to publish a new version to CodeArtifact
 
-1. Login to AWS CLI via `aws sso login`
-2. Delete any local `types` and `lib` folder in this directory
-3. Increment the version of the `package.json` for this project and do an install to be sure the `package-lock.json` is up to date as well.
-4. Run the command `npm run build` which will create the `types` and `lib` folder for this version you are about to publish.
-5. Run the command `npm publish` to publish this version to CodeArtifact
+1. Delete any local `types` and `lib` folder in this directory
+1. Increment the version of the `package.json` for this project and do an install to be sure the `package-lock.json` is up to date as well.
+1. Run the command `npm run build` which will create the `types` and `lib` folder for this version you are about to publish.
+1. Run the command `npm publish` to publish this version to CodeArtifact
