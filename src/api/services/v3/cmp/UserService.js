@@ -14,9 +14,9 @@ export default {
    */
   getWidgets: async (userId) => {
     const data = await crud.getItemByEndpoint(
-      `cmp/users/${userId}/dashboardWidgets`
+      `v3/cmp/users/${userId}/dashboardWidgets`
     )
-    const widgets = JSON.parse(data?.widgetsJson)
+    const widgets = JSON.parse(data?.widgetsJson || '[]')
     return widgets
   },
 
@@ -27,7 +27,7 @@ export default {
    * @returns
    */
   updateWidgets: async (userId, widgets) =>
-    await crud.updateEntity(`cmp/users/${userId}/dashboardWidgets`, {
+    await crud.updateEntity(`v3/cmp/users/${userId}/dashboardWidgets`, {
       widgetsJson: widgets
     })
 }
