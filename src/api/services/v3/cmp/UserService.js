@@ -27,7 +27,7 @@ export default {
    * @returns
    */
   updateWidgets: async (userId, widgets) =>
-    await crud.updateEntity(`v3/cmp/users/${userId}/dashboardWidgets`, {
+    await crud.updateItemByEndpoint(`v3/cmp/users/${userId}/dashboardWidgets`, {
       widgetsJson: widgets
     })
 }

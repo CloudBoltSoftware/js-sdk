@@ -25,12 +25,12 @@ describe('UserService', () => {
     expect(response).toEqual([1, 2])
   })
 
-  it('updateWidgets calls crud.updateEntity and returns the result', async () => {
-    jest.spyOn(crud, 'updateEntity').mockResolvedValue('dummyResponse')
+  it('updateWidgets calls crud.updateItemByEndpoint and returns the result', async () => {
+    jest.spyOn(crud, 'updateItemByEndpoint').mockResolvedValue('dummyResponse')
 
     const response = await UserService.updateWidgets(1, [1, 2])
 
-    expect(crud.updateEntity).toBeCalledWith(WIDGETS_URL, {
+    expect(crud.updateItemByEndpoint).toBeCalledWith(WIDGETS_URL, {
       widgetsJson: [1, 2]
     })
     expect(response).toBe('dummyResponse')
