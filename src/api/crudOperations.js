@@ -324,6 +324,7 @@ export default {
   patchItemById,
   updateItemById,
   updateItemByEndpoint,
+  updateEntity,
   upload,
   download
 }
