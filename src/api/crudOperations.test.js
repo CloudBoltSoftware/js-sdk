@@ -136,7 +136,8 @@ describe('crud', () => {
 
       expect(baseApi.get).toBeCalledWith(`/${testEndpoint}/`)
       expect(ResponseParser.getList).toBeCalledWith(
-        expect.objectContaining({ data: { test: 'testData' } })
+        expect.objectContaining({ data: { test: 'testData' } }),
+        'testEndpoint'
       )
       expect(response).toBe(parsedResponse)
     })
@@ -149,7 +150,8 @@ describe('crud', () => {
 
       expect(baseApi.get).toBeCalledWith(`/${testEndpoint}/${testOptions}`)
       expect(ResponseParser.getList).toBeCalledWith(
-        expect.objectContaining({ data: { test: 'testData' } })
+        expect.objectContaining({ data: { test: 'testData' } }),
+        'testEndpoint'
       )
       expect(response).toBe(parsedResponse)
     })
