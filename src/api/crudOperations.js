@@ -99,9 +99,14 @@ const getSingleEntity = async (endpoint, id, options) => {
  * Get multiple entities
  * @param {string} endpoint
  * @param {any | string} options
+ * @param {string} responseField - defaults to endpoint if not supplied
  * @returns
  */
-const getMultipleEntities = async (endpoint, options) => {
+const getMultipleEntities = async (
+  endpoint,
+  options,
+  responseField = endpoint
+) => {
   const searchParams = getUrlSearchParamsFromOptions(options)
 
   let url = `/${endpoint}/`
@@ -110,9 +115,14 @@ const getMultipleEntities = async (endpoint, options) => {
     url = `${url}?${searchParams}`
   }
 
+  //responsefield might be set to something like 'dashboard/groups' and we just want 'groups'
+  if (responseField.includes('/')) {
+    responseField = responseField.substring(responseField.lastIndexOf('/') + 1)
+  }
+
   try {
     const response = await baseApi.get(url)
-    return ResponseParser.getList(response)
+    return ResponseParser.getList(response, responseField)
   } catch (error) {
     return handleError(error)
   }

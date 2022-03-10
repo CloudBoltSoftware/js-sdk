@@ -78,7 +78,7 @@ export default {
   },
 
   /**
-   *
+   * Get a list of items from a response
    * @param {*} response
    * @param {string} listField
    * @returns {{ items: Array, pageInfo: { page: number, nextPage: string, previousPage: string, totalElements: number }}}
@@ -90,13 +90,19 @@ export default {
     const hasPage = selfLinkTitle.match(/Page\s(\d+)\sof/)
     const responsePageNum = hasPage ? parseInt(hasPage[1]) : 1
 
-    const items = response[DATA]?.[EMBEDDED]?.[listField] || []
+    // Some custom api endpoints return a list of items in the data field.
+    // But most are formatted by django to be in data.[EMBEDDED].[listField]
+    const items = Array.isArray(response[DATA])
+      ? response[DATA]
+      : response[DATA]?.[EMBEDDED]?.[listField] || []
+
     const pageInfo = {
       page: responsePageNum,
       nextPage,
       previousPage,
       totalElements: response[DATA]?.[TOTAL_ELEMENTS]
     }
+
     return { items, pageInfo }
   },
 
