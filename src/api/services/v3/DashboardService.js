@@ -7,7 +7,7 @@ export default {
   /**
    * Retrieve blueprints to display on the Blueprints Widget
    * @param options anything parsable by URLSearchParams. See useful options here https://docs.cloudbolt.io/articles/#!cloudbolt-latest-docs/api-conventions/a/h2__904191799
-   * @returns {Promise<Array>} resolves with an array of Blueprint objects
+   * @returns {Promise} resolves with a cloudbolt API Response object of Blueprint objects
    */
   getBlueprints: (options) =>
     crud.getItems('v3/dashboard/blueprints', { page_size: 12, ...options }),
@@ -15,7 +15,7 @@ export default {
   /**
    * Retrieve environments to display on the Environments Widget
    * @param options anything parsable by URLSearchParams. See useful options here https://docs.cloudbolt.io/articles/#!cloudbolt-latest-docs/api-conventions/a/h2__904191799
-   * @returns {Promise<Array>} resolves with an array of Environment objects
+   * @returns {Promise} resolves with a cloudbolt API Response object of Environment objects
    */
   getEnvironments: (options) =>
     crud.getItems('v3/dashboard/environments', { ...options }),
@@ -23,14 +23,14 @@ export default {
   /**
    * Retrieve events to display on the Events Widget
    * @param options anything parsable by URLSearchParams. See useful options here https://docs.cloudbolt.io/articles/#!cloudbolt-latest-docs/api-conventions/a/h2__904191799
-   * @returns {Promise<Array>} resolves with an array of Event objects
+   * @returns {Promise} resolves with a cloudbolt API Response object of Event objects
    */
   getEvents: (options) => crud.getItems('v3/dashboard/events', { ...options }),
 
   /**
    * Retrieve groups to display on the Groups Widget
    * @param options anything parsable by URLSearchParams. See useful options here https://docs.cloudbolt.io/articles/#!cloudbolt-latest-docs/api-conventions/a/h2__904191799
-   * @returns {Promise<Array>} resolves with an array of Group objects
+   * @returns {Promise} resolves with a cloudbolt API Response object of Group objects
    */
   getGroups: (options) =>
     crud.getItems('v3/dashboard/groups', { page_size: 100, ...options }),
@@ -38,7 +38,7 @@ export default {
   /**
    * Retrieve jobs to display on the Jobs Widget
    * @param options anything parsable by URLSearchParams. See useful options here https://docs.cloudbolt.io/articles/#!cloudbolt-latest-docs/api-conventions/a/h2__904191799
-   * @returns {Promise<Array>} resolves with an array of Job objects
+   * @returns {Promise} resolves with a cloudbolt API Response object of Job objects
    */
   getJobs: (options) =>
     crud.getItemByEndpoint('v3/dashboard/jobs', { ...options }),
@@ -46,7 +46,7 @@ export default {
   /**
    * Retrieve Orders to display on the Orders Widget
    * @param options anything parsable by URLSearchParams. See useful options here https://docs.cloudbolt.io/articles/#!cloudbolt-latest-docs/api-conventions/a/h2__904191799
-   * @returns {Promise<Array>} resolves with an array of Order objects
+   * @returns {Promise} resolves with a cloudbolt API Response object of Order objects
    */
   getOrders: (options) =>
     crud.getItems('v3/dashboard/orders', { page_size: 100, ...options }),
@@ -54,7 +54,7 @@ export default {
   /**
    * Retrieve reports to display on the Reports Widget
    * @param options anything parsable by URLSearchParams. See useful options here https://docs.cloudbolt.io/articles/#!cloudbolt-latest-docs/api-conventions/a/h2__904191799
-   * @returns {Promise<Array>} resolves with an array of Report objects
+   * @returns {Promise} resolves with a cloudbolt API Response object of Report objects
    */
   getReports: (options) =>
     crud.getItems('v3/dashboard/reports', { limit: 12, ...options }),
@@ -62,7 +62,7 @@ export default {
   /**
    * Retrieve Servers to display on the Servers Widget
    * @param options anything parsable by URLSearchParams. See useful options here https://docs.cloudbolt.io/articles/#!cloudbolt-latest-docs/api-conventions/a/h2__904191799
-   * @returns {Promise<Array>} resolves with an array of Server objects
+   * @returns {Promise} resolves with a cloudbolt API Response object of Server objects
    */
   getServers: (options) =>
     crud.getItems('v3/dashboard/servers', { page_size: 20, ...options }),
@@ -73,7 +73,7 @@ export default {
    * Retrieves widgets and their customized permissions.
    * Admin only.
    * @param options anything parsable by URLSearchParams. See useful options here https://docs.cloudbolt.io/articles/#!cloudbolt-latest-docs/api-conventions/a/h2__904191799
-   * @returns {Promise<Array>} resolves with an array of objects
+   * @returns {Promise} resolves with a cloudbolt API Response object of Widget objects
    */
   getWidgets: (options) => crud.getItems('v3/dashboard/widgets', options),
 
