@@ -84,7 +84,8 @@ export default {
    * @param options anything parsable by URLSearchParams. See useful options here https://docs.cloudbolt.io/articles/#!cloudbolt-latest-docs/api-conventions/a/h2__904191799
    * @returns {Promise} resolves with a single widget objects
    */
-  getWidget: (id, options) => crud.getItemById('v3/dashboard/widgets', options),
+  getWidget: (id, options) =>
+    crud.getItemById('v3/dashboard/widgets', id, options),
 
   /**
    * Create a new widget with customized permissions.
@@ -103,7 +104,7 @@ export default {
    * @returns {Promise} resolves with the updated widget object
    */
   updateWidget: (id, updatedWidget) =>
-    crud.updateItemById('v3/dashboard/widgets', updatedWidget),
+    crud.updateItemById('v3/dashboard/widgets', id, updatedWidget),
 
   /**
    * Deletes a widget and its customized permissions.

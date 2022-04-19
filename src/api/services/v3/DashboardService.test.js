@@ -215,4 +215,57 @@ describe('getEnvironments', () => {
   })
 })
 
-// If the above two are good, the resteshould be good too.
+// If the above two are good, the other Widget Data endpoints should be good too.
+
+describe('widgets endpoints', () => {
+  it('getWidgets calls the correct endpoint', async () => {
+    const mockFn = jest
+      .spyOn(baseApi, 'get')
+      .mockResolvedValue({ widgets: [{ hello: 'world' }] })
+    await DashboardService.getWidgets()
+    expect(mockFn).toHaveBeenCalledWith('/v3/dashboard/widgets/')
+  })
+
+  it('getWidget calls the correct endpoint', async () => {
+    const mockFn = jest
+      .spyOn(baseApi, 'get')
+      .mockResolvedValue({ widget: { hello: 'world' } })
+    await DashboardService.getWidget('widget-id')
+    expect(mockFn).toHaveBeenCalledWith('/v3/dashboard/widgets/widget-id/')
+  })
+
+  it('createWidget calls the correct endpoint', async () => {
+    const mockFn = jest
+      .spyOn(baseApi, 'post')
+      .mockResolvedValue({ widget: { hello: 'world' } })
+    const mockWidget = { hello: 'world' }
+    await DashboardService.createWidget(mockWidget)
+    expect(mockFn).toHaveBeenCalledWith('/v3/dashboard/widgets/', mockWidget)
+  })
+
+  it('updateWidget calls the correct endpoint', async () => {
+    const mockFn = jest
+      .spyOn(baseApi, 'put')
+      .mockResolvedValue({ widget: { hello: 'world' } })
+    const mockWidget = { hello: 'world' }
+    await DashboardService.updateWidget('widget-id', mockWidget)
+    expect(mockFn).toHaveBeenCalledWith(
+      '/v3/dashboard/widgets/widget-id/',
+      mockWidget
+    )
+  })
+
+  it('deleteWidget calls the correct endpoint', async () => {
+    const mockFn = jest.spyOn(baseApi, 'delete').mockResolvedValue({})
+    await DashboardService.deleteWidget('widget-id')
+    expect(mockFn).toHaveBeenCalledWith('/v3/dashboard/widgets/widget-id/')
+  })
+
+  it('getWidgetBlacklist calls the correct endpoint', async () => {
+    const mockFn = jest
+      .spyOn(baseApi, 'get')
+      .mockResolvedValue([{ hello: 'world' }])
+    await DashboardService.getWidgetBlacklist()
+    expect(mockFn).toHaveBeenCalledWith('/v3/dashboard/widgets/blacklist/')
+  })
+})
