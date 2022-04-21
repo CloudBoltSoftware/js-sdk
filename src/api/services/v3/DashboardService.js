@@ -69,57 +69,57 @@ export default {
 
   // Manage Widget permissions
 
-  /**
-   * Retrieves widgets and their customized permissions.
-   * Admin only.
-   * @param options anything parsable by URLSearchParams. See useful options here https://docs.cloudbolt.io/articles/#!cloudbolt-latest-docs/api-conventions/a/h2__904191799
-   * @returns {Promise} resolves with a cloudbolt API Response object of Widget objects
-   */
-  getWidgets: (options) => crud.getItems('v3/dashboard/widgets', options),
+  widgets: {
+    /**
+     * Retrieves widgets and their customized permissions.
+     * Admin only.
+     * @param options anything parsable by URLSearchParams. See useful options here https://docs.cloudbolt.io/articles/#!cloudbolt-latest-docs/api-conventions/a/h2__904191799
+     * @returns {Promise} resolves with a cloudbolt API Response object of Widget objects
+     */
+    list: (options) => crud.getItems('v3/dashboard/widgets', options),
 
-  /**
-   * Retrieve a single widget and its customized permissions.
-   * Admin only.
-   * @param {string} id or global_id
-   * @param options anything parsable by URLSearchParams. See useful options here https://docs.cloudbolt.io/articles/#!cloudbolt-latest-docs/api-conventions/a/h2__904191799
-   * @returns {Promise} resolves with a single widget objects
-   */
-  getWidget: (id, options) =>
-    crud.getItemById('v3/dashboard/widgets', id, options),
+    /**
+     * Retrieve a single widget and its customized permissions.
+     * Admin only.
+     * @param {string} id or global_id
+     * @param options anything parsable by URLSearchParams. See useful options here https://docs.cloudbolt.io/articles/#!cloudbolt-latest-docs/api-conventions/a/h2__904191799
+     * @returns {Promise} resolves with a single widget objects
+     */
+    get: (id, options) => crud.getItemById('v3/dashboard/widgets', id, options),
 
-  /**
-   * Create a new widget with customized permissions.
-   * Admin only.
-   * @param {object} newWidget New Widget object
-   * @returns {Promise} resolves with the created widget object
-   */
-  createWidget: (newWidget) =>
-    crud.createNewItem('v3/dashboard/widgets', newWidget),
+    /**
+     * Create a new widget with customized permissions.
+     * Admin only.
+     * @param {object} newWidget New Widget object
+     * @returns {Promise} resolves with the created widget object
+     */
+    create: (newWidget) =>
+      crud.createNewItem('v3/dashboard/widgets', newWidget),
 
-  /**
-   * Updates a widget with customized permissions.
-   * Admin only.
-   * @param {string} id or global_id
-   * @param {object} updatedWidget Updated Widget object
-   * @returns {Promise} resolves with the updated widget object
-   */
-  updateWidget: (id, updatedWidget) =>
-    crud.updateItemById('v3/dashboard/widgets', id, updatedWidget),
+    /**
+     * Updates a widget with customized permissions.
+     * Admin only.
+     * @param {string} id or global_id
+     * @param {object} updatedWidget Updated Widget object
+     * @returns {Promise} resolves with the updated widget object
+     */
+    update: (id, updatedWidget) =>
+      crud.updateItemById('v3/dashboard/widgets', id, updatedWidget),
 
-  /**
-   * Deletes a widget and its customized permissions.
-   * Admin only.
-   * @param {string} id or global_id
-   * @returns {Promise} resolves with an object describing the deletion
-   */
-  deleteWidget: (id) => crud.deleteItemById('v3/dashboard/widgets', id),
+    /**
+     * Deletes a widget and its customized permissions.
+     * Admin only.
+     * @param {string} id or global_id
+     * @returns {Promise} resolves with an object describing the deletion
+     */
+    delete: (id) => crud.deleteItemById('v3/dashboard/widgets', id),
 
-  /**
-   * Retrieve an array of widgets the requesting user should not be able to see.
-   * @returns {Promise<Array>} resolves with an array of objects
-   */
-  getWidgetBlacklist: () =>
-    crud.getItemByEndpoint('v3/dashboard/widgets/blacklist'),
+    /**
+     * Retrieve an array of widgets the requesting user should not be able to see.
+     * @returns {Promise<Array>} resolves with an array of objects
+     */
+    blacklist: () => crud.getItemByEndpoint('v3/dashboard/widgets/blacklist')
+  },
 
   // Misc
 
