@@ -1,3 +1,4 @@
+import { baseApi } from '../../../baseApi'
 import crud from '../../../crudOperations'
 
 /**
@@ -39,6 +40,16 @@ export default {
     let response = await crud.createNewItem('v3/cmp/apiToken', requestBody)
     const token = response.token
     return token
+  },
+
+  obtainTokenWithSessionCookie: async () => {
+    let response = await baseApi.post('v3/cmp/apiToken/', {}, {withCredentials: true})
+    const token = response?.data?.token
+    if(token) {
+      return token
+    } else {
+      throw new Error('Invalid response from API')
+    }
   },
 
   /**
