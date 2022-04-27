@@ -1,4 +1,5 @@
 import crud from '../../../crudOperations'
+import { camelCaseKeys } from '../../../helpers/textUtils'
 
 export default {
   /**
@@ -8,7 +9,7 @@ export default {
   getCurrentUser: async () => await crud.getItemByEndpoint('v3/cmp/user'),
 
   /**
-   * Retrieves the dashboard widgets for the specified user
+   * Retrieves the cmp dashboard widgets for the specified user
    * @param {string | number} userId
    * @returns
    */
@@ -21,7 +22,7 @@ export default {
   },
 
   /**
-   *
+   * Updates the cmp dashboard widgets for the specified user
    * @param {string|number} userId
    * @param {any[]} widgets
    * @returns
@@ -29,5 +30,37 @@ export default {
   updateWidgets: async (userId, widgets) =>
     await crud.updateItemByEndpoint(`v3/cmp/users/${userId}/dashboardWidgets`, {
       widgetsJson: widgets
-    })
+    }),
+
+  /**
+   * Retrieves the CUI Dashboard setup for the specified user
+   * @param {string | number} userId
+   * @returns
+   */
+  getDashboard: async (userId) => {
+    const data = await crud.getItemByEndpoint(
+      `v3/cmp/users/${userId}/cuiDashboard`
+    )
+    const rawDashboard = JSON.parse(data?.cuiDashboard || '{}')
+    const dashboard = camelCaseKeys(rawDashboard)
+    return dashboard
+  },
+
+  /**
+   * Updates the CUI Dashboard setup for the specified user
+   * @param {string|number} userId
+   * @param {object} dashboard
+   * @param {any[]} dashboard.widgets
+   * @returns
+   */
+  updateDashboard: async (userId, dashboard) => {
+    const rawUpdatedDashboard = await crud.updateItemByEndpoint(
+      `v3/cmp/users/${userId}/cuiDashboard`,
+      {
+        cuiDashboard: dashboard
+      }
+    )
+    const updatedDashboard = camelCaseKeys(rawUpdatedDashboard)
+    return updatedDashboard
+  }
 }
