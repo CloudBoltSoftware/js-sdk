@@ -1,3 +1,4 @@
+import { baseApi } from '../../../baseApi'
 import crud from '../../../crudOperations'
 import ApiTokenService from './ApiTokenService'
 
@@ -38,6 +39,19 @@ describe('ApiTokenService', () => {
         password: 'testpassword',
         domain: 'domain.com'
       })
+    )
+    expect(response).toBe('token')
+  })
+
+  it('obtainTokenWithSessionCookie uses withCredentials to pass cookie and no post body to API', async() => {
+    jest.spyOn(baseApi, 'post').mockResolvedValue({ data: {token: 'token' }})
+
+    const response = await ApiTokenService.obtainTokenWithSessionCookie()
+
+    expect(baseApi.post).toBeCalledWith(
+      LOGIN_URL+'/',
+      {},
+      { withCredentials: true }
     )
     expect(response).toBe('token')
   })
