@@ -215,4 +215,57 @@ describe('getEnvironments', () => {
   })
 })
 
-// If the above two are good, the resteshould be good too.
+// If the above two are good, the other Widget Data endpoints should be good too.
+
+describe('widgets', () => {
+  it('list calls the correct endpoint', async () => {
+    const mockFn = jest
+      .spyOn(baseApi, 'get')
+      .mockResolvedValue({ widgets: [{ hello: 'world' }] })
+    await DashboardService.widgets.list()
+    expect(mockFn).toHaveBeenCalledWith('/v3/dashboard/widgets/')
+  })
+
+  it('get calls the correct endpoint', async () => {
+    const mockFn = jest
+      .spyOn(baseApi, 'get')
+      .mockResolvedValue({ widget: { hello: 'world' } })
+    await DashboardService.widgets.get('widget-id')
+    expect(mockFn).toHaveBeenCalledWith('/v3/dashboard/widgets/widget-id/')
+  })
+
+  it('create calls the correct endpoint', async () => {
+    const mockFn = jest
+      .spyOn(baseApi, 'post')
+      .mockResolvedValue({ widget: { hello: 'world' } })
+    const mockWidget = { hello: 'world' }
+    await DashboardService.widgets.create(mockWidget)
+    expect(mockFn).toHaveBeenCalledWith('/v3/dashboard/widgets/', mockWidget)
+  })
+
+  it('update calls the correct endpoint', async () => {
+    const mockFn = jest
+      .spyOn(baseApi, 'put')
+      .mockResolvedValue({ widget: { hello: 'world' } })
+    const mockWidget = { hello: 'world' }
+    await DashboardService.widgets.update('widget-id', mockWidget)
+    expect(mockFn).toHaveBeenCalledWith(
+      '/v3/dashboard/widgets/widget-id/',
+      mockWidget
+    )
+  })
+
+  it('delete calls the correct endpoint', async () => {
+    const mockFn = jest.spyOn(baseApi, 'delete').mockResolvedValue({})
+    await DashboardService.widgets.delete('widget-id')
+    expect(mockFn).toHaveBeenCalledWith('/v3/dashboard/widgets/widget-id/')
+  })
+
+  it('blacklist calls the correct endpoint', async () => {
+    const mockFn = jest
+      .spyOn(baseApi, 'get')
+      .mockResolvedValue([{ hello: 'world' }])
+    await DashboardService.widgets.blacklist()
+    expect(mockFn).toHaveBeenCalledWith('/v3/dashboard/widgets/blacklist/')
+  })
+})
