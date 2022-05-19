@@ -13,6 +13,18 @@ export default {
     crud.getItems('v3/dashboard/blueprints', { page_size: 12, ...options }),
 
   /**
+   * Retrieve CIT to display on the CIT Widget
+   * @param options anything parsable by URLSearchParams. See useful options here https://docs.cloudbolt.io/articles/#!cloudbolt-latest-docs/api-conventions/a/h2__904191799
+   * @returns {Promise} resolves with a cloudbolt API Response object of CIT objects
+   */
+  getCITStatus: (options) =>
+    crud.getItems('v3/cmp/jobs', {
+      filter: 'type.iexact:functionaltest',
+      page_size: 100,
+      ...options
+    }),
+
+  /**
    * Retrieve environments to display on the Environments Widget
    * @param options anything parsable by URLSearchParams. See useful options here https://docs.cloudbolt.io/articles/#!cloudbolt-latest-docs/api-conventions/a/h2__904191799
    * @returns {Promise} resolves with a cloudbolt API Response object of Environment objects
