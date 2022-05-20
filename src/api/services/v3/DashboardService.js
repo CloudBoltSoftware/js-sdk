@@ -72,7 +72,7 @@ export default {
    * @param options anything parsable by URLSearchParams. See useful options here https://docs.cloudbolt.io/articles/#!cloudbolt-latest-docs/api-conventions/a/h2__904191799
    * @returns {Promise} API Response object of System Status objects
    */
-  getSystemStatus: async (options) => {
+  getSystemStatus: async () => {
     const url = 'v3/cmp/system/status'
     const response = await baseApi.get(url)
     return response
