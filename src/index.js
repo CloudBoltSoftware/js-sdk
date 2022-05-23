@@ -8,6 +8,7 @@ import ProductInfoService from './api/services/v3/cmp/ProductInfoService'
 import UiExtensionComponentsService from './api/services/v3/cmp/UiExtensionComponentsService'
 import UserService from './api/services/v3/cmp/UserService'
 import DashboardService from './api/services/v3/DashboardService'
+import JobsService from './api/services/v3/cmp/JobsService'
 
 export const createApi = () => {
   return {
@@ -26,7 +27,8 @@ export const createApi = () => {
         licensing: LicensingService,
         productInfo: ProductInfoService,
         uiExtensions: UiExtensionComponentsService,
-        users: UserService
+        users: UserService,
+        jobs: JobsService
       },
       dashboard: DashboardService
     }
