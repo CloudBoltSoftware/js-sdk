@@ -1,4 +1,5 @@
 import { baseApi } from '../../../baseApi'
+import ResponseParser from '../../../helpers/ResponseParser'
 
 const statusURL = 'v3/cmp/system/status'
 const settingsURL = 'v3/cmp/system/settings'
@@ -9,8 +10,13 @@ export default {
    * @returns {Promise} API Response object of System Status objects
    */
   status: async () => {
-    const response = await baseApi.get(statusURL)
-    return response
+    try {
+      const response = await baseApi.get(statusURL)
+      return response
+    } catch (error) {
+      const errMsg = ResponseParser.getErrorMessage(error)
+      throw new Error(errMsg)
+    }
   },
 
   /**
@@ -18,7 +24,12 @@ export default {
    * @returns {Promise} API Response object of System Settings objects
    */
   settings: async () => {
-    const response = await baseApi.get(settingsURL)
-    return response
+    try {
+      const response = await baseApi.get(settingsURL)
+      return response
+    } catch (error) {
+      const errMsg = ResponseParser.getErrorMessage(error)
+      throw new Error(errMsg)
+    }
   }
 }
