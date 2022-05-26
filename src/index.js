@@ -1,6 +1,7 @@
 import { baseApi, clearAuthHeader, setAuthHeader } from './api/baseApi'
 import crud, { setErrorHandler } from './api/crudOperations'
 import ApiTokenService from './api/services/v3/cmp/ApiTokenService'
+import BlueprintCategoriesService from './api/services/v3/cmp/BlueprintCategoriesService'
 import EulaService from './api/services/v3/cmp/EulaService'
 import GroupsService from './api/services/v3/cmp/GroupsService'
 import LicensingService from './api/services/v3/cmp/LicensingService'
@@ -26,7 +27,8 @@ export const createApi = () => {
         licensing: LicensingService,
         productInfo: ProductInfoService,
         uiExtensions: UiExtensionComponentsService,
-        users: UserService
+        users: UserService,
+        blueprintCategories: BlueprintCategoriesService
       },
       dashboard: DashboardService
     }
