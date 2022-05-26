@@ -204,6 +204,10 @@ const downloadFile = async (endpoint, id, filename) => {
   try {
     const url = `/${endpoint}/${id}/export/`
     const response = await baseApi.post(url, {}, { responseType: 'blob' })
+
+    if (!filename) {
+      filename = response.headers['content-disposition'].split('filename=')[1]
+    }
     const blob = new Blob([response.data], { type: 'application/zip' })
     const link = document.createElement('a')
     link.href = URL.createObjectURL(blob)

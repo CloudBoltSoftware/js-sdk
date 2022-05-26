@@ -20,18 +20,18 @@ export default {
 
   /**
    * Create a new blueprint category
-   * @param {object} newblueprintCategories new blueprint categories object definition
+   * @param {object} newBlueprintCategories new blueprint categories object definition
    * @returns {Promise} resolves with a new blueprint category object with all server-filled fields
    */
-  create: (newblueprintCategories) => crud.createNewItem(URL, newblueprintCategories),
+  create: (newBlueprintCategories) => crud.createNewItem(URL, newBlueprintCategories),
 
   /**
    * Update an existing blueprint category for a given id
    * @param {string} id or global_id
-   * @param {object} updatedblueprintCategories updated blueprintCategories object definition
+   * @param {object} updatedBlueprintCategories updated blueprintCategories object definition
    * @returns {Promise} resolves with a cloudbolt API Response object of the updated blueprint category objects
    */
-  update: (id, updatedblueprintCategories) => crud.updateItemById(URL, id, updatedblueprintCategories),
+  update: (id, updatedBlueprintCategories) => crud.updateItemById(URL, id, updatedBlueprintCategories),
 
   /**
    * Delete an existing blueprint category for a given id
