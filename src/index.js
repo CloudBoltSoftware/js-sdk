@@ -28,7 +28,7 @@ export const createApi = () => {
         productInfo: ProductInfoService,
         uiExtensions: UiExtensionComponentsService,
         users: UserService,
-        systemService: SystemService
+        system: SystemService
       },
       dashboard: DashboardService
     }
