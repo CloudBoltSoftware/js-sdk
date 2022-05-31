@@ -6,6 +6,7 @@ import GroupsService from './GroupsService'
 import LicensingService from './LicensingService'
 import OsBuildsService from './OsBuildsService'
 import ProductInfoService from './ProductInfoService'
+import ProductLicensesService from './ProductLicensesService'
 import UiExtensionComponentsService from './UiExtensionComponentsService'
 import UserService from './UserService'
 
@@ -19,5 +20,6 @@ export default {
   users: UserService,
   blueprintCategories: BlueprintCategoriesService,
   blueprints: BlueprintsService,
-  osBuilds: OsBuildsService
+  osBuilds: OsBuildsService,
+  productLicenses: ProductLicensesService
 }
