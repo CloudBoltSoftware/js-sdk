@@ -7,6 +7,7 @@ import LicensingService from './LicensingService'
 import OsBuildsService from './OsBuildsService'
 import ProductInfoService from './ProductInfoService'
 import ProductLicensesService from './ProductLicensesService'
+import RolesService from './RolesService'
 import UiExtensionComponentsService from './UiExtensionComponentsService'
 import UserService from './UserService'
 
@@ -21,5 +22,6 @@ export default {
   blueprintCategories: BlueprintCategoriesService,
   blueprints: BlueprintsService,
   osBuilds: OsBuildsService,
-  productLicenses: ProductLicensesService
+  productLicenses: ProductLicensesService,
+  roles: RolesService
 }

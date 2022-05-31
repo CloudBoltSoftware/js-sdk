@@ -15,7 +15,8 @@ test.each([
   'blueprintCategories',
   'blueprints',
   'osBuilds',
-  'productLicenses'
+  'productLicenses',
+  'roles'
 ])('should export a %s service', (serviceName) => {
   expect(typeof cmp[serviceName]).toBe('object')
 })
