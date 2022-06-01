@@ -6,7 +6,7 @@ export default {
   /**
    * Retrieve a list of existing Os Builds
    * @param options anything parsable by URLSearchParams. See useful options here https://docs.cloudbolt.io/articles/#!cloudbolt-latest-docs/api-conventions/a/h2__904191799
-   * @returns
+   * @returns {Promise} resolves with a paginated list of all Os Builds
    */
   list: (options) => crud.getItems(URL, options),
 
@@ -14,7 +14,7 @@ export default {
    * Retrieve an existing Os Build by id
    * @param {string} id or global_id
    * @param options anything parsable by URLSearchParams. See useful options here https://docs.cloudbolt.io/articles/#!cloudbolt-latest-docs/api-conventions/a/h2__904191799
-   * @returns {Promise} resolves with a cloudbolt API Response object of Os Build objects
+   * @returns {Promise} resolves with a cloudbolt API Response object of the Os Build object
    */
   get: (id, options) => crud.getItemById(URL, id, options),
 
@@ -29,22 +29,23 @@ export default {
    * Update an existing Os Build
    * @param {string} id or global_id
    * @param {object} updatedOsBuild updated Os Build definition
-   * @returns {Promise} resolves with a cloudbolt API Response object of Os Build objects
+   * @returns {Promise} resolves with a cloudbolt API Response object of the Os Build object
    */
   update: (id, updatedOsBuild) => crud.patchItemById(URL, id, updatedOsBuild),
 
   /**
-   * Replace an existing Os Build
+   * Replace an existing Os Build by id
    * @param {string} id or global_id
-   * @param {object} newOsBuild new replacement Os Build definition
-   * @returns {Promise} resolves with the updated cloudbolt API Response object of Os Build object
+   * @param {object} replacementOsBuild new replacement Os Build definition
+   * @returns {Promise} resolves with the successful cloudbolt API Response object of the replacement Os Build object
    */
-  replace: (id, newOsBuild) => crud.updateItemById(URL, id, newOsBuild),
+  replace: (id, replacementOsBuild) =>
+    crud.updateItemById(URL, id, replacementOsBuild),
 
   /**
-   * Delete an existing Os Build
+   * Delete an existing Os Build by id
    * @param {string} id or global_id
-   * @returns {Promise} resolves with a cloudbolt API Response object of Os Build objects
+   * @returns {Promise} resolves with a cloudbolt API Success Response
    */
   delete: (id) => crud.deleteItemById(URL, id)
 }
