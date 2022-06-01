@@ -29,7 +29,7 @@ export default {
    * Update an existing Role
    * @param {string} id or global_id
    * @param {object} updatedRole updated Role object definition
-   * @returns {Promise} resolves with a cloudbolt API Response object of Role objects
+   * @returns {Promise} resolves with a cloudbolt API Response object of the updated Role object
    */
   update: (id, updatedRole) => crud.patchItemById(URL, id, updatedRole),
 
