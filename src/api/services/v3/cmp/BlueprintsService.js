@@ -20,7 +20,7 @@ export default {
 
   /**
    * Create a new Blueprint
-   * @param {object} newBlueprint new Blueprint object definition
+   * @param {object} newBlueprint Blueprint object definition specifying the zip file
    * @returns {Promise} resolves with a new Blueprint object with all server-filled fields
    */
   create: (newBlueprint) => crud.createNewItem(URL, newBlueprint),
