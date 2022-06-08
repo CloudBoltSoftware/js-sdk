@@ -5,6 +5,7 @@ import EulaService from './api/services/v3/cmp/EulaService'
 import GroupsService from './api/services/v3/cmp/GroupsService'
 import LicensingService from './api/services/v3/cmp/LicensingService'
 import ProductInfoService from './api/services/v3/cmp/ProductInfoService'
+import ResourceService from './api/services/v3/cmp/ResourceService'
 import UiExtensionComponentsService from './api/services/v3/cmp/UiExtensionComponentsService'
 import UserService from './api/services/v3/cmp/UserService'
 import DashboardService from './api/services/v3/DashboardService'
@@ -26,7 +27,8 @@ export const createApi = () => {
         licensing: LicensingService,
         productInfo: ProductInfoService,
         uiExtensions: UiExtensionComponentsService,
-        users: UserService
+        users: UserService,
+        resources: ResourceService
       },
       dashboard: DashboardService
     }
