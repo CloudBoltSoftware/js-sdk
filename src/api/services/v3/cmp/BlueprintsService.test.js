@@ -45,7 +45,6 @@ test('export calls the correct endpoint', async () => {
   })
 
   await BlueprintsService.export('blueprint-id')
-
   expect(mockFn).toHaveBeenCalledWith(
     '/v3/cmp/blueprints/blueprint-id/export/',
     {},

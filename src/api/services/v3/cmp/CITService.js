@@ -1,0 +1,42 @@
+import crud from '../../../crudOperations'
+
+const URL = 'v3/cmp/cit'
+
+export default {
+  /**
+   * Retrieve a list of existing CIT Tests
+   * @returns {Promise} resolves with a list of CIT tests
+   */
+  list: (options) => crud.getItems(URL, options),
+
+  /**
+   * Retrieve an existing CIT Test by id
+   * @param {string} id or global_id
+   * @returns {Promise} resolves with a cloudbolt API Response object of the CIT Test object
+   */
+  get: (id) => crud.getItemById(URL, id),
+
+  /**
+   * Create a new CIT Test
+   * @param {object} newCitTest new CIT Test object definition
+   * @param {string} newCitTest.expectedStatus required
+   * @param {string} newCitTest.action required
+   * @returns {Promise} resolves with a new CIT Test object with all server-filled fields
+   */
+  create: (newCitTest) => crud.createNewItem(URL, newCitTest),
+
+  /**
+   * Update an existing CIT Test
+   * @param {string} id or global_id
+   * @param {object} updatedCitTest updated CIT Test object definition
+   * @returns {Promise} resolves with a cloudbolt API Response of the updated CIT Test object
+   */
+  update: (id, updatedCitTest) => crud.patchItemById(URL, id, updatedCitTest),
+
+  /**
+   * Delete an existing CIT Test
+   * @param {string} id or global_id
+   * @returns {Promise} resolves with a cloudbolt API Success Response
+   */
+  delete: (id) => crud.deleteItemById(URL, id)
+}
