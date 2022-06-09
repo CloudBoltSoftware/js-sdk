@@ -21,7 +21,10 @@ test('create calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'post').mockResolvedValue({
     data: { hello: 'world' }
   })
-  const mockRole = { hello: 'world' }
+  const mockRole = {
+    label: 'world',
+    name: 'worldName'
+  }
   await RolesService.create(mockRole)
   expect(mockFn).toHaveBeenCalledWith('/v3/cmp/roles/', mockRole)
 })

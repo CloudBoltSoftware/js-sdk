@@ -6,21 +6,22 @@ export default {
   /**
    * Retrieve a paginated list of existing Blueprint Categories
    * @param options anything parsable by URLSearchParams. See useful options here https://docs.cloudbolt.io/articles/#!cloudbolt-latest-docs/api-conventions/a/h2__904191799
-   * @returns
+   * @returns {Promise} resolves with a cloudbolt API Response list of Blueprint Categories objects
    */
   list: (options) => crud.getItems(URL, options),
 
   /**
    * Retrieve an existing Blueprint Category for a given id
    * @param {string} id or global_id
-   * @param options anything parsable by URLSearchParams. See useful options here https://docs.cloudbolt.io/articles/#!cloudbolt-latest-docs/api-conventions/a/h2__904191799
    * @returns {Promise} resolves with a cloudbolt API Response object of a Blueprint Category object
    */
-  get: (id, options) => crud.getItemById(URL, id, options),
+  get: (id) => crud.getItemById(URL, id),
 
   /**
    * Create a new Blueprint Category
    * @param {object} newBlueprintCategories new Blueprint Category object definition
+   * @param {string} newBlueprintCategories.name required
+   * @param {string} newBlueprintCategories.parentCategory required
    * @returns {Promise} resolves with a new Blueprint Category object with all server-filled fields
    */
   create: (newBlueprintCategories) =>

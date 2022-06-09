@@ -23,7 +23,10 @@ test('create calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'post').mockResolvedValue({
     data: { hello: 'world' }
   })
-  const mockBlueprintCategory = { hello: 'world' }
+  const mockBlueprintCategory = {
+    name: 'world',
+    parentCategory: 'category world'
+  }
   await BlueprintCategoriesService.create(mockBlueprintCategory)
   expect(mockFn).toHaveBeenCalledWith(
     '/v3/cmp/blueprintCategories/',

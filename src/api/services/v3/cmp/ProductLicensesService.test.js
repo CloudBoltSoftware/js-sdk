@@ -23,7 +23,7 @@ test('add calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'post').mockResolvedValue({
     data: { hello: 'world' }
   })
-  const mockProductLicense = { hello: 'world' }
+  const mockProductLicense = { licenseText: 'world' }
   await ProductLicensesService.add(mockProductLicense)
   expect(mockFn).toHaveBeenCalledWith(
     '/v3/cmp/productLicenses/',

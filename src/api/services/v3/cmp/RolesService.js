@@ -13,14 +13,15 @@ export default {
   /**
    * Retrieve an existing Role by id
    * @param {string} id or global_id
-   * @param options anything parsable by URLSearchParams. See useful options here https://docs.cloudbolt.io/articles/#!cloudbolt-latest-docs/api-conventions/a/h2__904191799
    * @returns {Promise} resolves with a cloudbolt API Response object of the Role object
    */
-  get: (id, options) => crud.getItemById(URL, id, options),
+  get: (id) => crud.getItemById(URL, id),
 
   /**
    * Create a new Role
    * @param {object} newRole new Role object definition
+   * @param {string} newRole.label required
+   * @param {string} newRole.name required
    * @returns {Promise} resolves with a new Role object with all server-filled fields
    */
   create: (newRole) => crud.createNewItem(URL, newRole),

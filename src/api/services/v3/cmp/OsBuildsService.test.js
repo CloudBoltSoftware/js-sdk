@@ -21,7 +21,7 @@ test('create calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'post').mockResolvedValue({
     data: { hello: 'world' }
   })
-  const mockOsBuild = { hello: 'world' }
+  const mockOsBuild = { name: 'world' }
   await OsBuildsService.create(mockOsBuild)
   expect(mockFn).toHaveBeenCalledWith('/v3/cmp/osBuilds/', mockOsBuild)
 })
