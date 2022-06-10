@@ -30,9 +30,13 @@ export default {
   /**
    * Export an existing Blueprint for a given id
    * @param {string} id or global_id
+   * @param {object} [blueprintOptions] Blueprint options
+   * @param {boolean} [blueprintOptions.instanceSpecificInfo=false] Determines if the Blueprint should include info specific to the CloudBolt instance
+   * @param {string} [blueprintOptions.password] Password to use to password-protect the zip file
    * @returns {Promise} resolves with a cloudbolt API Export Blueprint Success Response
    */
-  export: (id) => crud.download(URL, id),
+  export: (id, blueprintOptions) =>
+    crud.downloadWithPayload(URL, id, blueprintOptions),
 
   /**
    * Generates a deployment schema for the given group and environment

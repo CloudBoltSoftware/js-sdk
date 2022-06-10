@@ -53,6 +53,25 @@ test('export calls the correct endpoint', async () => {
   )
 })
 
+test('export with options calls the correct endpoint', async () => {
+  const mockFn = jest.spyOn(baseApi, 'post').mockResolvedValue({
+    data: { hello: 'world' },
+    headers: {
+      'content-disposition': 'attachment; filename=custom_server.zip'
+    }
+  })
+  const mockBlueprintObject = {
+    password: 'world123',
+    instanceSpecificOptions: true
+  }
+  await BlueprintsService.export('blueprint-id', mockBlueprintObject)
+  expect(mockFn).toHaveBeenCalledWith(
+    '/v3/cmp/blueprints/blueprint-id/export/',
+    mockBlueprintObject,
+    { responseType: 'blob' }
+  )
+})
+
 test('deploymentSchema calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'post').mockResolvedValue({
     data: {
