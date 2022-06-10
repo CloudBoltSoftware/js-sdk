@@ -53,7 +53,7 @@ test('export calls the correct endpoint', async () => {
   )
 })
 
-test('generateSchema calls the correct endpoint', async () => {
+test('deploymentSchema calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'post').mockResolvedValue({
     data: {
       parameters: [],
@@ -61,7 +61,7 @@ test('generateSchema calls the correct endpoint', async () => {
     }
   })
 
-  await BlueprintsService.generateSchema('blueprint-id')
+  await BlueprintsService.deploymentSchema('blueprint-id')
   expect(mockFn).toHaveBeenCalledWith(
     '/v3/cmp/blueprints/blueprint-id/deploymentSchema/',
     undefined

@@ -20,6 +20,8 @@ export default {
   /**
    * Create a new Group
    * @param {object} newGroup new group object definition
+   * @param {string} newGroup.name required
+   * @param {string} newGroup.type required
    * @returns {Promise} resolves with a new group object with all server-filled fields
    */
   create: (newGroup) => crud.createNewItem(URL, newGroup),

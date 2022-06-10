@@ -20,7 +20,9 @@ export default {
   /**
    * Create a new Blueprint
    * @param {object} newBlueprint new Blueprint object definition
-   * @param {string} newBlueprint.zipFile selected Blueprint zipfile
+   * @param {string} newBlueprint.zipFile required - selected Blueprint zipfile
+   * @param {boolean} [newBlueprint.replaceExisting=false] Determines if the upload replaces an existing Blueprint
+   * @param {string} [newBlueprint.password] Password to use to password-protect the zip file
    * @returns {Promise} resolves with a new Blueprint object with all server-filled fields
    */
   create: (newBlueprint) => crud.createNewItem(URL, newBlueprint),
@@ -37,9 +39,10 @@ export default {
    * @param {string} id or global_id
    * @param {object} schemaInfo object specifying schema details
    * @param {string} schemaInfo.group valid group that can deploy schema
+   * @param {string} [schemaInfo.environmment] environment for deploy schema
    * @returns {Promise} resolves with a Blueprint Deployment schema object with all server-filled fields
    */
-  generateSchema: (id, schemaInfo) =>
+  deploymentSchema: (id, schemaInfo) =>
     crud.createNewItem(`v3/cmp/blueprints/${id}/deploymentSchema`, schemaInfo),
 
   /**
