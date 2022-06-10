@@ -31,12 +31,12 @@ test('add calls the correct endpoint', async () => {
   )
 })
 
-test('verify calls the correct endpoint', async () => {
+test('status calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'get').mockResolvedValue({
     data: { hello: 'world' }
   })
 
-  await ProductLicensesService.verify()
+  await ProductLicensesService.status()
   expect(mockFn).toHaveBeenCalledWith('/v3/cmp/productLicenses/status/')
 })
 

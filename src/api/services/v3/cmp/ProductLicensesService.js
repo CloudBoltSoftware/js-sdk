@@ -21,13 +21,13 @@ export default {
    * Verify CMP has a valid product license
    * @returns {Promise} resolves with a cloudbolt API Response object with a boolean for "hasValidLicense"
    */
-  verify: () => crud.getItems(`${URL}/status`),
+  status: () => crud.getItems(`${URL}/status`),
 
   /**
    * Add new product license (License the CMP product)
    * @param {object} newProductLicense new Product License object definition. Can reference a string value or a file.
    * @param {string} [newProductLicense.licenseText] License key string
-   * @param {string} [newProductLicense.licenseFile] path of License file
+   * @param {string} [newProductLicense.licenseFile] License file
    * @returns {Promise} resolves with a new Product License object with all server-filled fields
    */
   add: (newProductLicense) => crud.createNewItem(URL, newProductLicense),
