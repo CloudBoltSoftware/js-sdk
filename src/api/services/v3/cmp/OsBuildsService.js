@@ -21,6 +21,10 @@ export default {
    * Create a new Os Build
    * @param {object} newOsBuild new Os Build object definition
    * @param {string} newOsBuild.name required
+   * @param {string} [newOsBuild.description]
+   * @param {string} [newOsBuild.osFamily]
+   * @param {string[]} [newOsBuild.environments]
+   * @param {string[]} [newOsBuild.images]
    * @returns {Promise} resolves with a new Os Build object with all server-filled fields
    */
   create: (newOsBuild) => crud.createNewItem(URL, newOsBuild),
@@ -29,6 +33,11 @@ export default {
    * Update an existing Os Build
    * @param {string} id or global_id
    * @param {object} updatedOsBuild updated Os Build definition
+   * @param {string} [updatedOsBuild.name]
+   * @param {string} [updatedOsBuild.description]
+   * @param {string} [updatedOsBuild.osFamily]
+   * @param {string[]} [updatedOsBuild.environments]
+   * @param {string[]} [updatedOsBuild.images]
    * @returns {Promise} resolves with a cloudbolt API Response object of the Os Build object
    */
   update: (id, updatedOsBuild) => crud.patchItemById(URL, id, updatedOsBuild),
@@ -37,6 +46,11 @@ export default {
    * Replace an existing Os Build by id
    * @param {string} id or global_id
    * @param {object} replacementOsBuild new replacement Os Build definition
+   * @param {string} replacementOsBuild.name required
+   * @param {string} [replacementOsBuild.description]
+   * @param {string} [replacementOsBuild.osFamily]
+   * @param {string[]} [replacementOsBuild.environments]
+   * @param {string[]} [replacementOsBuild.images]
    * @returns {Promise} resolves with the successful cloudbolt API Response object of the replacement Os Build object
    */
   replace: (id, replacementOsBuild) =>

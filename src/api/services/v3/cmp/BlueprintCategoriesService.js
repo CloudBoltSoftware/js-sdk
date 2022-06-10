@@ -31,6 +31,8 @@ export default {
    * Update an existing blueprint category for a given id
    * @param {string} id or global_id
    * @param {object} updatedBlueprintCategories updated Blueprint Category object definition
+   * @param {string} [updatedBlueprintCategories.name]
+   * @param {string} [updatedBlueprintCategories.parentCategory]
    * @returns {Promise} resolves with a cloudbolt API Response object of the updated Blueprint Category object
    */
   update: (id, updatedBlueprintCategories) =>

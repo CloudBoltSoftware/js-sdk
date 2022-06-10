@@ -53,6 +53,9 @@ export default {
    * Generates and submits an Order to deploy a custom instance of the Blueprint by id
    * @param {string} id or global_id
    * @param {object} customDeploy object specifying customized deployment items
+   * @param {string} customDeploy.group
+   * @param {object} customDeploy.deploymentItems
+   * @param {object} [customDeploy.parameters]
    * @returns {Promise} resolves with a Blueprint Deployment schema object with all server-filled fields
    */
   deploy: (id, customDeploy) =>

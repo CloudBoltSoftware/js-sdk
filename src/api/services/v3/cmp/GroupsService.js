@@ -22,6 +22,8 @@ export default {
    * @param {object} newGroup new group object definition
    * @param {string} newGroup.name required
    * @param {string} newGroup.type required
+   * @param {string} [newGroup.parent]
+   * @param {boolean} [newGroup.allowAutoApproval]
    * @returns {Promise} resolves with a new group object with all server-filled fields
    */
   create: (newGroup) => crud.createNewItem(URL, newGroup),
@@ -30,6 +32,10 @@ export default {
    * Update an existing Group
    * @param {string} id or global_id
    * @param {object} updatedGroup updated group object definition
+   * @param {string} [updatedGroup.name]
+   * @param {string} [updatedGroup.type]
+   * @param {string} [updatedGroup.parent]
+   * @param {boolean} [updatedGroup.allowAutoApproval]
    * @returns {Promise} resolves with a cloudbolt API Response object of Group objects
    */
   update: (id, updatedGroup) => crud.updateItemById(URL, id, updatedGroup),
