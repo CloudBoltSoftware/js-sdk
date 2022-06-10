@@ -28,7 +28,17 @@ export default {
   /**
    * Export an existing Resource Action as a zipfile for a given id
    * @param {string} id or global_id
-   * @returns {Promise} resolves with a cloudbolt API Export Resource Action Success Response
+   * @returns {Promise} resolves with a cloudbolt API Export Resource Action Success Response and zip file
    */
-  export: (id) => crud.download(URL, id)
+  export: (id) => crud.download(URL, id),
+
+  /**
+   * Run a Resource Action
+   * @param {string} id or global_id
+   * @param {object} runResourceAction Resource Action object definition
+   * @param {string} runResourceAction.resource required
+   * @returns {Promise} resolves with a cloudbolt API Run Resource Action Success Response
+   */
+  run: (id, runResourceAction) =>
+    crud.createNewItem(`${URL}/${id}/runAction`, runResourceAction)
 }

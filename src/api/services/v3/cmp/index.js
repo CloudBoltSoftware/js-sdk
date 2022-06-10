@@ -18,6 +18,9 @@ import ProductInfoService from './ProductInfoService'
 import ProductLicensesService from './ProductLicensesService'
 import RatesService from './RatesService'
 import ResourceActionsService from './ResourceActionsService'
+import ResourceHandlersService from './ResourceHandlersService'
+import ResourcesService from './ResourcesService'
+import ResourceTypesService from './ResourceTypesService'
 import RolesService from './RolesService'
 import UiExtensionComponentsService from './UiExtensionComponentsService'
 import UserService from './UserService'
@@ -43,6 +46,9 @@ export default {
   productLicenses: ProductLicensesService,
   rates: RatesService,
   resourceActions: ResourceActionsService,
+  resourceHandlers: ResourceHandlersService,
+  resources: ResourcesService,
+  resourceTypes: ResourceTypesService,
   roles: RolesService,
   uiExtensions: UiExtensionComponentsService,
   users: UserService

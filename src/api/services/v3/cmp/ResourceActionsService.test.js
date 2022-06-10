@@ -55,3 +55,17 @@ test('export calls the correct endpoint', async () => {
     { responseType: 'blob' }
   )
 })
+
+test('run calls the correct endpoint', async () => {
+  const mockFn = jest.spyOn(baseApi, 'post').mockResolvedValue({
+    data: { hello: 'world' }
+  })
+  const mockResourceAction = {
+    resource: 'world'
+  }
+  await ResourceActionsService.run('resourceAction-id', mockResourceAction)
+  expect(mockFn).toHaveBeenCalledWith(
+    '/v3/cmp/resourceActions/resourceAction-id/runAction/',
+    mockResourceAction
+  )
+})
