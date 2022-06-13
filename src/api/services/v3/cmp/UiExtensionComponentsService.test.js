@@ -3,7 +3,7 @@ import UiExtensionComponentsService from './UiExtensionComponentsService'
 
 test('list calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'get').mockResolvedValue({
-    data: [{ hello: 'world' }]
+    data: { hello: 'world' }
   })
   await UiExtensionComponentsService.list()
   expect(mockFn).toHaveBeenCalledWith('/v3/cmp/uiExtensionComponents/')

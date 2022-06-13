@@ -3,7 +3,7 @@ import ResourcesService from './ResourcesService'
 
 test('list calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'get').mockResolvedValue({
-    data: [{ hello: 'world' }]
+    data: { hello: 'world' }
   })
   await ResourcesService.list()
   expect(mockFn).toHaveBeenCalledWith('/v3/cmp/resources/')

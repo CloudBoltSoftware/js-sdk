@@ -6,17 +6,32 @@ it('should export an object', () => {
 
 test.each([
   'apiToken',
-  'eula',
-  'groups',
-  'licensing',
-  'productInfo',
-  'uiExtensions',
-  'users',
   'blueprintCategories',
   'blueprints',
+  'brandedPortals',
+  'citService',
+  'environments',
+  'eula',
+  'groups',
+  'jobs',
+  'licensing',
+  'licensing',
+  'logging',
+  'miscellaneousSettings',
+  'orders',
   'osBuilds',
+  'parameters',
+  'permissions',
+  'productInfo',
   'productLicenses',
-  'roles'
+  'rates',
+  'resourceActions',
+  'resourceHandlers',
+  'resources',
+  'resourceTypes',
+  'roles',
+  'uiExtensionComponents',
+  'users'
 ])('should export a %s service', (serviceName) => {
   expect(typeof cmp[serviceName]).toBe('object')
 })

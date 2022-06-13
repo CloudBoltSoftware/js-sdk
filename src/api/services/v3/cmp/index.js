@@ -52,6 +52,6 @@ export default {
   resources: ResourcesService,
   resourceTypes: ResourceTypesService,
   roles: RolesService,
-  uiExtensions: UiExtensionComponentsService,
+  uiExtensionComponents: UiExtensionComponentsService,
   users: UserService
 }

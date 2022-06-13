@@ -3,7 +3,7 @@ import BlueprintCategoriesService from './BlueprintCategoriesService'
 
 test('list calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'get').mockResolvedValue({
-    data: [{ hello: 'world' }]
+    data: { hello: 'world' }
   })
   await BlueprintCategoriesService.list()
   expect(mockFn).toHaveBeenCalledWith('/v3/cmp/blueprintCategories/')

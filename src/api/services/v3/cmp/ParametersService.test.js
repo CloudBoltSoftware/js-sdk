@@ -3,7 +3,7 @@ import ParametersService from './ParametersService'
 
 test('list calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'get').mockResolvedValue({
-    data: [{ hello: 'world' }]
+    data: { hello: 'world' }
   })
   await ParametersService.list()
   expect(mockFn).toHaveBeenCalledWith('/v3/cmp/parameters/')

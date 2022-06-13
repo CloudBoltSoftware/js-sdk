@@ -3,7 +3,7 @@ import CitService from './CitService'
 
 test('list calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'get').mockResolvedValue({
-    data: [{ hello: 'world' }]
+    data: { hello: 'world' }
   })
   await CitService.list()
   expect(mockFn).toHaveBeenCalledWith('/v3/cmp/cit/')
@@ -22,7 +22,7 @@ test('create calls the correct endpoint', async () => {
     data: { hello: 'world' }
   })
   const mockCitTest = {
-    expectedStatus: 'Success',
+    expectedStatus: 'SUCCESS',
     action: '/worldPortal'
   }
   await CitService.create(mockCitTest)

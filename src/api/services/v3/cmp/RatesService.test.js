@@ -3,7 +3,7 @@ import RatesService from './RatesService'
 
 test('getSettings calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'get').mockResolvedValue({
-    data: [{ hello: 'world' }]
+    data: { hello: 'world' }
   })
   await RatesService.getSettings()
   expect(mockFn).toHaveBeenCalledWith('/v3/cmp/rates/settings/')
@@ -26,7 +26,7 @@ test('updateSettings calls the correct endpoint', async () => {
 
 test('listParameterRates calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'get').mockResolvedValue({
-    data: [{ hello: 'world' }]
+    data: { hello: 'world' }
   })
   await RatesService.listParameterRates()
   expect(mockFn).toHaveBeenCalledWith('/v3/cmp/rates/parameterRates/')
@@ -79,7 +79,7 @@ test('deleteParameterRate calls the correct endpoint', async () => {
 
 test('listOsBuildRates calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'get').mockResolvedValue({
-    data: [{ hello: 'world' }]
+    data: { hello: 'world' }
   })
   await RatesService.listOsBuildRates()
   expect(mockFn).toHaveBeenCalledWith('/v3/cmp/rates/osBuildRates/')
@@ -132,7 +132,7 @@ test('deleteOsBuildRate calls the correct endpoint', async () => {
 
 test('listParameterRates calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'get').mockResolvedValue({
-    data: [{ hello: 'world' }]
+    data: { hello: 'world' }
   })
   await RatesService.listParameterRates()
   expect(mockFn).toHaveBeenCalledWith('/v3/cmp/rates/parameterRates/')
@@ -185,7 +185,7 @@ test('deleteParameterRate calls the correct endpoint', async () => {
 
 test('listApplicationRates calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'get').mockResolvedValue({
-    data: [{ hello: 'world' }]
+    data: { hello: 'world' }
   })
   await RatesService.listApplicationRates()
   expect(mockFn).toHaveBeenCalledWith('/v3/cmp/rates/applicationRates/')

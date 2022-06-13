@@ -24,7 +24,7 @@ export default {
    * @param {string} [newEnvironment.description]
    * @param {boolean} [newEnvironment.autoApproval]
    * @param {string} [newEnvironment.serverQuota]
-   * Multiple optional params, please reference https://app.swaggerhub.com/apis-docs/cloudbolt/Cloudbolt_CMP_API/2022.2.1#/Environment/post_environments_
+   * Multiple additional optional params, please reference https://app.swaggerhub.com/apis-docs/cloudbolt/Cloudbolt_CMP_API/2022.2.1#/Environment/post_environments_
    * @returns {Promise} resolves with a new Environment object with all server-filled fields
    */
   create: (newEnvironment) => crud.createNewItem(URL, newEnvironment),
@@ -33,6 +33,7 @@ export default {
    * Update an existing Environment
    * @param {string} id or global_id
    * @param {object} updatedEnvironment updated Environment object
+   * Multiple additional optional params, please reference https://app.swaggerhub.com/apis-docs/cloudbolt/Cloudbolt_CMP_API/2022.2.1#/Environment/post_environments_
    * @returns {Promise} resolves with a cloudbolt API Response of the updated Environment object
    */
   update: (id, updatedEnvironment) =>
@@ -43,6 +44,7 @@ export default {
    * @param {string} id or global_id
    * @param {object} replacementEnvironment replacement Environment object
    * @param {string} replacementEnvironment.name required
+   * Multiple additional optional params, please reference https://app.swaggerhub.com/apis-docs/cloudbolt/Cloudbolt_CMP_API/2022.2.1#/Environment/post_environments_
    * @returns {Promise} resolves with a cloudbolt API Response of the replacement Environment object
    */
   replace: (id, replacementEnvironment) =>

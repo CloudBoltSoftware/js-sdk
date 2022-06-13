@@ -20,10 +20,10 @@ export default {
   /**
    * Create a new CIT Test
    * @param {object} newCitTest new CIT Test object definition
-   * @param {string} newCitTest.expectedStatus required
+   * @param {string} newCitTest.expectedStatus required one of SUCCESS, WARNING, or ERROR
    * @param {string} newCitTest.action required
    * @param {object[]} [newCitTest.actionInputs]
-   * @param {array} [newCitTest.parameters]
+   * Multiple optional params, please reference https://app.swaggerhub.com/apis-docs/cloudbolt/Cloudbolt_CMP_API/2022.2.1#/CIT/1
    * @returns {Promise} resolves with a new CIT Test object with all server-filled fields
    */
   create: (newCitTest) => crud.createNewItem(URL, newCitTest),
@@ -32,10 +32,10 @@ export default {
    * Update an existing CIT Test
    * @param {string} id or global_id
    * @param {object} updatedCitTest updated CIT Test object definition
-   * @param {string} [updatedCitTest.expectedStatus]
+   * @param {string} [updatedCitTest.expectedStatus] one of SUCCESS, WARNING, or ERROR
    * @param {string} [updatedCitTest.action]
    * @param {object[]} [updatedCitTest.actionInputs]
-   * @param {array} [updatedCitTest.parameters]
+   * Multiple optional params, please reference https://app.swaggerhub.com/apis-docs/cloudbolt/Cloudbolt_CMP_API/2022.2.1#/CIT/1
    * @returns {Promise} resolves with a cloudbolt API Response of the updated CIT Test object
    */
   update: (id, updatedCitTest) => crud.patchItemById(URL, id, updatedCitTest),

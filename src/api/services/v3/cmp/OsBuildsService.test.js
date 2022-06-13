@@ -3,7 +3,7 @@ import OsBuildsService from './OsBuildsService'
 
 test('list calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'get').mockResolvedValue({
-    data: [{ hello: 'world' }]
+    data: { hello: 'world' }
   })
   await OsBuildsService.list()
   expect(mockFn).toHaveBeenCalledWith('/v3/cmp/osBuilds/')

@@ -3,7 +3,7 @@ import BrandedPortalsService from './BrandedPortalsService'
 
 test('list calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'get').mockResolvedValue({
-    data: [{ hello: 'world' }]
+    data: { hello: 'world' }
   })
   await BrandedPortalsService.list()
   expect(mockFn).toHaveBeenCalledWith('/v3/cmp/brandedPortals/')
