@@ -3,6 +3,7 @@ import BlueprintCategoriesService from './BlueprintCategoriesService'
 import BlueprintsService from './BlueprintsService'
 import EulaService from './EulaService'
 import GroupsService from './GroupsService'
+import JobsService from './JobsService'
 import LicensingService from './LicensingService'
 import OsBuildsService from './OsBuildsService'
 import ProductInfoService from './ProductInfoService'
@@ -23,5 +24,6 @@ export default {
   blueprints: BlueprintsService,
   osBuilds: OsBuildsService,
   productLicenses: ProductLicensesService,
-  roles: RolesService
+  roles: RolesService,
+  jobs: JobsService
 }
