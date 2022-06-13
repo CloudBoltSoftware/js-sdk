@@ -5,6 +5,7 @@ const URL = 'v3/cmp/rates'
 export default {
   /**
    * Get the current configuration settings for Rates
+   * @param options anything parsable by URLSearchParams. See useful options here https://docs.cloudbolt.io/articles/#!cloudbolt-latest-docs/api-conventions/a/h2__904191799
    * @returns {Promise} resolves with a cloudbolt API Response of the Rates Setting object
    */
   getSettings: (options) => crud.getItems(`${URL}/settings`, options),
@@ -12,8 +13,8 @@ export default {
   /**
    * Update existing Rate Configuration setting for time and currency
    * @param {object} updatedRateSettings updated Rates Setting object definition
-   * @param {string} updatedRateSettings.rateTimeUnit
-   * @param {string} updatedRateSettings.rateCurrencyUnit
+   * @param {string} [updatedRateSettings.rateTimeUnit]
+   * @param {string} [updatedRateSettings.rateCurrencyUnit]
    * @returns {Promise} resolves with a cloudbolt API Response of the updated Rates Setting object
    */
   updateSettings: (updatedRateSettings) =>
@@ -30,8 +31,10 @@ export default {
   /**
    * Create a new Parameter Rate
    * @param {object} newParameterRate new Parameter Rate object definition
-   * @param {string} newParameterRate.rate required
+   * @param {number} newParameterRate.rate required
    * @param {string} newParameterRate.parameter required
+   * @param {string} [newParameterRate.environment]
+   * @param {number} [newParameterRate.poweroffRate]
    * @returns {Promise} resolves with a new Parameter Rate object with all server-filled fields
    */
   createParameterRate: (newParameterRate) =>
@@ -48,6 +51,10 @@ export default {
    * Update an existing Parameter Rate
    * @param {string} id or global_id
    * @param {object} updatedParameterRate updated Parameter Rate object definition
+   * @param {number} [updatedParameterRate.rate]
+   * @param {string} [updatedParameterRate.parameter]
+   * @param {string} [updatedParameterRate.environment]
+   * @param {number} [updatedParameterRate.poweroffRate]
    * @returns {Promise} resolves with a cloudbolt API Response of the updated Parameter Rate object
    */
   updateParameterRate: (id, updatedParameterRate) =>
@@ -70,8 +77,10 @@ export default {
   /**
    * Create a new OS Build Rate
    * @param {object} newOsBuildRate new OS Build Rate object definition
-   * @param {string} newOsBuildRate.rate required
+   * @param {number} newOsBuildRate.rate required
    * @param {string} newOsBuildRate.osBuild required
+   * @param {string} [newOsBuildRate.environment]
+   * @param {number} [newOsBuildRate.poweroffRate]
    * @returns {Promise} resolves with a new OS Build Rate object with all server-filled fields
    */
   createOsBuildRate: (newOsBuildRate) =>
@@ -88,6 +97,10 @@ export default {
    * Update an existing OS Build Rate
    * @param {string} id or global_id
    * @param {object} updatedOsBuildRate updated OS Build Rate object definition
+   * @param {number} [updatedOsBuildRate.rate]
+   * @param {string} [updatedOsBuildRate.osBuild]
+   * @param {string} [updatedOsBuildRate.environment]
+   * @param {number} [updatedOsBuildRate.poweroffRate]
    * @returns {Promise} resolves with a cloudbolt API Response of the updated OS Build Rate object
    */
   updateOsBuildRate: (id, updatedOsBuildRate) =>
@@ -111,8 +124,10 @@ export default {
   /**
    * Create a new Application Rate
    * @param {object} newApplicationRate new Application Rate object definition
-   * @param {string} newApplicationRate.rate required
+   * @param {number} newApplicationRate.rate required
    * @param {string} newApplicationRate.application required
+   * @param {string} [newApplicationRate.environment]
+   * @param {number} [newApplicationRate.poweroffRate]
    * @returns {Promise} resolves with a new Application Rate object with all server-filled fields
    */
   createApplicationRate: (newApplicationRate) =>
@@ -129,6 +144,10 @@ export default {
    * Update an existing Application Rate
    * @param {string} id or global_id
    * @param {object} updatedApplicationRate updated Application Rate object definition
+   * @param {number} [updatedApplicationRate.rate]
+   * @param {string} [updatedApplicationRate.application]
+   * @param {string} [updatedApplicationRate.environment]
+   * @param {number} [updatedApplicationRate.poweroffRate]
    * @returns {Promise} resolves with a cloudbolt API Response of the updated Application Rate object
    */
   updateApplicationRate: (id, updatedApplicationRate) =>

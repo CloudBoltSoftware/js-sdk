@@ -22,6 +22,9 @@ export default {
    * @param {object} newResourceType new Resource Type object definition
    * @param {string} newResourceType.label required
    * @param {string} newResourceType.name required
+   * @param {string} [newResourceType.pluralLabel]
+   * @param {string} [newResourceType.cssClassIcon]
+   * @param {string[]} [newResourceType.displayParameters]
    * @returns {Promise} resolves with a new Resource Type object with all server-filled fields
    */
   create: (newResourceType) => crud.createNewItem(URL, newResourceType),
@@ -30,6 +33,11 @@ export default {
    * Update an existing Resource Type
    * @param {string} id or global_id
    * @param {object} updatedResourceType updated Resource Type object definition
+   * @param {string} [updatedResourceType.label]
+   * @param {string} [updatedResourceType.name]
+   * @param {string} [updatedResourceType.pluralLabel]
+   * @param {string} [updatedResourceType.cssClassIcon]
+   * @param {string[]} [updatedResourceType.displayParameters]
    * @returns {Promise} resolves with a cloudbolt API Response of the updated Resource Type object
    */
   update: (id, updatedResourceType) =>

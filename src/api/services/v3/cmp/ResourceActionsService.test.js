@@ -56,6 +56,28 @@ test('export calls the correct endpoint', async () => {
   )
 })
 
+test('export with options calls the correct endpoint', async () => {
+  const mockFn = jest.spyOn(baseApi, 'post').mockResolvedValue({
+    data: { hello: 'world' },
+    headers: {
+      'content-disposition': 'attachment; filename=action.zip'
+    }
+  })
+  const mockResourceActionsOptions = {
+    password: 'worldResourceActions',
+    instanceSpecificInfo: true
+  }
+  await ResourceActionsService.export(
+    'resourceAction-id',
+    mockResourceActionsOptions
+  )
+  expect(mockFn).toHaveBeenCalledWith(
+    '/v3/cmp/resourceActions/resourceAction-id/export/',
+    mockResourceActionsOptions,
+    { responseType: 'blob' }
+  )
+})
+
 test('run calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'post').mockResolvedValue({
     data: { hello: 'world' }

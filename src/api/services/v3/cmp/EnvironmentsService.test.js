@@ -84,6 +84,26 @@ test('export calls the correct endpoint', async () => {
   )
 })
 
+test('export with optional params calls the correct endpoint', async () => {
+  const mockFn = jest.spyOn(baseApi, 'post').mockResolvedValue({
+    data: { hello: 'world' },
+    headers: {
+      'content-disposition': 'attachment; filename=unassigned.zip'
+    }
+  })
+  const mockEnvironmentOptions = {
+    password: 'worldEnvironment',
+    instanceSpecificInfo: true
+  }
+  await EnvironmentsService.export('environments-id', mockEnvironmentOptions)
+
+  expect(mockFn).toHaveBeenCalledWith(
+    '/v3/cmp/environments/environments-id/export/',
+    mockEnvironmentOptions,
+    { responseType: 'blob' }
+  )
+})
+
 test('getTechParameters calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'get').mockResolvedValue({
     data: { hello: 'world' }

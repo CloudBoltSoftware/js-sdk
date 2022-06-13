@@ -21,6 +21,10 @@ export default {
    * Create a new Environment
    * @param {object} newEnvironment new Environment object definition
    * @param {string} newEnvironment.name required
+   * @param {string} [newEnvironment.description]
+   * @param {boolean} [newEnvironment.autoApproval]
+   * @param {string} [newEnvironment.serverQuota]
+   * Multiple optional params, please reference https://app.swaggerhub.com/apis-docs/cloudbolt/Cloudbolt_CMP_API/2022.2.1#/Environment/post_environments_
    * @returns {Promise} resolves with a new Environment object with all server-filled fields
    */
   create: (newEnvironment) => crud.createNewItem(URL, newEnvironment),
@@ -38,6 +42,7 @@ export default {
    * Replace an existing Environment
    * @param {string} id or global_id
    * @param {object} replacementEnvironment replacement Environment object
+   * @param {string} replacementEnvironment.name required
    * @returns {Promise} resolves with a cloudbolt API Response of the replacement Environment object
    */
   replace: (id, replacementEnvironment) =>
@@ -53,9 +58,13 @@ export default {
   /**
    * Export an existing Environment for a given id
    * @param {string} id or global_id
+   * @param {object} [environmentOptions]
+   * @param {object} [environmentOptions.password]
+   * @param {object} [environmentOptions.instanceSpecificInfo=false]
    * @returns {Promise} resolves with a cloudbolt API Export Environment Success Response
    */
-  export: (id) => crud.download(URL, id),
+  export: (id, environmentOptions) =>
+    crud.downloadWithPayload(URL, id, environmentOptions),
 
   /**
    * List all technology specific parameters for the associated Resource Handler (an existing Environment by id)
@@ -83,9 +92,9 @@ export default {
   /**
    * Set the list of networks and the NICs mapped to the environment by given id
    * @param {string} id or global_id
-   * @param {object} newEnvNetwork new Environment Network object definition
-   * @param {string} newEnvNetwork.network new Environment Network
-   * @param {string} newEnvNetwork.nics new Environment NIC Network settings
+   * @param {object[]} newEnvNetwork array of Environment Network object definitions
+   * @param {string} newEnvNetwork[].network
+   * @param {number[]} newEnvNetwork[].nics
    * @returns {Promise} resolves with a cloudbolt API Response object of the new Environment Network configuration
    */
   setNetworks: (id, newEnvNetwork) =>
@@ -103,6 +112,7 @@ export default {
    * @param {string} id or global_id
    * @param {object} newEnvParameters new Environment Parameters object definition
    * @param {object[]} newEnvParameters.parameters required
+   * Multiple optional params, please reference https://app.swaggerhub.com/apis-docs/cloudbolt/Cloudbolt_CMP_API/2022.2.1#/Environment/post_environments__id__parameters_
    * @returns {Promise} resolves with a cloudbolt API Response object of the new Environment Parameter configuration
    */
   setParameters: (id, newEnvParameters) =>

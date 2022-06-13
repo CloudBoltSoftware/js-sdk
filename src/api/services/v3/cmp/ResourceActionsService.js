@@ -21,6 +21,8 @@ export default {
    * Create a new Resource Action
    * @param {object} newResourceAction new Resource Action object definition
    * @param {string} newResourceAction.zipFile required
+   * @param {boolean} [newResourceAction.replaceExisting] determines whether or not to replace an existing resource action
+   * @param {string} [newResourceAction.password] password to use to password-protect the zip file
    * @returns {Promise} resolves with a new Resource Action object with all server-filled fields
    */
   create: (newResourceAction) => crud.createNewItem(URL, newResourceAction),
@@ -28,9 +30,13 @@ export default {
   /**
    * Export an existing Resource Action as a zipfile for a given id
    * @param {string} id or global_id
+   * @param {object} resourceActionOptions
+   * @param {string} [resourceActionOptions.password] password to the zip if it's password-protected
+   * @param {boolean} [resourceActionOptions.instanceSpecificInfo=false] determines if the Resource Action should include info specific to the CloudBolt instance
    * @returns {Promise} resolves with a cloudbolt API Export Resource Action Success Response and zip file
    */
-  export: (id) => crud.download(URL, id),
+  export: (id, resourceActionOptions) =>
+    crud.downloadWithPayload(URL, id, resourceActionOptions),
 
   /**
    * Run a Resource Action

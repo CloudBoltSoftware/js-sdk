@@ -23,6 +23,7 @@ export default {
    * @param {string} newParameter.name required
    * @param {string} newParameter.label required
    * @param {string} newParameter.type required
+   * Multiple optional params, please reference https://app.swaggerhub.com/apis-docs/cloudbolt/Cloudbolt_CMP_API/2022.2.1#/Parameters/post_parameters_
    * @returns {Promise} resolves with a new Parameter object with all server-filled fields
    */
   create: (newParameter) => crud.createNewItem(URL, newParameter),
@@ -31,6 +32,7 @@ export default {
    * Update an existing Parameter
    * @param {string} id or global_id
    * @param {object} updatedParameter updated Parameter object definition
+   * Multiple optional params, please reference https://app.swaggerhub.com/apis-docs/cloudbolt/Cloudbolt_CMP_API/2022.2.1#/Parameters/post_parameters_
    * @returns {Promise} resolves with a cloudbolt API Response of the updated Parameter object
    */
   update: (id, updatedParameter) =>
@@ -40,6 +42,10 @@ export default {
    * Replace an existing Parameter
    * @param {string} id or global_id
    * @param {object} replacementParameter replacement Parameter object definition
+   * @param {string} replacementParameter.name required
+   * @param {string} replacementParameter.label required
+   * @param {string} replacementParameter.type required
+   * Multiple optional params, please reference https://app.swaggerhub.com/apis-docs/cloudbolt/Cloudbolt_CMP_API/2022.2.1#/Parameters/post_parameters_
    * @returns {Promise} resolves with a cloudbolt API Response of the replacement Parameter object
    */
   replace: (id, replacementParameter) =>
