@@ -7,6 +7,7 @@ import CitService from './CitService'
 import EnvironmentsService from './EnvironmentsService'
 import EulaService from './EulaService'
 import GroupsService from './GroupsService'
+import JobsService from './JobsService'
 import LicensingService from './LicensingService'
 import LoggingService from './LoggingService'
 import MiscellaneousSettingsService from './MiscellaneousSettingsService'
@@ -35,6 +36,7 @@ export default {
   environments: EnvironmentsService,
   eula: EulaService,
   groups: GroupsService,
+  jobs: JobsService,
   licensing: LicensingService,
   logging: LoggingService,
   miscellaneousSettings: MiscellaneousSettingsService,
