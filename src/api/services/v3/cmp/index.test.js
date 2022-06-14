@@ -6,6 +6,7 @@ it('should export an object', () => {
 
 test.each([
   'apiToken',
+  'applicationRates',
   'blueprintCategories',
   'blueprints',
   'brandedPortals',
@@ -19,12 +20,14 @@ test.each([
   'logging',
   'miscellaneousSettings',
   'orders',
+  'osBuildRates',
   'osBuilds',
+  'parameterRates',
   'parameters',
   'permissions',
   'productInfo',
   'productLicenses',
-  'rates',
+  'rateSettings',
   'resourceActions',
   'resourceHandlers',
   'resources',

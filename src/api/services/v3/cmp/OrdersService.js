@@ -22,14 +22,14 @@ export default {
    * @param {string} id or global_id
    * @returns {Promise} resolves with a new duplicate Order object with all server-filled fields
    */
-  duplicate: (id) => crud.createNewItem(`${URL}/${id}/duplicate`),
+  duplicate: (id) => crud.postItem(`${URL}/${id}/duplicate`),
 
   /**
    * Approve an Order by a given id
    * @param {string} id or global_id
    * @returns {Promise} resolves with the approved Order object with all server-filled fields
    */
-  approve: (id) => crud.createNewItem(`${URL}/${id}/approve`),
+  approve: (id) => crud.postItem(`${URL}/${id}/approve`),
 
   /**
    * Deny an Order by a given id
@@ -39,26 +39,26 @@ export default {
    * @returns {Promise} resolves with the denied Order object with all server-filled fields
    */
   deny: (id, denyOrderDetails) =>
-    crud.createNewItem(`${URL}/${id}/deny`, denyOrderDetails),
+    crud.postItem(`${URL}/${id}/deny`, denyOrderDetails),
 
   /**
    * Submit an Order by a given id
    * @param {string} id or global_id
    * @returns {Promise} resolves with the submitted Order object with all server-filled fields
    */
-  submit: (id) => crud.createNewItem(`${URL}/${id}/submit`),
+  submit: (id) => crud.postItem(`${URL}/${id}/submit`),
 
   /**
    * Cancel an Order by a given id
    * @param {string} id or global_id
    * @returns {Promise} resolves with the cancelled Order object with all server-filled fields
    */
-  cancel: (id) => crud.createNewItem(`${URL}/${id}/cancel`),
+  cancel: (id) => crud.postItem(`${URL}/${id}/cancel`),
 
   /**
    * Clear an Order by a given id
    * @param {string} id or global_id
    * @returns {Promise} resolves with the Cloudbolt API Success message for a cleared Order object
    */
-  clear: (id) => crud.createNewItem(`${URL}/${id}/clear`)
+  clear: (id) => crud.postItem(`${URL}/${id}/clear`)
 }

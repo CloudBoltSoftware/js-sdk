@@ -82,7 +82,7 @@ export default {
    * @returns {Promise} resolves with a cloudbolt API Response object of the Technology Specific Parameters
    */
   refreshTechParameters: (id) =>
-    crud.createNewItem(`${URL}/${id}/techSpecificParameters:refresh`),
+    crud.postItem(`${URL}/${id}/techSpecificParameters:refresh`),
 
   /**
    * Lists Networks imported into the environment by given id, and the NIC mappings for each network
@@ -100,7 +100,7 @@ export default {
    * @returns {Promise} resolves with a cloudbolt API Response object of the new Environment Network configuration
    */
   setNetworks: (id, newEnvNetwork) =>
-    crud.createNewItem(`${URL}/${id}/networks`, newEnvNetwork),
+    crud.postItem(`${URL}/${id}/networks`, newEnvNetwork),
 
   /**
    * Lists Environment parameters by given id
@@ -118,5 +118,5 @@ export default {
    * @returns {Promise} resolves with a cloudbolt API Response object of the new Environment Parameter configuration
    */
   setParameters: (id, newEnvParameters) =>
-    crud.createNewItem(`${URL}/${id}/parameters`, newEnvParameters)
+    crud.postItem(`${URL}/${id}/parameters`, newEnvParameters)
 }

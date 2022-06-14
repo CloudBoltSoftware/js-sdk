@@ -17,7 +17,10 @@ import ParametersService from './ParametersService'
 import PermissionsService from './PermissionsService'
 import ProductInfoService from './ProductInfoService'
 import ProductLicensesService from './ProductLicensesService'
-import RatesService from './RatesService'
+import ApplicationRatesService from './RatesServices/ApplicationRatesService'
+import OsBuildRatesService from './RatesServices/OsBuildRatesService'
+import ParameterRatesService from './RatesServices/ParameterRatesService'
+import RateSettingsService from './RatesServices/RateSettingsService'
 import ResourceActionsService from './ResourceActionsService'
 import ResourceHandlersService from './ResourceHandlersService'
 import ResourcesService from './ResourcesService'
@@ -29,6 +32,7 @@ import UserService from './UserService'
 export default {
   alerts: AlertsService,
   apiToken: ApiTokenService,
+  applicationRates: ApplicationRatesService,
   blueprintCategories: BlueprintCategoriesService,
   blueprints: BlueprintsService,
   brandedPortals: BrandedPortalsService,
@@ -41,12 +45,14 @@ export default {
   logging: LoggingService,
   miscellaneousSettings: MiscellaneousSettingsService,
   orders: OrdersService,
+  osBuildRates: OsBuildRatesService,
   osBuilds: OsBuildsService,
+  parameterRates: ParameterRatesService,
   parameters: ParametersService,
   permissions: PermissionsService,
   productInfo: ProductInfoService,
   productLicenses: ProductLicensesService,
-  rates: RatesService,
+  rateSettings: RateSettingsService,
   resourceActions: ResourceActionsService,
   resourceHandlers: ResourceHandlersService,
   resources: ResourcesService,

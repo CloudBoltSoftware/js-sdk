@@ -5,9 +5,9 @@ test('getApplicationLog calls the correct endpoint for zipfile', async () => {
   const mockFn = jest.spyOn(baseApi, 'get').mockResolvedValue({
     data: { hello: 'world' }
   })
-  const mockLogOptions = 'zip=true'
+  const mockLogZipOptions = true
 
-  await LoggingService.getApplicationLog(mockLogOptions)
+  await LoggingService.getApplicationLog(mockLogZipOptions)
   expect(mockFn).toHaveBeenCalledWith('/v3/cmp/logs/application/?zip=true')
 })
 
@@ -17,7 +17,7 @@ test('getApplicationLog calls the correct endpoint', async () => {
   })
 
   await LoggingService.getApplicationLog()
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/logs/application/')
+  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/logs/application/?zip=false')
 })
 
 test('getWebLog calls the correct endpoint', async () => {

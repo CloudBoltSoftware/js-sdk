@@ -300,6 +300,16 @@ export const createNewItem = (endpoint, payload) => {
 }
 
 /**
+ * POST request to an endpoint
+ * @param {string} endpoint
+ * @param {any} payload
+ * @returns
+ */
+export const postItem = (endpoint, payload) => {
+  return createEntity(endpoint, payload)
+}
+
+/**
  *
  * @param {string} endpoint
  * @param {string | number} id
@@ -369,5 +379,6 @@ export default {
   updateItemByEndpoint,
   upload,
   download,
-  downloadWithPayload
+  downloadWithPayload,
+  postItem
 }

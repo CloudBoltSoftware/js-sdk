@@ -8,9 +8,10 @@ export default {
    * @param {boolean} [zip=false] Determines the format of the log file, defaults to text file.
    * @returns {Promise} Returns zip or text file containing the Application Log
    */
-  getApplicationLog: (options) =>
-    crud.getItemByEndpoint(`${URL}/application`, options),
-
+  getApplicationLog: (zip = false) => {
+    const options = { zip }
+    crud.getItemByEndpoint(`${URL}/application`, options)
+  },
   /**
    * Download web log file to a zip file.
    * @returns {Promise} Returns zip file containing the Web Log
