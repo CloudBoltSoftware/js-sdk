@@ -1,57 +1,54 @@
 import { baseApi } from '../../../baseApi'
-import OsBuildsService from './OsBuildsService'
+import AlertsService from './AlertsService'
 
 test('list calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'get').mockResolvedValue({
     data: { hello: 'world' }
   })
-  await OsBuildsService.list()
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/osBuilds/')
+  await AlertsService.list()
+  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/alerts/')
 })
 
 test('get calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'get').mockResolvedValue({
     data: { hello: 'world' }
   })
-  await OsBuildsService.get('osBuild-id')
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/osBuilds/osBuild-id/')
+  await AlertsService.get('alert-id')
+  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/alerts/alert-id/')
 })
 
 test('create calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'post').mockResolvedValue({
     data: { hello: 'world' }
   })
-  const mockOsBuild = { name: 'world' }
-  await OsBuildsService.create(mockOsBuild)
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/osBuilds/', mockOsBuild)
+  const mockAlert = {
+    type: 'world',
+    name: 'worldAlert'
+  }
+  await AlertsService.create(mockAlert)
+  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/alerts/', mockAlert)
 })
 
 test('update calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'patch').mockResolvedValue({
     data: { hello: 'world' }
   })
-  const mockOsBuild = { hello: 'world' }
-  await OsBuildsService.update('osBuild-id', mockOsBuild)
-  expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/osBuilds/osBuild-id/',
-    mockOsBuild
-  )
+  const mockAlert = { hello: 'world' }
+  await AlertsService.update('alert-id', mockAlert)
+  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/alerts/alert-id/', mockAlert)
 })
 
 test('replace calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'put').mockResolvedValue({
     data: { hello: 'world' }
   })
-  const mockOsBuild = { hello: 'world' }
-  await OsBuildsService.replace('osBuild-id', mockOsBuild)
-  expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/osBuilds/osBuild-id/',
-    mockOsBuild
-  )
+  const mockAlert = { hello: 'world' }
+  await AlertsService.replace('alert-id', mockAlert)
+  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/alerts/alert-id/', mockAlert)
 })
 
 test('delete calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'delete').mockResolvedValue({})
-  await OsBuildsService.delete('osBuild-id')
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/osBuilds/osBuild-id/')
+  await AlertsService.delete('alert-id')
+  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/alerts/alert-id/')
 })

@@ -1,21 +1,21 @@
-import { baseApi } from '../../../baseApi'
-import BlueprintCategoriesService from './BlueprintCategoriesService'
+import { baseApi } from '../../../../baseApi'
+import ApplicationRatesService from './ApplicationRatesService'
 
 test('list calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'get').mockResolvedValue({
     data: { hello: 'world' }
   })
-  await BlueprintCategoriesService.list()
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/blueprintCategories/')
+  await ApplicationRatesService.list()
+  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/rates/applicationRates/')
 })
 
 test('get calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'get').mockResolvedValue({
     data: { hello: 'world' }
   })
-  await BlueprintCategoriesService.get('blueprintCategory-id')
+  await ApplicationRatesService.get('applicationRate-id')
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/blueprintCategories/blueprintCategory-id/'
+    '/v3/cmp/rates/applicationRates/applicationRate-id/'
   )
 })
 
@@ -23,14 +23,14 @@ test('create calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'post').mockResolvedValue({
     data: { hello: 'world' }
   })
-  const mockBlueprintCategory = {
-    name: 'world',
-    parentCategory: 'category world'
+  const mockApplicationRate = {
+    rate: 'world',
+    application: 'world'
   }
-  await BlueprintCategoriesService.create(mockBlueprintCategory)
+  await ApplicationRatesService.create(mockApplicationRate)
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/blueprintCategories/',
-    mockBlueprintCategory
+    '/v3/cmp/rates/applicationRates/',
+    mockApplicationRate
   )
 })
 
@@ -38,21 +38,21 @@ test('update calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'patch').mockResolvedValue({
     data: { hello: 'world' }
   })
-  const mockBlueprintCategory = { hello: 'world' }
-  await BlueprintCategoriesService.update(
-    'blueprintCategory-id',
-    mockBlueprintCategory
+  const mockApplicationRate = { rate: 'biggerWorld' }
+  await ApplicationRatesService.update(
+    'applicationRate-id',
+    mockApplicationRate
   )
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/blueprintCategories/blueprintCategory-id/',
-    mockBlueprintCategory
+    '/v3/cmp/rates/applicationRates/applicationRate-id/',
+    mockApplicationRate
   )
 })
 
 test('delete calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'delete').mockResolvedValue({})
-  await BlueprintCategoriesService.delete('blueprintCategory-id')
+  await ApplicationRatesService.delete('applicationRate-id')
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/blueprintCategories/blueprintCategory-id/'
+    '/v3/cmp/rates/applicationRates/applicationRate-id/'
   )
 })

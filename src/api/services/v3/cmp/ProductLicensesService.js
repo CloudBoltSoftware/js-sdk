@@ -30,7 +30,7 @@ export default {
    * @param {string} [newProductLicense.licenseFile] License file
    * @returns {Promise} resolves with a new Product License object with all server-filled fields
    */
-  add: (newProductLicense) => crud.createNewItem(URL, newProductLicense),
+  add: (newProductLicense) => crud.postItem(URL, newProductLicense),
 
   /**
    * Delete a Product License by id

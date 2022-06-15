@@ -1,16 +1,9 @@
 import { baseApi } from '../../../baseApi'
 import BlueprintsService from './BlueprintsService'
 
-beforeEach(() => {
-  const createObjectURL = jest.fn()
-  const revokeObjectURL = jest.fn()
-  global.Blob = () => ({})
-  global.URL = { createObjectURL, revokeObjectURL }
-})
-
 test('list calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'get').mockResolvedValue({
-    data: [{ hello: 'world' }]
+    data: { hello: 'world' }
   })
   await BlueprintsService.list()
   expect(mockFn).toHaveBeenCalledWith('/v3/cmp/blueprints/')
@@ -45,7 +38,6 @@ test('export calls the correct endpoint', async () => {
   })
 
   await BlueprintsService.export('blueprint-id')
-
   expect(mockFn).toHaveBeenCalledWith(
     '/v3/cmp/blueprints/blueprint-id/export/',
     {},
