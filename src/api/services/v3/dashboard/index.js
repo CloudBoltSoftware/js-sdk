@@ -4,5 +4,6 @@ import WidgetService from './WidgetService'
 
 export default {
   ...DashboardService,
+  announcements: AnnouncementService,
   widgets: WidgetService
 }
