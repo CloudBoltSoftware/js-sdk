@@ -3,7 +3,7 @@ import ApiTokenService from './ApiTokenService'
 import BlueprintCategoriesService from './BlueprintCategoriesService'
 import BlueprintsService from './BlueprintsService'
 import BrandedPortalsService from './BrandedPortalsService'
-import CitService from './CitService'
+import CitService from './CITService'
 import EnvironmentsService from './EnvironmentsService'
 import EulaService from './EulaService'
 import GroupsService from './GroupsService'
@@ -28,6 +28,8 @@ import ResourceTypesService from './ResourceTypesService'
 import RolesService from './RolesService'
 import UiExtensionComponentsService from './UiExtensionComponentsService'
 import UserService from './UserService'
+import ServerSummaryService from "./ServerSummaryService";
+import ServerService from "./ServerService";
 
 export default {
   alerts: AlertsService,
@@ -59,5 +61,7 @@ export default {
   resourceTypes: ResourceTypesService,
   roles: RolesService,
   uiExtensionComponents: UiExtensionComponentsService,
-  users: UserService
+  users: UserService,
+  serverSummary: ServerSummaryService,
+  servers: ServerService
 }
