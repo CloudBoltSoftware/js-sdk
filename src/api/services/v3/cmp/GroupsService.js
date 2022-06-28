@@ -6,21 +6,24 @@ export default {
   /**
    * Retrieve a list of existing groups
    * @param options anything parsable by URLSearchParams. See useful options here https://docs.cloudbolt.io/articles/#!cloudbolt-latest-docs/api-conventions/a/h2__904191799
-   * @returns
+   * @returns {Promise} resolves with a list of all Groups
    */
   list: (options) => crud.getItems(URL, options),
 
   /**
    * Retrieve an existing group
    * @param {string} id or global_id
-   * @param options anything parsable by URLSearchParams. See useful options here https://docs.cloudbolt.io/articles/#!cloudbolt-latest-docs/api-conventions/a/h2__904191799
    * @returns {Promise} resolves with a cloudbolt API Response object of Group objects
    */
-  get: (id, options) => crud.getItemById(URL, id, options),
+  get: (id) => crud.getItemById(URL, id),
 
   /**
    * Create a new Group
    * @param {object} newGroup new group object definition
+   * @param {string} newGroup.name required
+   * @param {string} newGroup.type required
+   * @param {string} [newGroup.parent]
+   * @param {boolean} [newGroup.allowAutoApproval]
    * @returns {Promise} resolves with a new group object with all server-filled fields
    */
   create: (newGroup) => crud.createNewItem(URL, newGroup),
@@ -29,6 +32,10 @@ export default {
    * Update an existing Group
    * @param {string} id or global_id
    * @param {object} updatedGroup updated group object definition
+   * @param {string} [updatedGroup.name]
+   * @param {string} [updatedGroup.type]
+   * @param {string} [updatedGroup.parent]
+   * @param {boolean} [updatedGroup.allowAutoApproval]
    * @returns {Promise} resolves with a cloudbolt API Response object of Group objects
    */
   update: (id, updatedGroup) => crud.updateItemById(URL, id, updatedGroup),

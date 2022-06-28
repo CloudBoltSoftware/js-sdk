@@ -1,4 +1,5 @@
 module.exports = {
+  setupFilesAfterEnv: ['<rootDir>/jest.setupAfterEnv.js'],
   testMatch: [
     '**/__tests__/*.{j,t}s?(x)',
     '**/*.spec.{j,t}s?(x)',
