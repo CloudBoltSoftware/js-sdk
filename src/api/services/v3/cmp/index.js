@@ -26,6 +26,7 @@ import ResourceHandlersService from './ResourceHandlersService'
 import ResourcesService from './ResourcesService'
 import ResourceTypesService from './ResourceTypesService'
 import RolesService from './RolesService'
+import SystemService from './SystemService'
 import UiExtensionComponentsService from './UiExtensionComponentsService'
 import UserService from './UserService'
 
@@ -58,6 +59,7 @@ export default {
   resources: ResourcesService,
   resourceTypes: ResourceTypesService,
   roles: RolesService,
+  system: SystemService,
   uiExtensionComponents: UiExtensionComponentsService,
   users: UserService
 }
