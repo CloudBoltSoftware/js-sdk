@@ -4,9 +4,11 @@ import { camelCaseKeys } from '../../../helpers/textUtils'
 export default {
   /**
    * Retrieves the requesting user's information
-   * @returns
+   * @param {Object} [options] - query parameters to be sent with the request. Defaults to {includeCMPCatalogFields: true}
+   * @returns {Promise<Object>} - the user's information
    */
-  getCurrentUser: async () => await crud.getItemByEndpoint('v3/cmp/user'),
+  getCurrentUser: async (options = { includeCMPCatalogFields: true }) =>
+    await crud.getItemByEndpoint('v3/cmp/user', options),
 
   /**
    * Retrieves the cmp dashboard widgets for the specified user
