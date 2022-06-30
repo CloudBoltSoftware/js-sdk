@@ -204,6 +204,35 @@ const downloadFile = async (endpoint, id, filename) => {
   try {
     const url = `/${endpoint}/${id}/export/`
     const response = await baseApi.post(url, {}, { responseType: 'blob' })
+
+    if (!filename) {
+      filename = response.headers['content-disposition'].split('filename=')[1]
+    }
+    const blob = new Blob([response.data], { type: 'application/zip' })
+    const link = document.createElement('a')
+    link.href = URL.createObjectURL(blob)
+    link.download = filename
+    link.click()
+    URL.revokeObjectURL(link.href)
+  } catch (error) {
+    return handleError(error)
+  }
+}
+
+/**
+ * Download file from a location
+ * @param {string} endpoint
+ * @param {string | number} id
+ * @param {any} payload
+ * @returns
+ */
+const downloadPayloadFile = async (endpoint, id, payload = {}) => {
+  try {
+    const url = `/${endpoint}/${id}/export/`
+    const response = await baseApi.post(url, payload, { responseType: 'blob' })
+    const filename =
+      response.headers['content-disposition'].split('filename=')[1]
+
     const blob = new Blob([response.data], { type: 'application/zip' })
     const link = document.createElement('a')
     link.href = URL.createObjectURL(blob)
@@ -271,6 +300,16 @@ export const createNewItem = (endpoint, payload) => {
 }
 
 /**
+ * POST request to an endpoint
+ * @param {string} endpoint
+ * @param {any} payload
+ * @returns
+ */
+export const postItem = (endpoint, payload) => {
+  return createEntity(endpoint, payload)
+}
+
+/**
  *
  * @param {string} endpoint
  * @param {string | number} id
@@ -323,6 +362,10 @@ export const upload = (endpoint, file, keyName) => {
 export const download = (endpoint, id, filename) => {
   return downloadFile(endpoint, id, filename)
 }
+
+export const downloadWithPayload = (endpoint, id, payload) => {
+  return downloadPayloadFile(endpoint, id, payload)
+}
 // #endregion
 
 export default {
@@ -335,5 +378,7 @@ export default {
   updateItemById,
   updateItemByEndpoint,
   upload,
-  download
+  download,
+  downloadWithPayload,
+  postItem
 }

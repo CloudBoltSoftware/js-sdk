@@ -9,6 +9,14 @@ const responseData = {
     test: 'testData'
   }
 }
+const responseDataWithHeaders = {
+  data: {
+    test: 'testData'
+  },
+  headers: {
+    'content-disposition': 'attachment; filename=custom.zip'
+  }
+}
 const parsedResponse = {
   test: 'testData'
 }
@@ -200,6 +208,38 @@ describe('crud', () => {
     })
   })
 
+  describe('postItem', () => {
+    it('calls baseApi.post with payload and returns parsed response', async () => {
+      jest.spyOn(baseApi, 'post').mockResolvedValue(responseData)
+      jest.spyOn(ResponseParser, 'getSingle').mockReturnValue(parsedResponse)
+
+      const response = await crud.postItem(testEndpoint, testPayload)
+
+      expect(baseApi.post).toBeCalledWith(
+        `/${testEndpoint}/`,
+        expect.objectContaining({ test: 'test' })
+      )
+      expect(ResponseParser.getSingle).toBeCalledWith(
+        expect.objectContaining({ data: { test: 'testData' } })
+      )
+      expect(response).toBe(parsedResponse)
+    })
+
+    it('catches error and throws it by default', async () => {
+      jest.spyOn(baseApi, 'post').mockRejectedValue(simpleError)
+
+      try {
+        await await crud.postItem(testEndpoint, testPayload)
+      } catch (error) {
+        expect(baseApi.post).toBeCalledWith(
+          `/${testEndpoint}/`,
+          expect.objectContaining({ test: 'test' })
+        )
+        expect(error).toBe(simpleError)
+      }
+    })
+  })
+
   describe('patchItemById', () => {
     it('calls baseApi.patch with payload and returns parsed response', async () => {
       jest.spyOn(baseApi, 'patch').mockResolvedValue(responseData)
@@ -365,6 +405,42 @@ describe('crud', () => {
         await crud.download(testEndpoint, testId, fakeFileName)
       } catch (error) {
         expect(baseApi.post).toHaveBeenCalled()
+        expect(error).toBe(simpleError)
+      }
+    })
+  })
+
+  describe('downloadWithPayload', () => {
+    beforeEach(() => {
+      const createObjectURL = jest.fn()
+      const revokeObjectURL = jest.fn()
+      global.Blob = () => ({})
+      global.URL = { createObjectURL, revokeObjectURL }
+    })
+    it('calls baseApi.post with payload', async () => {
+      jest.spyOn(baseApi, 'post').mockResolvedValue(responseDataWithHeaders)
+
+      await crud.downloadWithPayload(testEndpoint, testId, testPayload)
+
+      expect(baseApi.post).toHaveBeenCalled()
+      expect(baseApi.post).toBeCalledWith(
+        `/${testEndpoint}/${testId}/export/`,
+        testPayload,
+        { responseType: 'blob' }
+      )
+    })
+
+    it('catches error and throws it by default', async () => {
+      jest.spyOn(baseApi, 'post').mockRejectedValue(simpleError)
+
+      try {
+        await crud.downloadWithPayload(testEndpoint, testId, testPayload)
+      } catch (error) {
+        expect(baseApi.post).toBeCalledWith(
+          `/${testEndpoint}/${testId}/export/`,
+          testPayload,
+          { responseType: 'blob' }
+        )
         expect(error).toBe(simpleError)
       }
     })

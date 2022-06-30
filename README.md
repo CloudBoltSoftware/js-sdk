@@ -10,7 +10,7 @@ Amazon recommended instructions are at [cloudbolt-npm](https://console.aws.amazo
 
 1. Add a new `co:login` npm script in your `package.json`: `"aws sso login && aws codeartifact login --tool npm --repository cloudbolt-npm --domain cloudbolt --domain-owner 499620025628"`. This ensures your aws cli is logged in before setting the project's npm repo.
 1. Add or edit a `prepare` npm script in your `package.json`. This ensures the aws cli is logged in and is using the CloudBolt private npm repo whenever installing or publishing.
-   - If you don't already have a `prepare` script, add the following `prepare` script: `"rpm run co:login"`.
+   - If you don't already have a `prepare` script, add the following `prepare` script: `"npm run co:login"`.
    - If you do already have a `prepare` script, use `concurrently` to run `co:login` at the same time. For example: `"concurrently \"npm run husky:install\" \"npm run co:login\""`.
 
 ## How to publish a new version to CodeArtifact
