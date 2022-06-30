@@ -11,7 +11,9 @@ describe('UserService', () => {
 
     const response = await UserService.getCurrentUser()
 
-    expect(crud.getItemByEndpoint).toBeCalledWith(USER_URL)
+    expect(crud.getItemByEndpoint).toBeCalledWith(USER_URL, {
+      includeCMPCatalogFields: true
+    })
     expect(response).toBe('dummyResponse')
   })
 
