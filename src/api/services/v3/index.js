@@ -1,7 +1,7 @@
 import cmp from './cmp'
-import DashboardService from './DashboardService'
+import dashboard from './dashboard'
 
 export default {
   cmp,
-  dashboard: DashboardService
+  dashboard
 }
