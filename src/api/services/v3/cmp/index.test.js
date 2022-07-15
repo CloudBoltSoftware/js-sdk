@@ -1,6 +1,7 @@
 import cmp from './index.js'
 
 it('should export an object', () => {
+  expect(cmp).toBeDefined()
   expect(typeof cmp).toBe('object')
 })
 
@@ -37,5 +38,6 @@ test.each([
   'uiExtensionComponents',
   'users'
 ])('should export a %s service', (serviceName) => {
+  expect(cmp[serviceName]).toBeDefined()
   expect(typeof cmp[serviceName]).toBe('object')
 })
