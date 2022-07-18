@@ -1,3 +1,4 @@
+import 'regenerator-runtime/runtime.js'
 import { baseApi, clearAuthHeader, setAuthHeader } from './api/baseApi'
 import crud, { setErrorHandler } from './api/crudOperations'
 import v3 from './api/services/v3'
