@@ -29,6 +29,8 @@ import RolesService from './RolesService'
 import SystemService from './SystemService'
 import UiExtensionComponentsService from './UiExtensionComponentsService'
 import UserService from './UserService'
+import ServerSummaryService from "./ServerSummaryService";
+import ServerService from "./ServerService";
 
 export default {
   alerts: AlertsService,
@@ -61,5 +63,7 @@ export default {
   roles: RolesService,
   system: SystemService,
   uiExtensionComponents: UiExtensionComponentsService,
-  users: UserService
+  users: UserService,
+  serverSummary: ServerSummaryService,
+  servers: ServerService
 }
