@@ -105,6 +105,7 @@ const getSingleEntity = async (endpoint, id, options) => {
 const getMultipleEntities = async (
   endpoint,
   options,
+  signal,
   responseField = endpoint
 ) => {
   const searchParams = getUrlSearchParamsFromOptions(options)
@@ -121,7 +122,9 @@ const getMultipleEntities = async (
   }
 
   try {
-    const response = await baseApi.get(url)
+    // signal is a part of abort-controller
+    // which helps to cancel the API request
+    const response = await baseApi.get(url, { signal })
     return ResponseParser.getList(response, responseField)
   } catch (error) {
     return handleError(error)
@@ -285,8 +288,8 @@ export const getItemByEndpoint = (endpoint, options) => {
  * @param {any | string} options
  * @returns
  */
-export const getItems = (endpoint, options) => {
-  return getMultipleEntities(endpoint, options)
+export const getItems = (endpoint, options, signal) => {
+  return getMultipleEntities(endpoint, options, signal)
 }
 
 /**

@@ -8,7 +8,7 @@ export default {
    * @param options anything parsable by URLSearchParams. See useful options here https://docs.cloudbolt.io/articles/#!cloudbolt-latest-docs/api-conventions/a/h2__904191799
    * @returns
    */
-  list: (options) => crud.getItems(URL, options),
+  list: (options, signal) => crud.getItems(URL, options, signal),
 
   /**
    * Retrieve an existing job
