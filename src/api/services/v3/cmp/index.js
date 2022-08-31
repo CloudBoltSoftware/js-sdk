@@ -26,11 +26,12 @@ import ResourceHandlersService from './ResourceHandlersService'
 import ResourcesService from './ResourcesService'
 import ResourceTypesService from './ResourceTypesService'
 import RolesService from './RolesService'
+import ServerService from './ServerService'
+import ServerSummaryService from './ServerSummaryService'
+import SettingsService from './SettingsService'
 import SystemService from './SystemService'
 import UiExtensionComponentsService from './UiExtensionComponentsService'
 import UserService from './UserService'
-import ServerSummaryService from "./ServerSummaryService";
-import ServerService from "./ServerService";
 
 export default {
   alerts: AlertsService,
@@ -61,9 +62,10 @@ export default {
   resources: ResourcesService,
   resourceTypes: ResourceTypesService,
   roles: RolesService,
+  serverSummary: ServerSummaryService,
+  servers: ServerService,
+  settings: SettingsService,
   system: SystemService,
   uiExtensionComponents: UiExtensionComponentsService,
-  users: UserService,
-  serverSummary: ServerSummaryService,
-  servers: ServerService
+  users: UserService
 }
