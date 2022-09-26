@@ -9,6 +9,7 @@ test.each([
   'apiToken',
   'applicationRates',
   'blueprintCategories',
+  'blueprintFilters',
   'blueprints',
   'brandedPortals',
   'citService',
