@@ -1,6 +1,7 @@
 import AlertsService from './AlertsService'
 import ApiTokenService from './ApiTokenService'
 import BlueprintCategoriesService from './BlueprintCategoriesService'
+import BlueprintFiltersService from './BlueprintFiltersService'
 import BlueprintsService from './BlueprintsService'
 import BrandedPortalsService from './BrandedPortalsService'
 import CitService from './CitService'
@@ -37,6 +38,7 @@ export default {
   apiToken: ApiTokenService,
   applicationRates: ApplicationRatesService,
   blueprintCategories: BlueprintCategoriesService,
+  blueprintFilters: BlueprintFiltersService,
   blueprints: BlueprintsService,
   brandedPortals: BrandedPortalsService,
   citService: CitService,
