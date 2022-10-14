@@ -1,7 +1,16 @@
 import crud from '../../../crudOperations'
 import { camelCaseKeys } from '../../../helpers/textUtils'
 
+const URL = 'v3/cmp/users/'
+
 export default {
+  /**
+   * Retrieve a list of existing Server Actions
+   * @param options anything parsable by URLSearchParams. See useful options here https://docs.cloudbolt.io/articles/#!cloudbolt-latest-docs/api-conventions/a/h2__904191799
+   * @returns {Promise} resolves with a list of existing Server Actions
+   */
+  list: (options) => crud.getItems(URL, options),
+
   /**
    * Retrieves the requesting user's information
    * @param {Object} [options] - query parameters to be sent with the request. Defaults to {includeCMPCatalogFields: true}
@@ -17,7 +26,7 @@ export default {
    */
   getWidgets: async (userId) => {
     const data = await crud.getItemByEndpoint(
-      `v3/cmp/users/${userId}/dashboardWidgets`
+      `${URL}${userId}/dashboardWidgets`
     )
     const widgets = JSON.parse(data?.widgetsJson || '[]')
     return widgets
@@ -30,7 +39,7 @@ export default {
    * @returns
    */
   updateWidgets: async (userId, widgets) =>
-    await crud.updateItemByEndpoint(`v3/cmp/users/${userId}/dashboardWidgets`, {
+    await crud.updateItemByEndpoint(`${URL}${userId}/dashboardWidgets`, {
       widgetsJson: widgets
     }),
 
@@ -40,9 +49,7 @@ export default {
    * @returns
    */
   getDashboard: async (userId) => {
-    const data = await crud.getItemByEndpoint(
-      `v3/cmp/users/${userId}/cuiDashboard`
-    )
+    const data = await crud.getItemByEndpoint(`${URL}${userId}/cuiDashboard`)
     const rawDashboard = JSON.parse(data?.cuiDashboard || '{}')
     const dashboard = camelCaseKeys(rawDashboard)
     return dashboard
@@ -57,7 +64,7 @@ export default {
    */
   updateDashboard: async (userId, dashboard) => {
     const rawUpdatedDashboard = await crud.updateItemByEndpoint(
-      `v3/cmp/users/${userId}/cuiDashboard`,
+      `${URL}${userId}/cuiDashboard`,
       {
         cuiDashboard: dashboard
       }
