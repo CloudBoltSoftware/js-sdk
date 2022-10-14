@@ -42,7 +42,8 @@ export default {
    * Run a Resource Action
    * @param {string} id or global_id
    * @param {object} runResourceAction Resource Action object definition
-   * @param {string} runResourceAction.resource required
+   * @param {array} runResourceAction.resources List of resource hrefs to run the Resource Action on
+   * @param {object} runResourceAction.parameters Action input parameters
    * @returns {Promise} resolves with a cloudbolt API Run Resource Action Success Response
    */
   run: (id, runResourceAction) =>

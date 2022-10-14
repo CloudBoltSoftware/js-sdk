@@ -1,35 +1,33 @@
 import { baseApi } from '../../../baseApi'
-import ResourceActionsService from './ResourceActionsService'
+import ServerActionsService from './ServerActionsService'
 
 test('list calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'get').mockResolvedValue({
     data: { hello: 'world' }
   })
-  await ResourceActionsService.list()
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/resourceActions/')
+  await ServerActionsService.list()
+  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/serverActions/')
 })
 
 test('get calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'get').mockResolvedValue({
     data: { hello: 'world' }
   })
-  await ResourceActionsService.get('resourceAction-id')
-  expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/resourceActions/resourceAction-id/'
-  )
+  await ServerActionsService.get('serverAction-id')
+  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/serverActions/serverAction-id/')
 })
 
 test('create calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'post').mockResolvedValue({
     data: { hello: 'world' }
   })
-  const mockResourceAction = {
+  const mockServerAction = {
     zipFile: 'world.zip'
   }
-  await ResourceActionsService.create(mockResourceAction)
+  await ServerActionsService.create(mockServerAction)
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/resourceActions/',
-    mockResourceAction
+    '/v3/cmp/serverActions/',
+    mockServerAction
   )
 })
 
@@ -41,9 +39,9 @@ test('export calls the correct endpoint', async () => {
     }
   })
 
-  await ResourceActionsService.export('resourceAction-id')
+  await ServerActionsService.export('serverAction-id')
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/resourceActions/resourceAction-id/export/',
+    '/v3/cmp/serverActions/serverAction-id/export/',
     {},
     { responseType: 'blob' }
   )
@@ -56,17 +54,14 @@ test('export with options calls the correct endpoint', async () => {
       'content-disposition': 'attachment; filename=action.zip'
     }
   })
-  const mockResourceActionsOptions = {
-    password: 'worldResourceActions',
+  const mockServerActionsOptions = {
+    password: 'worldServerActions',
     instanceSpecificInfo: true
   }
-  await ResourceActionsService.export(
-    'resourceAction-id',
-    mockResourceActionsOptions
-  )
+  await ServerActionsService.export('serverAction-id', mockServerActionsOptions)
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/resourceActions/resourceAction-id/export/',
-    mockResourceActionsOptions,
+    '/v3/cmp/serverActions/serverAction-id/export/',
+    mockServerActionsOptions,
     { responseType: 'blob' }
   )
 })
@@ -75,15 +70,15 @@ test('run calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'post').mockResolvedValue({
     data: { hello: 'world' }
   })
-  const mockResourceAction = {
-    resources: ['resource-href'],
+  const mockServerAction = {
+    servers: ['server-href'],
     parameters: {
       param1: 'value1'
     }
   }
-  await ResourceActionsService.run('resourceAction-id', mockResourceAction)
+  await ServerActionsService.run('serverAction-id', mockServerAction)
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/resourceActions/resourceAction-id/runAction/',
-    mockResourceAction
+    '/v3/cmp/serverActions/serverAction-id/runAction/',
+    mockServerAction
   )
 })

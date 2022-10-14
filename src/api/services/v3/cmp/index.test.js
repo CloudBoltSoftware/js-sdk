@@ -33,9 +33,13 @@ test.each([
   'resourceActions',
   'resourceHandlers',
   'resources',
+  'resourcesStructured',
   'resourceTypes',
   'roles',
   'system',
+  'serverActions',
+  'serverSummary',
+  'servers',
   'uiExtensionComponents',
   'users'
 ])('should export a %s service', (serviceName) => {

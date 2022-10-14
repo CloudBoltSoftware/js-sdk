@@ -25,13 +25,15 @@ import RateSettingsService from './RatesServices/RateSettingsService'
 import ResourceActionsService from './ResourceActionsService'
 import ResourceHandlersService from './ResourceHandlersService'
 import ResourcesService from './ResourcesService'
+import ResourcesStructuredService from './ResourcesStructuredService'
 import ResourceTypesService from './ResourceTypesService'
 import RolesService from './RolesService'
+import ServerActionsService from './ServerActionsService'
+import ServerService from './ServerService'
+import ServerSummaryService from './ServerSummaryService'
 import SystemService from './SystemService'
 import UiExtensionComponentsService from './UiExtensionComponentsService'
 import UserService from './UserService'
-import ServerSummaryService from "./ServerSummaryService";
-import ServerService from "./ServerService";
 
 export default {
   alerts: AlertsService,
@@ -61,11 +63,13 @@ export default {
   resourceActions: ResourceActionsService,
   resourceHandlers: ResourceHandlersService,
   resources: ResourcesService,
+  resourcesStructured: ResourcesStructuredService,
   resourceTypes: ResourceTypesService,
   roles: RolesService,
   system: SystemService,
-  uiExtensionComponents: UiExtensionComponentsService,
-  users: UserService,
+  serverActions: ServerActionsService,
   serverSummary: ServerSummaryService,
-  servers: ServerService
+  servers: ServerService,
+  uiExtensionComponents: UiExtensionComponentsService,
+  users: UserService
 }
