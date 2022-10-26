@@ -12,7 +12,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix --ext .js .",
     "precommit": "npm run lint",
-    "prepare": "concurrently \"npm run husky:install\" \"npm run co:login\"",
+    "prepare": "npm run husky:install",
     "test": "jest --silent"
   },
   "main": "lib/cb-api-helper.js",
