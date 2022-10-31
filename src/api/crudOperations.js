@@ -117,7 +117,8 @@ const getMultipleEntities = async (
 
   //responsefield might be set to something like 'dashboard/groups' and we just want 'groups'
   if (responseField.includes('/')) {
-    responseField = responseField.substring(responseField.lastIndexOf('/') + 1)
+    // This will get `users` from `/users/` or `/users`
+    responseField = responseField.split('/').filter(Boolean).slice(-1)[0]
   }
 
   try {
