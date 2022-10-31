@@ -9,7 +9,8 @@ module.exports = {
   collectCoverageFrom: ['<rootDir>/src/**/*.js'],
   coveragePathIgnorePatterns: ['/node_modules/'],
   coverageReporters: ['text'],
-  testEnvironment: 'jsdom'
+  testEnvironment: 'jsdom',
+  restoreMocks: true
   //TODO: Uncomment and determine thresholds
   // Certain areas can have different thresholds
   // https://jestjs.io/docs/configuration#coveragethreshold-object

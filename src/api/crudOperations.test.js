@@ -298,7 +298,7 @@ describe('crud', () => {
     })
 
     it('catches error and throws it by default', async () => {
-      jest.spyOn(baseApi, 'patch').mockRejectedValue(simpleError)
+      jest.spyOn(baseApi, 'put').mockRejectedValue(simpleError)
 
       try {
         await crud.updateItemById(testEndpoint, testId, testPayload)
