@@ -5,7 +5,8 @@ it('should export an object', () => {
   expect(typeof cmp).toBe('object')
 })
 
-test.each([
+const services = [
+  'alerts',
   'apiToken',
   'applicationRates',
   'blueprintCategories',
@@ -16,6 +17,7 @@ test.each([
   'environments',
   'eula',
   'groups',
+  'histories',
   'jobs',
   'licensing',
   'licensing',
@@ -42,7 +44,16 @@ test.each([
   'servers',
   'uiExtensionComponents',
   'users'
-])('should export a %s service', (serviceName) => {
+]
+
+test.each(services)('should export a %s service', (serviceName) => {
   expect(cmp[serviceName]).toBeDefined()
   expect(typeof cmp[serviceName]).toBe('object')
+})
+
+test('should only have expected services', () => {
+  const keyToTrueReducer = (obj, key) => ({ ...obj, [key]: true })
+  const expectedServices = services.reduce(keyToTrueReducer, {})
+  const actualServices = Object.keys(cmp).reduce(keyToTrueReducer, {})
+  expect(actualServices).toEqual(expectedServices)
 })

@@ -1,3 +1,4 @@
+import { baseApi } from '../../../baseApi'
 import crud from '../../../crudOperations'
 import UserService from './UserService'
 
@@ -6,13 +7,56 @@ const USER_URL = 'v3/cmp/user'
 const WIDGETS_URL = 'v3/cmp/users/1/dashboardWidgets'
 const DASHBOARD_URL = 'v3/cmp/users/1/cuiDashboard'
 
+const mockApiResponse = {
+  _links: {
+    self: {
+      href: '/api/v3/cmp/users/?page=1',
+      title: 'List of Users - Page 1 of 1'
+    }
+  },
+  total: 1,
+  count: 1,
+  _embedded: {
+    users: [
+      {
+        _links: {
+          self: { href: '/api/v3/cmp/users/USR-i7nc49in/', title: 'admin' }
+        },
+        id: 'USR-i7nc49in',
+        firstName: 'admin',
+        lastName: 'admin',
+        username: 'admin',
+        email: 'admin@cloudbolt.io',
+        isActive: true,
+        source: null,
+        superAdmin: true,
+        devopsAdmin: false,
+        apiAccess: true,
+        globalViewer: false,
+        lastActivityTime: '2022-10-31 16:54:06.045182',
+        passwordResetQuestion: '1',
+        hasActiveSession: true
+      }
+    ]
+  }
+}
+
 describe('UserService', () => {
-  it('gets a list of users', async () => {
+  it('calls the correct endpoint', async () => {
     const mockFn = jest.spyOn(crud, 'getItems').mockResolvedValue({
       data: { hello: 'world' }
     })
     await UserService.list({})
     expect(mockFn).toHaveBeenCalledWith(USERS_URL, {})
+  })
+
+  it('parses the response correctly', async () => {
+    jest.spyOn(baseApi, 'get').mockResolvedValue({ data: mockApiResponse })
+
+    const users = await UserService.list({})
+    console.log(users)
+    console.log(mockApiResponse)
+    expect(users.items.length).toBe(1)
   })
 
   it('getCurrentUser calls crud.getItemByEndpoint and returns result', async () => {
