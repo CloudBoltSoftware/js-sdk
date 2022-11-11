@@ -1,7 +1,7 @@
 import crud from '../../../crudOperations'
 import { camelCaseKeys } from '../../../helpers/textUtils'
 
-const URL = 'v3/cmp/users/'
+const URL = 'v3/cmp/users'
 
 export default {
   /**
@@ -26,7 +26,7 @@ export default {
    */
   getWidgets: async (userId) => {
     const data = await crud.getItemByEndpoint(
-      `${URL}${userId}/dashboardWidgets`
+      `${URL}/${userId}/dashboardWidgets`
     )
     const widgets = JSON.parse(data?.widgetsJson || '[]')
     return widgets
@@ -39,7 +39,7 @@ export default {
    * @returns
    */
   updateWidgets: async (userId, widgets) =>
-    await crud.updateItemByEndpoint(`${URL}${userId}/dashboardWidgets`, {
+    await crud.updateItemByEndpoint(`${URL}/${userId}/dashboardWidgets`, {
       widgetsJson: widgets
     }),
 
@@ -49,7 +49,7 @@ export default {
    * @returns
    */
   getDashboard: async (userId) => {
-    const data = await crud.getItemByEndpoint(`${URL}${userId}/cuiDashboard`)
+    const data = await crud.getItemByEndpoint(`${URL}/${userId}/cuiDashboard`)
     const rawDashboard = JSON.parse(data?.cuiDashboard || '{}')
     const dashboard = camelCaseKeys(rawDashboard)
     return dashboard
@@ -64,7 +64,7 @@ export default {
    */
   updateDashboard: async (userId, dashboard) => {
     const rawUpdatedDashboard = await crud.updateItemByEndpoint(
-      `${URL}${userId}/cuiDashboard`,
+      `${URL}/${userId}/cuiDashboard`,
       {
         cuiDashboard: dashboard
       }
