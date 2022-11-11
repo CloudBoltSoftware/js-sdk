@@ -1,7 +1,7 @@
 import crud from '../../../crudOperations'
 import UserService from './UserService'
 
-const USERS_URL = 'v3/cmp/users/'
+const USERS_URL = 'v3/cmp/users'
 const USER_URL = 'v3/cmp/user'
 const WIDGETS_URL = 'v3/cmp/users/1/dashboardWidgets'
 const DASHBOARD_URL = 'v3/cmp/users/1/cuiDashboard'
