@@ -123,4 +123,13 @@ describe('UserService', () => {
     })
     expect(response).toBe('dummyResponse')
   })
+
+  it('getUserDetails calls crud.getItemByEndpoint and returns result', async () => {
+    jest.spyOn(crud, 'getItemByEndpoint').mockResolvedValue('dummyResponse')
+
+    const response = await UserService.getUserDetails(1)
+
+    expect(crud.getItemByEndpoint).toBeCalledWith(`${USERS_URL}/1`)
+    expect(response).toBe('dummyResponse')
+  })
 })
