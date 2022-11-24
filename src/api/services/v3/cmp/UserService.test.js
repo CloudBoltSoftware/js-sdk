@@ -132,4 +132,17 @@ describe('UserService', () => {
     expect(crud.getItemByEndpoint).toBeCalledWith(`${USERS_URL}/1`)
     expect(response).toBe('dummyResponse')
   })
+
+  it('updatePassword calls crud.patchItemById', async () => {
+    jest.spyOn(crud, 'patchItemById').mockResolvedValue('dummyResponse')
+    const payload = {
+      password: 'Cloudbolt@123',
+      oldPassword: 'Admin@123'
+    }
+
+    const response = await UserService.updatePassword(1, payload)
+
+    expect(crud.patchItemById).toBeCalledWith(`${USERS_URL}/1/${payload}`)
+    expect(response).toBe('dummyResponse')
+  })
 })

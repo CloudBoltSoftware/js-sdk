@@ -79,5 +79,14 @@ export default {
    * @returns {Promise<Object>} - the user's information
    */
   getUserDetails: async (userId) =>
-    await crud.getItemByEndpoint(`${URL}/${userId}`)
+    await crud.getItemByEndpoint(`${URL}/${userId}`),
+
+  /**
+   * Updates the password for the specified user
+   * @param {string | number} userId
+   * @param {object} options new password and old password
+   * @returns {Promise<Object>} - the user's information
+   */
+  updatePassword: async (userId, options) =>
+    await crud.patchItemById(`${URL}/${userId}/${options}`)
 }
