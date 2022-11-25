@@ -88,5 +88,5 @@ export default {
    * @returns {Promise<Object>} - the user's information
    */
   updatePassword: async (userId, options) =>
-    await crud.patchItemById(`${URL}/${userId}/${options}`)
+    await crud.patchItemById(URL, userId, options)
 }

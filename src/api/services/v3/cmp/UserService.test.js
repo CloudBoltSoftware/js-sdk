@@ -142,7 +142,7 @@ describe('UserService', () => {
 
     const response = await UserService.updatePassword(1, payload)
 
-    expect(crud.patchItemById).toBeCalledWith(`${USERS_URL}/1/${payload}`)
+    expect(crud.patchItemById).toBeCalledWith(USERS_URL, 1, payload)
     expect(response).toBe('dummyResponse')
   })
 })
