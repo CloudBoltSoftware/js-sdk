@@ -6,6 +6,7 @@ const USERS_URL = 'v3/cmp/users'
 const USER_URL = 'v3/cmp/user'
 const WIDGETS_URL = 'v3/cmp/users/1/dashboardWidgets'
 const DASHBOARD_URL = 'v3/cmp/users/1/cuiDashboard'
+const USER_PERMISSION_URL = 'v3/cmp/users/1/permissions'
 
 const mockApiResponse = {
   _links: {
@@ -143,6 +144,15 @@ describe('UserService', () => {
     const response = await UserService.updatePassword(1, payload)
 
     expect(crud.patchItemById).toBeCalledWith(USERS_URL, 1, payload)
+    expect(response).toBe('dummyResponse')
+  })
+
+  it('getUserPermission calls crud.getItemByEndpoint and returns result', async () => {
+    jest.spyOn(crud, 'getItemByEndpoint').mockResolvedValue('dummyResponse')
+
+    const response = await UserService.getUserPermission(1)
+
+    expect(crud.getItemByEndpoint).toBeCalledWith(USER_PERMISSION_URL)
     expect(response).toBe('dummyResponse')
   })
 })

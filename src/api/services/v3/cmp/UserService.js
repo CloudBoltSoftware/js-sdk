@@ -88,5 +88,13 @@ export default {
    * @returns {Promise<Object>} - the user's information
    */
   updatePassword: async (userId, options) =>
-    await crud.patchItemById(URL, userId, options)
+    await crud.patchItemById(URL, userId, options),
+
+  /**
+   * Retrieves the permissions for the specified user
+   * @param {string | number} userId
+   * @returns {Promise<Object>} - the user's permissions
+   */
+  getUserPermission: async (userId) =>
+    await crud.getItemByEndpoint(`${URL}/${userId}/permissions`)
 }
