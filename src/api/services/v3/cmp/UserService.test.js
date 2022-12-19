@@ -6,6 +6,7 @@ const USERS_URL = 'v3/cmp/users'
 const USER_URL = 'v3/cmp/user'
 const WIDGETS_URL = 'v3/cmp/users/1/dashboardWidgets'
 const DASHBOARD_URL = 'v3/cmp/users/1/cuiDashboard'
+const USER_PERMISSION_URL = 'v3/cmp/users/1/permissions'
 
 const mockApiResponse = {
   _links: {
@@ -121,6 +122,37 @@ describe('UserService', () => {
     expect(crud.updateItemByEndpoint).toBeCalledWith(DASHBOARD_URL, {
       cuiDashboard: { widgets: [1, 2] }
     })
+    expect(response).toBe('dummyResponse')
+  })
+
+  it('getUserDetails calls crud.getItemByEndpoint and returns result', async () => {
+    jest.spyOn(crud, 'getItemByEndpoint').mockResolvedValue('dummyResponse')
+
+    const response = await UserService.getUserDetails(1)
+
+    expect(crud.getItemByEndpoint).toBeCalledWith(`${USERS_URL}/1`)
+    expect(response).toBe('dummyResponse')
+  })
+
+  it('updatePassword calls crud.patchItemById', async () => {
+    jest.spyOn(crud, 'patchItemById').mockResolvedValue('dummyResponse')
+    const payload = {
+      password: 'Cloudbolt@123',
+      oldPassword: 'Admin@123'
+    }
+
+    const response = await UserService.updatePassword(1, payload)
+
+    expect(crud.patchItemById).toBeCalledWith(USERS_URL, 1, payload)
+    expect(response).toBe('dummyResponse')
+  })
+
+  it('getUserPermission calls crud.getItemByEndpoint and returns result', async () => {
+    jest.spyOn(crud, 'getItemByEndpoint').mockResolvedValue('dummyResponse')
+
+    const response = await UserService.getUserPermission(1)
+
+    expect(crud.getItemByEndpoint).toBeCalledWith(USER_PERMISSION_URL)
     expect(response).toBe('dummyResponse')
   })
 })
