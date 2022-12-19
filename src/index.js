@@ -1,5 +1,13 @@
-import { baseApi, clearAuthHeader, setAuthHeader } from './api/baseApi'
+import {
+  baseApi,
+  clearAuthHeader,
+  getAbortController,
+  removeAbortController,
+  setAbortController,
+  setAuthHeader
+} from './api/baseApi'
 import crud, { setErrorHandler } from './api/crudOperations'
+import helpers from './api/helpers'
 import v3 from './api/services/v3'
 
 /**
@@ -13,8 +21,12 @@ export const createApi = ({ errorHandler } = {}) => {
     base: {
       instance: baseApi,
       crud,
+      helpers,
       setAuthHeader,
       clearAuthHeader,
+      setAbortController,
+      getAbortController,
+      removeAbortController,
       setErrorHandler
     },
     v3

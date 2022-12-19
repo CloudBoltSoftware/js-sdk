@@ -31,11 +31,11 @@ describe('FilterExpressionBuilder builds expression', () => {
     expect(response).toEqual('filter=testField:False')
   })
 
-  it('withFieldId', () => {
+  it('withId', () => {
     const filterExpressionBuilder = new FilterExpressionBuilder()
 
     const response = filterExpressionBuilder
-      .withFieldId(testField, testValue)
+      .withId(testField, testValue)
       .build()
     expect(response).toEqual('filter=testField.id:testValue')
   })
@@ -71,11 +71,23 @@ describe('FilterExpressionBuilder builds expression', () => {
     const filterExpressionBuilder = new FilterExpressionBuilder()
 
     const response = filterExpressionBuilder
-      .withFieldId(testField, testValue)
+      .withId(testField, testValue)
       .withFieldEquals(testField, testValue)
       .build()
     expect(response).toEqual(
       'filter=testField.id:testValue;testField.iexact:testValue'
+    )
+  })
+
+  it('creates an expression to OR multiple expressions', () => {
+    const filterExpressionBuilder = new FilterExpressionBuilder()
+
+    const response = filterExpressionBuilder
+      .withId(testField, testValue)
+      .withFieldEquals(testField, testValue)
+      .build({ join: 'or', includeKey: true })
+    expect(response).toEqual(
+      'filter=[{testField.id:testValue},{testField.iexact:testValue}]'
     )
   })
 })

@@ -2,6 +2,8 @@ import axios from 'axios'
 
 const BASE_URL = '/api'
 
+let abortController
+
 /**
  * Base Axios Instance for CloudBolt API
  */
@@ -22,4 +24,19 @@ export const setAuthHeader = (authToken) => {
  */
 export const clearAuthHeader = () => {
   baseApi.defaults.headers.common['Authorization'] = ''
+}
+
+export const setAbortController = () => {
+  const controller = new AbortController()
+  abortController = controller
+  baseApi.defaults.signal = controller.signal
+}
+
+export const getAbortController = () => {
+  return abortController
+}
+
+export const removeAbortController = () => {
+  abortController = null
+  baseApi.defaults.signal = null
 }
