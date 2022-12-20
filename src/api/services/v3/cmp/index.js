@@ -4,6 +4,7 @@ import BlueprintCategoriesService from './BlueprintCategoriesService'
 import BlueprintFiltersService from './BlueprintFiltersService'
 import BlueprintsService from './BlueprintsService'
 import BrandedPortalsService from './BrandedPortalsService'
+import CatalogBlueprintsService from './CatalogBlueprintsService'
 import CitService from './CitService'
 import EnvironmentsService from './EnvironmentsService'
 import EulaService from './EulaService'
@@ -44,6 +45,7 @@ export default {
   blueprintFilters: BlueprintFiltersService,
   blueprints: BlueprintsService,
   brandedPortals: BrandedPortalsService,
+  catalogBlueprints: CatalogBlueprintsService,
   citService: CitService,
   environments: EnvironmentsService,
   eula: EulaService,

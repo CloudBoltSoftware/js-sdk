@@ -13,6 +13,7 @@ const services = [
   'blueprintFilters',
   'blueprints',
   'brandedPortals',
+  'catalogBlueprints',
   'citService',
   'environments',
   'eula',
