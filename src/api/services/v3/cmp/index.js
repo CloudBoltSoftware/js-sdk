@@ -1,5 +1,6 @@
 import AlertsService from './AlertsService'
 import ApiTokenService from './ApiTokenService'
+import AppletsService from './AppletsService'
 import BlueprintCategoriesService from './BlueprintCategoriesService'
 import BlueprintFiltersService from './BlueprintFiltersService'
 import BlueprintsService from './BlueprintsService'
@@ -43,6 +44,7 @@ import UserService from './UserService'
 
 export default {
   alerts: AlertsService,
+  applets: AppletsService,
   apiToken: ApiTokenService,
   applicationRates: ApplicationRatesService,
   blueprintCategories: BlueprintCategoriesService,
