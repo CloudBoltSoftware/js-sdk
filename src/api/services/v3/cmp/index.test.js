@@ -7,6 +7,7 @@ it('should export an object', () => {
 
 const services = [
   'alerts',
+  'applets',
   'apiToken',
   'applicationRates',
   'blueprintCategories',
