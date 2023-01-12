@@ -15,14 +15,14 @@ export default {
    * @param {string} id or global_id
    * @returns {Promise} resolves with a cloudbolt API Response object of the Order object
    */
-  get: (id) => crud.getItemById(URL, id),
+  get: (id, options) => crud.getItemById(URL, id, options),
 
   /**
    * Duplicated an Order by a given id
    * @param {string} id or global_id
    * @returns {Promise} resolves with a new duplicate Order object with all server-filled fields
    */
-  duplicate: (id, options) => crud.postItem(`${URL}/${id}/duplicate`, options),
+  duplicate: (id) => crud.postItem(`${URL}/${id}/duplicate`),
 
   /**
    * Approve an Order by a given id
