@@ -22,7 +22,7 @@ export default {
    * @param {string} id or global_id
    * @returns {Promise} resolves with a new duplicate Order object with all server-filled fields
    */
-  duplicate: (id) => crud.postItem(`${URL}/${id}/duplicate`),
+  duplicate: (id, options) => crud.postItem(`${URL}/${id}/duplicate`, options),
 
   /**
    * Approve an Order by a given id
