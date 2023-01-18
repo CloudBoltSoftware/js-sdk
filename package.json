@@ -22,7 +22,7 @@
     "url": "https://github.com/CloudBoltSoftware/cb-api-helper.git"
   },
   "dependencies": {
-    "axios": "^0.27.2",
+    "axios": "^1.2.3",
     "ramda": "^0.28.0"
   },
   "devDependencies": {
