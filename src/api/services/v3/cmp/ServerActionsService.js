@@ -47,5 +47,16 @@ export default {
    * @returns {Promise} resolves with a cloudbolt API Run Server Action Success Response
    */
   run: (id, runServerAction) =>
-    crud.postItem(`${URL}/${id}/runAction`, runServerAction)
+    crud.postItem(`${URL}/${id}/runAction`, runServerAction),
+
+  /**
+   * Run a Server Action
+   * @param {string} id or global_id
+   * @param {object} runServerAction Server Action object definition
+   * @param {array} runServerAction.servers List of server hrefs to run the Server Action on
+   * @param {object} runServerAction.parameters Action input parameters
+   * @returns {Promise} resolves with a cloudbolt API Run Server Action Success Response
+   */
+  runSync: (id, runServerAction) =>
+    crud.postItem(`${URL}/${id}/runActionSync`, runServerAction)
 }
