@@ -47,5 +47,16 @@ export default {
    * @returns {Promise} resolves with a cloudbolt API Run Resource Action Success Response
    */
   run: (id, runResourceAction) =>
-    crud.postItem(`${URL}/${id}/runAction`, runResourceAction)
+    crud.postItem(`${URL}/${id}/runAction`, runResourceAction),
+
+  /**
+   * Run a Resource Action
+   * @param {string} id or global_id
+   * @param {object} runResourceAction Resource Action object definition
+   * @param {array} runResourceAction.resources List of resource hrefs to run the Resource Action on
+   * @param {object} runResourceAction.parameters Action input parameters
+   * @returns {Promise} resolves with a cloudbolt API Run Resource Action Success Response
+   */
+  runSync: (id, runResourceAction) =>
+    crud.postItem(`${URL}/${id}/runActionSync`, runResourceAction)
 }

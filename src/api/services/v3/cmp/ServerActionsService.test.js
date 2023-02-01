@@ -82,3 +82,20 @@ test('run calls the correct endpoint', async () => {
     mockServerAction
   )
 })
+
+test('run calls the synchronous endpoint', async () => {
+  const mockFn = jest.spyOn(baseApi, 'post').mockResolvedValue({
+    data: { hello: 'world' }
+  })
+  const mockServerAction = {
+    servers: ['server-href'],
+    parameters: {
+      param1: 'value1'
+    }
+  }
+  await ServerActionsService.runSync('serverAction-id', mockServerAction)
+  expect(mockFn).toHaveBeenCalledWith(
+    '/v3/cmp/serverActions/serverAction-id/runActionSync/',
+    mockServerAction
+  )
+})
