@@ -1,6 +1,6 @@
 {
   "name": "@cloudbolt/cb-api-helper",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "scripts": {
     "co:login": "aws sso login && aws codeartifact login --tool npm --repository cloudbolt-npm --domain cloudbolt --domain-owner 499620025628",
     "husky:install": "husky install",
