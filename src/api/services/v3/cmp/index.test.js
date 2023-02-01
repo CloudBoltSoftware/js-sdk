@@ -15,6 +15,7 @@ const services = [
   'brandedPortals',
   'catalogBlueprints',
   'citService',
+  'customForms',
   'environments',
   'eula',
   'groups',

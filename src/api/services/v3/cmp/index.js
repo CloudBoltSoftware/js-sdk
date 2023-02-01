@@ -6,6 +6,7 @@ import BlueprintsService from './BlueprintsService'
 import BrandedPortalsService from './BrandedPortalsService'
 import CatalogBlueprintsService from './CatalogBlueprintsService'
 import CitService from './CitService'
+import CustomFormsService from './CustomFormsService'
 import EnvironmentsService from './EnvironmentsService'
 import EulaService from './EulaService'
 import GroupsService from './GroupsService'
@@ -47,6 +48,7 @@ export default {
   brandedPortals: BrandedPortalsService,
   catalogBlueprints: CatalogBlueprintsService,
   citService: CitService,
+  customForms: CustomFormsService,
   environments: EnvironmentsService,
   eula: EulaService,
   groups: GroupsService,
