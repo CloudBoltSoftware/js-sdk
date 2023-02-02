@@ -17,7 +17,7 @@ test('get calls the correct endpoint', async () => {
   expect(mockFn).toHaveBeenCalledWith('/v3/cmp/customForms/customForm-id/')
 })
 
-test('create order calls the correct endpoint', async () => {
+test('submit order calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'post').mockResolvedValue({
     data: { hello: 'world' }
   })
@@ -25,7 +25,7 @@ test('create order calls the correct endpoint', async () => {
     group: 'admin',
     imput_1: 'category world'
   }
-  await CustomFormsService.createOrder('customForm-id', mockCustomFormOrder)
+  await CustomFormsService.submitOrder('customForm-id', mockCustomFormOrder)
   expect(mockFn).toHaveBeenCalledWith(
     '/v3/cmp/customForms/customForm-id/submit/',
     mockCustomFormOrder

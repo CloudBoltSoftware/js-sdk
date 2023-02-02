@@ -23,7 +23,7 @@ export default {
    * @param {object} order order JSON generated through SurveyJS
    * @returns {Promise} resolves with an Custom Form order success object with all server-filled fields
    */
-  createOrder: (id, order) => crud.createNewItem(`${URL}/${id}/submit`, order),
+  submitOrder: (id, order) => crud.createNewItem(`${URL}/${id}/submit`, order),
 
   /**
    * Delete an existing Custom Form for a given id
