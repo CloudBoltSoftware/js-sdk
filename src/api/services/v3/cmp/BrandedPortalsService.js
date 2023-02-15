@@ -18,6 +18,12 @@ export default {
   get: (id) => crud.getItemById(URL, id),
 
   /**
+   * Retrieve the current or default BrandedPortal
+   * @returns {Promise} resolves with a cloudbolt API Response object of the current BrandedPortal object
+   */
+  getCurrentPortal: () => crud.getItemByEndpoint(`${URL}/currentPortal`),
+
+  /**
    * Create a new BrandedPortal
    * @param {object} newBrandedPortal new BrandedPortal object definition
    * @param {string} newBrandedPortal.domain required
