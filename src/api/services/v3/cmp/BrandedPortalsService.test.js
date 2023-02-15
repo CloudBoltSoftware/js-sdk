@@ -19,6 +19,14 @@ test('get calls the correct endpoint', async () => {
   )
 })
 
+test('get current portal calls the correct endpoint', async () => {
+  const mockFn = jest.spyOn(baseApi, 'get').mockResolvedValue({
+    data: { hello: 'world' }
+  })
+  await BrandedPortalsService.getCurrentPortal()
+  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/brandedPortals/currentPortal/')
+})
+
 test('create calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'post').mockResolvedValue({
     data: { hello: 'world' }
