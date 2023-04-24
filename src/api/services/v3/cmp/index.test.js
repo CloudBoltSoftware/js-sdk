@@ -44,6 +44,7 @@ const services = [
   'serverActions',
   'serverSummary',
   'servers',
+  'settings',
   'uiExtensionComponents',
   'users'
 ]

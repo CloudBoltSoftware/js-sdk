@@ -34,6 +34,7 @@ import RolesService from './RolesService'
 import ServerActionsService from './ServerActionsService'
 import ServerService from './ServerService'
 import ServerSummaryService from './ServerSummaryService'
+import SettingsService from './SettingsService'
 import SystemService from './SystemService'
 import UiExtensionComponentsService from './UiExtensionComponentsService'
 import UserService from './UserService'
@@ -76,6 +77,7 @@ export default {
   serverActions: ServerActionsService,
   serverSummary: ServerSummaryService,
   servers: ServerService,
+  settings: SettingsService,
   uiExtensionComponents: UiExtensionComponentsService,
   users: UserService
 }
