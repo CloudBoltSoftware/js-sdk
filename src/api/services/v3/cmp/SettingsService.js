@@ -11,5 +11,5 @@ export default {
    * catalogShowOsBuildsFilter,catalogShowResourceTypesFilter,catalogShowGroupsFilter
    * @returns {Promise} API Response of the Settings object, or the specific fields requested
    */
-  list: (options) => crud.getItems(URL, options)
+  list: (options) => crud.getItemByEndpoint(URL, options)
 }
