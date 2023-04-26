@@ -4,10 +4,10 @@ const URL = 'v3/cmp/miscellaneousSettings'
 
 export default {
   /**
-   * Retrieve a list of existing Miscellaneous Settings
-   * @returns {Promise} resolves with a paginated list of all misc settings.
+   * Retrieve existing Miscellaneous Settings
+   * @returns {Promise} resolves with all misc settings.
    */
-  list: () => crud.getItems(URL),
+  list: () => crud.getItemByEndpoint(URL),
 
   /**
    * Update existing Miscellaneous Settings
