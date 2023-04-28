@@ -7,6 +7,8 @@ import BrandedPortalsService from './BrandedPortalsService'
 import CatalogBlueprintsService from './CatalogBlueprintsService'
 import CitService from './CitService'
 import CustomFormsService from './CustomFormsService'
+import DataTableSettingsService from './DataTableSettingsService'
+import DataTableTypesService from './DataTableTypesService'
 import EnvironmentsService from './EnvironmentsService'
 import EulaService from './EulaService'
 import GroupsService from './GroupsService'
@@ -27,9 +29,9 @@ import ParameterRatesService from './RatesServices/ParameterRatesService'
 import RateSettingsService from './RatesServices/RateSettingsService'
 import ResourceActionsService from './ResourceActionsService'
 import ResourceHandlersService from './ResourceHandlersService'
+import ResourceTypesService from './ResourceTypesService'
 import ResourcesService from './ResourcesService'
 import ResourcesStructuredService from './ResourcesStructuredService'
-import ResourceTypesService from './ResourceTypesService'
 import RolesService from './RolesService'
 import ServerActionsService from './ServerActionsService'
 import ServerService from './ServerService'
@@ -50,6 +52,8 @@ export default {
   catalogBlueprints: CatalogBlueprintsService,
   citService: CitService,
   customForms: CustomFormsService,
+  dataTableTypes: DataTableTypesService,
+  dataTableSettings: DataTableSettingsService,
   environments: EnvironmentsService,
   eula: EulaService,
   groups: GroupsService,
