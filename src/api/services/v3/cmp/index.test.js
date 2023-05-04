@@ -16,6 +16,8 @@ const services = [
   'catalogBlueprints',
   'citService',
   'customForms',
+  'dataTableTypes',
+  'dataTableSettings',
   'environments',
   'eula',
   'groups',
