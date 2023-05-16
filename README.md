@@ -18,5 +18,6 @@ Amazon recommended instructions are at [cloudbolt-npm](https://console.aws.amazo
 1. Delete any local `types` and `lib` folder in this directory
 1. Increment the version of the `package.json` for this project and do an install to be sure the `package-lock.json` is up to date as well.
    - The command `npm version patch` does this for you. It creates a git tag too.
+   - If in testing, create a beta version with `npm version prepatch --preid beta`
 1. Run the command `npm run build` which will create the `types` and `lib` folder for this version you are about to publish.
 1. Run the command `npm publish` to publish this version to CodeArtifact
