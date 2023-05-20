@@ -24,7 +24,7 @@ test('cancel calls the correct endpoint', async () => {
     jobs: ['/v3/cmp/jobs/job-id/']
   }
   await JobsService.cancel(payload)
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/jobs/', payload)
+  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/jobs/cancel/', payload)
 })
 
 test('clone calls the correct endpoint', async () => {
