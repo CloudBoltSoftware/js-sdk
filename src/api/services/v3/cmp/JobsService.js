@@ -16,7 +16,7 @@ export default {
    * @param {array} payload.jobs List of Job hrefs to clone
    * @returns {Promise} resolves with a cloudbolt API Response object of Job objects
    */
-  cancel: (payload) => crud.postItem(URL, payload),
+  cancel: (payload) => crud.postItem(URL+'/cancel', payload),
 
   /**
    * Retrieve an existing job
