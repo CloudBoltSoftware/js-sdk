@@ -11,15 +11,4 @@ module.exports = {
   coverageReporters: ['text'],
   testEnvironment: 'jsdom',
   restoreMocks: true
-  //TODO: Uncomment and determine thresholds
-  // Certain areas can have different thresholds
-  // https://jestjs.io/docs/configuration#coveragethreshold-object
-  // coverageThreshold: {
-  //   global: {
-  //     branches: 80,
-  //     functions: 80,
-  //     lines: 80,
-  //     statements: 80
-  //   }
-  // }
 }
