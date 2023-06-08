@@ -348,11 +348,6 @@ describe('crud', () => {
   })
 
   describe('upload', () => {
-    beforeEach(() => {
-      const entries = jest.fn()
-      const append = jest.fn()
-      global.FormData = () => ({ entries, append })
-    })
     it('calls baseApi.post', async () => {
       jest.spyOn(baseApi, 'post').mockResolvedValue(responseData)
 
@@ -380,12 +375,6 @@ describe('crud', () => {
   })
 
   describe('download', () => {
-    beforeEach(() => {
-      const createObjectURL = jest.fn()
-      const revokeObjectURL = jest.fn()
-      global.Blob = () => ({})
-      global.URL = { createObjectURL, revokeObjectURL }
-    })
     it('calls baseApi.post', async () => {
       jest.spyOn(baseApi, 'post').mockResolvedValue(responseData)
 
@@ -411,12 +400,6 @@ describe('crud', () => {
   })
 
   describe('downloadWithPayload', () => {
-    beforeEach(() => {
-      const createObjectURL = jest.fn()
-      const revokeObjectURL = jest.fn()
-      global.Blob = () => ({})
-      global.URL = { createObjectURL, revokeObjectURL }
-    })
     it('calls baseApi.post with payload', async () => {
       jest.spyOn(baseApi, 'post').mockResolvedValue(responseDataWithHeaders)
 
