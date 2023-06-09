@@ -1,5 +1,5 @@
 {
-  "name": "@cloudbolt/cb-api-helper",
+  "name": "@cloudbolt/api-helper",
   "version": "0.5.13",
   "scripts": {
     "husky:install": "husky install",
@@ -14,11 +14,11 @@
     "prepare": "npm run husky:install",
     "test": "jest --silent"
   },
-  "main": "lib/cb-api-helper.js",
+  "main": "lib/api-helper.js",
   "types": "types/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/CloudBoltSoftware/cb-api-helper.git"
+    "url": "https://github.com/CloudBoltSoftware/api-helper.git"
   },
   "dependencies": {
     "axios": "^0.27.2",

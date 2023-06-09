@@ -73,13 +73,13 @@ This package restructures responses from `list` endpoints slightly to make respo
 
 ### Authentication
 
-If using cb-api-helper from within a CB Applet, the applet receives a pre-authenticated `api` instance for the currently logged in user. It will automatically refresh the auth token as needed.
+If using api-helper from within a CB Applet, the applet receives a pre-authenticated `api` instance for the currently logged in user. It will automatically refresh the auth token as needed.
 
-If using cb-api-helper from a stand-alone app, you will need to obtain an auth token from CloudBolt, set it on the api instance, and handle token refreshing manually.
+If using api-helper from a stand-alone app, you will need to obtain an auth token from CloudBolt, set it on the api instance, and handle token refreshing manually.
 
 ```js
 // Initialize the api helper
-import { createApi } from '@cloudbolt/cb-api-helper'
+import { createApi } from '@cloudbolt/api-helper'
 const api = createApi()
 
 // Get an auth token from CloudBolt
