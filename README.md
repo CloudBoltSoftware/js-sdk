@@ -129,6 +129,47 @@ const groups = await api.v3.cmp.groups.list({ filter: 'name:my-group' })
 const jobs = await api.v3.cmp.jobs.list({ ordering: '-endDate' })
 ```
 
+### Querying the base API
+
+Not all endpoints are included in the `api.v3...` helpers. For all other endpoints, use the `api.base.crud` methods. These methods are generic and can be used to query any endpoint and include the `/api` prefix. For example:
+
+```js
+// Get a list of all f5 load balancers
+const loadBalancers = await api.base.crud.getItems('/v3/cmp/loadBalancers/', {
+  filter: 'type:f5'
+})
+
+// Get an OS Image
+const osImage = await api.base.crud.getItem('/v3/cmp/osImages/IMG-12345678/')
+
+// Patch a tenant
+const newTenant = await api.base.crud.patchItemById(
+  '/v3/cmp/tenants/TNT-12345678/',
+  { label: 'My Tenant Update' }
+)
+
+// Get the next page of a list result
+const userPage1 = await api.v3.cmp.users.list()
+const page2Url = userPage1.pageInfo.nextPage
+const userPage2 = await api.base.crud.getItems(page2Url)
+```
+
+```
+
+
+
+```
+
+You can also use the base axios instance directly (useful if there isn't a helper method for the endpoint or verb you need, or if you have an advanced use case):
+
+```js
+// Download web logs
+const logs = await api.base.instance.get('/api/v3/cmp/logs/web/')
+
+// Delete a network
+await api.base.instance.delete('/api/v3/cmp/networks/ET-12345678/')
+```
+
 ## Development (for maintainers)
 
 ### How to publish a new version
