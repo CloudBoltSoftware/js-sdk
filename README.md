@@ -154,12 +154,6 @@ const page2Url = userPage1.pageInfo.nextPage
 const userPage2 = await api.base.crud.getItems(page2Url)
 ```
 
-```
-
-
-
-```
-
 You can also use the base axios instance directly (useful if there isn't a helper method for the endpoint or verb you need, or if you have an advanced use case):
 
 ```js
