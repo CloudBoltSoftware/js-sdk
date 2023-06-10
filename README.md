@@ -10,6 +10,8 @@
 
 ## Installation
 
+Install as a local dependency in your project:
+
 ```bash
 npm install @cloudbolt/api-helper
 ```
@@ -173,4 +175,4 @@ await api.base.instance.delete('/api/v3/cmp/networks/ET-12345678/')
    - The command `npm version patch` does this for you. It creates a git tag too.
    - If in testing, create a beta version with `npm version prepatch --preid beta`
 1. Run the command `npm run build` which will create the `types` and `lib` folder for this version you are about to publish.
-1. Run the command `npm publish` to publish this version
+1. Run the command `npm publish` to publish this version to npm
