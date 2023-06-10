@@ -1,6 +1,7 @@
 {
   "name": "@cloudbolt/api-helper",
   "version": "0.5.13",
+  "description": "CloudBolt Javascript package for interacting with the CloudBolt API",
   "scripts": {
     "husky:install": "husky install",
     "type-check": "tsc --noEmit",
