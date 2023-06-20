@@ -1,5 +1,5 @@
 {
-  "name": "@cloudbolt/api-helper",
+  "name": "@cloudbolt/js-sdk",
   "version": "0.5.13",
   "description": "CloudBolt Javascript package for interacting with the CloudBolt API",
   "scripts": {
@@ -15,11 +15,11 @@
     "prepare": "npm run husky:install",
     "test": "jest --silent"
   },
-  "main": "lib/api-helper.js",
+  "main": "lib/js-sdk.js",
   "types": "types/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/CloudBoltSoftware/api-helper.git"
+    "url": "https://github.com/CloudBoltSoftware/js-sdk.git"
   },
   "dependencies": {
     "axios": "^0.27.2",

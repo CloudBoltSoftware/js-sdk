@@ -4,7 +4,7 @@ module.exports = {
   entry: path.resolve('./src/index'),
   output: {
     path: path.resolve(__dirname, 'lib'),
-    filename: 'api-helper.js',
+    filename: 'js-sdk.js',
     library: {
       type: 'umd'
     }

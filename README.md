@@ -1,4 +1,4 @@
-# CloudBolt API Helper
+# CloudBolt Javascript SDK
 
 ## Features
 
@@ -13,7 +13,7 @@
 Install as a local dependency in your project:
 
 ```bash
-npm install @cloudbolt/api-helper
+npm install @cloudbolt/js-sdk
 ```
 
 ## Usage
@@ -75,13 +75,13 @@ This package restructures responses from `list` endpoints slightly to make respo
 
 ### Authentication
 
-If using api-helper from within a CB Applet, the applet receives a pre-authenticated `api` instance for the currently logged in user. It will automatically refresh the auth token as needed.
+If using js-sdk from within a CB Applet, the applet receives a pre-authenticated `api` instance for the currently logged in user. It will automatically refresh the auth token as needed.
 
-If using api-helper from a stand-alone app, you will need to obtain an auth token from CloudBolt, set it on the api instance, and handle token refreshing manually.
+If using js-sdk from a stand-alone app, you will need to obtain an auth token from CloudBolt, set it on the api instance, and handle token refreshing manually.
 
 ```js
-// Initialize the api helper
-import { createApi } from '@cloudbolt/api-helper'
+// Initialize the sdk
+import { createApi } from '@cloudbolt/js-sdk'
 const api = createApi()
 
 // Get an auth token from CloudBolt
@@ -89,7 +89,7 @@ const token = await api.v3.cmp.apiToken.obtainToken('username', 'password')
 // If operating from within a CloudBolt UI Extension, you can use the session cookie:
 // const token = await api.v3.cmp.apiToken.obtainTokenWithSessionCookie()
 
-// Save the auth token to the api helper's axios instance
+// Save the auth token to the sdk's axios instance
 api.base.setAuthHeader(token)
 
 // Congrat's! You're ready to start making requests to the CloudBolt API with the `api` instance
