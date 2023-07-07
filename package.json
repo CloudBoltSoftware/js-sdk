@@ -1,6 +1,6 @@
 {
   "name": "@cloudbolt/js-sdk",
-  "version": "0.6.0",
+  "version": "0.6.1-beta.0",
   "description": "CloudBolt Javascript package for interacting with the CloudBolt API",
   "scripts": {
     "husky:install": "husky install",
