@@ -14,6 +14,7 @@ import EnvironmentsService from './EnvironmentsService'
 import EulaService from './EulaService'
 import GroupsService from './GroupsService'
 import HistoriesService from './HistoriesService'
+import InboundWebHookService from './InboundWebHookService'
 import JobsService from './JobsService'
 import LicensingService from './LicensingService'
 import LoggingService from './LoggingService'
@@ -60,6 +61,7 @@ export default {
   eula: EulaService,
   groups: GroupsService,
   histories: HistoriesService,
+  inboundWebHooks: InboundWebHookService,
   jobs: JobsService,
   licensing: LicensingService,
   logging: LoggingService,

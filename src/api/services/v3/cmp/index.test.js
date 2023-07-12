@@ -23,6 +23,7 @@ const services = [
   'eula',
   'groups',
   'histories',
+  'inboundWebHooks',
   'jobs',
   'licensing',
   'licensing',
