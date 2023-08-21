@@ -6,7 +6,7 @@ test('list calls the correct endpoint', async () => {
     data: { hello: 'world' }
   })
   await ResourceActionsService.list()
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/resourceActions/')
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/resourceActions/')
 })
 
 test('get calls the correct endpoint', async () => {
@@ -15,7 +15,7 @@ test('get calls the correct endpoint', async () => {
   })
   await ResourceActionsService.get('resourceAction-id')
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/resourceActions/resourceAction-id/'
+    '/api/v3/cmp/resourceActions/resourceAction-id/'
   )
 })
 
@@ -28,7 +28,7 @@ test('create calls the correct endpoint', async () => {
   }
   await ResourceActionsService.create(mockResourceAction)
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/resourceActions/',
+    '/api/v3/cmp/resourceActions/',
     mockResourceAction
   )
 })
@@ -43,7 +43,7 @@ test('export calls the correct endpoint', async () => {
 
   await ResourceActionsService.export('resourceAction-id')
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/resourceActions/resourceAction-id/export/',
+    '/api/v3/cmp/resourceActions/resourceAction-id/export/',
     {},
     { responseType: 'blob' }
   )
@@ -65,7 +65,7 @@ test('export with options calls the correct endpoint', async () => {
     mockResourceActionsOptions
   )
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/resourceActions/resourceAction-id/export/',
+    '/api/v3/cmp/resourceActions/resourceAction-id/export/',
     mockResourceActionsOptions,
     { responseType: 'blob' }
   )
@@ -83,7 +83,7 @@ test('run calls the correct endpoint', async () => {
   }
   await ResourceActionsService.run('resourceAction-id', mockResourceAction)
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/resourceActions/resourceAction-id/runAction/',
+    '/api/v3/cmp/resourceActions/resourceAction-id/runAction/',
     mockResourceAction
   )
 })
@@ -100,7 +100,7 @@ test('run calls the synchronous endpoint', async () => {
   }
   await ResourceActionsService.runSync('resourceAction-id', mockResourceAction)
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/resourceActions/resourceAction-id/runActionSync/',
+    '/api/v3/cmp/resourceActions/resourceAction-id/runActionSync/',
     mockResourceAction
   )
 })

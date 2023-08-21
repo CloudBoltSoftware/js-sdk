@@ -1,7 +1,7 @@
 import crud from '../../../crudOperations'
 import { camelCaseKeys } from '../../../helpers/textUtils'
 
-const URL = 'v3/cmp/users'
+const URL = 'api/v3/cmp/users'
 
 export default {
   /**
@@ -17,7 +17,7 @@ export default {
    * @returns {Promise<Object>} - the user's information
    */
   getCurrentUser: async (options = { includeCMPCatalogFields: true }) =>
-    await crud.getItemByEndpoint('v3/cmp/user', options),
+    await crud.getItemByEndpoint('api/v3/cmp/user', options),
 
   /**
    * Retrieves the cmp dashboard widgets for the specified user

@@ -6,7 +6,7 @@ test('list calls the correct endpoint', async () => {
     data: { hello: 'world' }
   })
   await RolesService.list()
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/roles/')
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/roles/')
 })
 
 test('get calls the correct endpoint', async () => {
@@ -14,7 +14,7 @@ test('get calls the correct endpoint', async () => {
     data: { hello: 'world' }
   })
   await RolesService.get('role-id')
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/roles/role-id/')
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/roles/role-id/')
 })
 
 test('create calls the correct endpoint', async () => {
@@ -26,7 +26,7 @@ test('create calls the correct endpoint', async () => {
     name: 'worldName'
   }
   await RolesService.create(mockRole)
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/roles/', mockRole)
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/roles/', mockRole)
 })
 
 test('update calls the correct endpoint', async () => {
@@ -35,7 +35,7 @@ test('update calls the correct endpoint', async () => {
   })
   const mockRole = { hello: 'world' }
   await RolesService.update('role-id', mockRole)
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/roles/role-id/', mockRole)
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/roles/role-id/', mockRole)
 })
 
 test('replace calls the correct endpoint', async () => {
@@ -44,11 +44,11 @@ test('replace calls the correct endpoint', async () => {
   })
   const mockRole = { hello: 'world' }
   await RolesService.replace('role-id', mockRole)
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/roles/role-id/', mockRole)
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/roles/role-id/', mockRole)
 })
 
 test('delete calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'delete').mockResolvedValue({})
   await RolesService.delete('role-id')
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/roles/role-id/')
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/roles/role-id/')
 })

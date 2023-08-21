@@ -6,7 +6,7 @@ test('list calls the correct endpoint', async () => {
     data: { hello: 'world' }
   })
   await UiExtensionComponentsService.list()
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/uiExtensionComponents/')
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/uiExtensionComponents/')
 })
 
 test('get calls the correct endpoint', async () => {
@@ -15,6 +15,6 @@ test('get calls the correct endpoint', async () => {
   })
   await UiExtensionComponentsService.get('uiExtensionComponent-id')
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/uiExtensionComponents/uiExtensionComponent-id/'
+    '/api/v3/cmp/uiExtensionComponents/uiExtensionComponent-id/'
   )
 })

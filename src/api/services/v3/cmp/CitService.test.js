@@ -6,7 +6,7 @@ test('list calls the correct endpoint', async () => {
     data: { hello: 'world' }
   })
   await CitService.list()
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/cit/')
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/cit/')
 })
 
 test('get calls the correct endpoint', async () => {
@@ -14,7 +14,7 @@ test('get calls the correct endpoint', async () => {
     data: { hello: 'world' }
   })
   await CitService.get('cit-id')
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/cit/cit-id/')
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/cit/cit-id/')
 })
 
 test('create calls the correct endpoint', async () => {
@@ -26,7 +26,7 @@ test('create calls the correct endpoint', async () => {
     action: '/worldPortal'
   }
   await CitService.create(mockCitTest)
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/cit/', mockCitTest)
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/cit/', mockCitTest)
 })
 
 test('update calls the correct endpoint', async () => {
@@ -35,11 +35,11 @@ test('update calls the correct endpoint', async () => {
   })
   const mockCitTest = { action: '/biggerWorld' }
   await CitService.update('cit-id', mockCitTest)
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/cit/cit-id/', mockCitTest)
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/cit/cit-id/', mockCitTest)
 })
 
 test('delete calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'delete').mockResolvedValue({})
   await CitService.delete('cit-id')
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/cit/cit-id/')
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/cit/cit-id/')
 })

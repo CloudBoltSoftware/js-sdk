@@ -1,6 +1,6 @@
 import crud from '../../../crudOperations'
 
-const URL = 'v3/cmp/miscellaneousSettings'
+const URL = 'api/v3/cmp/miscellaneousSettings'
 
 export default {
   /**

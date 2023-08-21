@@ -127,7 +127,7 @@ test('list calls the correct endpoint', async () => {
     data: [{ hello: 'world' }]
   })
   await HistoriesService.list()
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/histories/')
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/histories/')
 })
 
 test('list parses data without issue', async () => {
@@ -143,7 +143,7 @@ test('get calls the correct endpoint', async () => {
     data: { hello: 'world' }
   })
   await HistoriesService.get('history-id')
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/histories/history-id/')
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/histories/history-id/')
 })
 
 test('get parses data without issue', async () => {

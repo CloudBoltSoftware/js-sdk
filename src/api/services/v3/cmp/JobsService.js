@@ -1,6 +1,6 @@
 import crud from '../../../crudOperations'
 
-const URL = 'v3/cmp/jobs'
+const URL = 'api/v3/cmp/jobs'
 
 export default {
   /**
@@ -16,7 +16,7 @@ export default {
    * @param {array} payload.jobs List of Job hrefs to clone
    * @returns {Promise} resolves with a cloudbolt API Response object of Job objects
    */
-  cancel: (payload) => crud.postItem(URL+'/cancel', payload),
+  cancel: (payload) => crud.postItem(URL + '/cancel', payload),
 
   /**
    * Retrieve an existing job

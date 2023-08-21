@@ -6,7 +6,7 @@ test('list calls the correct endpoint', async () => {
     data: { hello: 'world' }
   })
   await ServerActionsService.list()
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/serverActions/')
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/serverActions/')
 })
 
 test('get calls the correct endpoint', async () => {
@@ -14,7 +14,9 @@ test('get calls the correct endpoint', async () => {
     data: { hello: 'world' }
   })
   await ServerActionsService.get('serverAction-id')
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/serverActions/serverAction-id/')
+  expect(mockFn).toHaveBeenCalledWith(
+    '/api/v3/cmp/serverActions/serverAction-id/'
+  )
 })
 
 test('create calls the correct endpoint', async () => {
@@ -26,7 +28,7 @@ test('create calls the correct endpoint', async () => {
   }
   await ServerActionsService.create(mockServerAction)
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/serverActions/',
+    '/api/v3/cmp/serverActions/',
     mockServerAction
   )
 })
@@ -41,7 +43,7 @@ test('export calls the correct endpoint', async () => {
 
   await ServerActionsService.export('serverAction-id')
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/serverActions/serverAction-id/export/',
+    '/api/v3/cmp/serverActions/serverAction-id/export/',
     {},
     { responseType: 'blob' }
   )
@@ -60,7 +62,7 @@ test('export with options calls the correct endpoint', async () => {
   }
   await ServerActionsService.export('serverAction-id', mockServerActionsOptions)
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/serverActions/serverAction-id/export/',
+    '/api/v3/cmp/serverActions/serverAction-id/export/',
     mockServerActionsOptions,
     { responseType: 'blob' }
   )
@@ -78,7 +80,7 @@ test('run calls the correct endpoint', async () => {
   }
   await ServerActionsService.run('serverAction-id', mockServerAction)
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/serverActions/serverAction-id/runAction/',
+    '/api/v3/cmp/serverActions/serverAction-id/runAction/',
     mockServerAction
   )
 })
@@ -95,7 +97,7 @@ test('run calls the synchronous endpoint', async () => {
   }
   await ServerActionsService.runSync('serverAction-id', mockServerAction)
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/serverActions/serverAction-id/runActionSync/',
+    '/api/v3/cmp/serverActions/serverAction-id/runActionSync/',
     mockServerAction
   )
 })

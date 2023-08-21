@@ -1,18 +1,20 @@
 import { baseApi } from '../../../baseApi'
-import AppletsService from './AppletsService'
+import CatalogBlueprintsService from './CatalogBlueprintsService'
 
 test('list calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'get').mockResolvedValue({
     data: { hello: 'world' }
   })
-  await AppletsService.list()
-  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/applets/')
+  await CatalogBlueprintsService.list()
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/catalog/blueprints/')
 })
 
 test('get calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'get').mockResolvedValue({
     data: { hello: 'world' }
   })
-  await AppletsService.get('applet-id')
-  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/applets/applet-id/')
+  await CatalogBlueprintsService.get('blueprintCatalog-id')
+  expect(mockFn).toHaveBeenCalledWith(
+    '/api/v3/cmp/catalog/blueprints/blueprintCatalog-id/'
+  )
 })

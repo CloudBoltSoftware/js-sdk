@@ -1,6 +1,6 @@
 import crud from '../../../crudOperations'
 
-const BASE_URL = 'v3/dashboard/announcements'
+const BASE_URL = 'api/v3/dashboard/announcements'
 
 export default {
   /**

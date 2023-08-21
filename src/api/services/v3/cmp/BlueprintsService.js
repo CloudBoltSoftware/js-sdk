@@ -1,6 +1,6 @@
 import crud from '../../../crudOperations'
 
-const URL = 'v3/cmp/blueprints'
+const URL = 'api/v3/cmp/blueprints'
 
 export default {
   /**
@@ -47,7 +47,10 @@ export default {
    * @returns {Promise} resolves with a Blueprint Deployment schema object with all server-filled fields
    */
   deploymentSchema: (id, schemaInfo) =>
-    crud.createNewItem(`v3/cmp/blueprints/${id}/deploymentSchema`, schemaInfo),
+    crud.createNewItem(
+      `api/v3/cmp/blueprints/${id}/deploymentSchema`,
+      schemaInfo
+    ),
 
   /**
    * Generates and submits an Order to deploy a custom instance of the Blueprint by id
@@ -59,7 +62,7 @@ export default {
    * @returns {Promise} resolves with a Blueprint Deployment schema object with all server-filled fields
    */
   deploy: (id, customDeploy) =>
-    crud.createNewItem(`v3/cmp/blueprints/${id}/deploy`, customDeploy),
+    crud.createNewItem(`api/v3/cmp/blueprints/${id}/deploy`, customDeploy),
 
   /**
    * Generates a sample deployment payload for the given group and server item environments.
@@ -70,5 +73,5 @@ export default {
    * @returns {Promise} resolves with a Blueprint Sample Deployment Payload success response
    */
   samplePayload: (id, payloadType) =>
-    crud.createNewItem(`v3/cmp/blueprints/${id}/samplePayload`, payloadType)
+    crud.createNewItem(`api/v3/cmp/blueprints/${id}/samplePayload`, payloadType)
 }

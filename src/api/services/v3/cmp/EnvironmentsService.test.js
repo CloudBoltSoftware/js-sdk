@@ -6,7 +6,7 @@ test('list calls the correct endpoint', async () => {
     data: { hello: 'world' }
   })
   await EnvironmentsService.list()
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/environments/')
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/environments/')
 })
 
 test('get calls the correct endpoint', async () => {
@@ -14,7 +14,9 @@ test('get calls the correct endpoint', async () => {
     data: { hello: 'world' }
   })
   await EnvironmentsService.get('environments-id')
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/environments/environments-id/')
+  expect(mockFn).toHaveBeenCalledWith(
+    '/api/v3/cmp/environments/environments-id/'
+  )
 })
 
 test('create calls the correct endpoint', async () => {
@@ -25,7 +27,10 @@ test('create calls the correct endpoint', async () => {
     name: 'worldEnvironment'
   }
   await EnvironmentsService.create(mockEnvironment)
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/environments/', mockEnvironment)
+  expect(mockFn).toHaveBeenCalledWith(
+    '/api/v3/cmp/environments/',
+    mockEnvironment
+  )
 })
 
 test('update calls the correct endpoint', async () => {
@@ -35,7 +40,7 @@ test('update calls the correct endpoint', async () => {
   const mockEnvironment = { name: 'biggerWorldEnvironment' }
   await EnvironmentsService.update('environments-id', mockEnvironment)
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/environments/environments-id/',
+    '/api/v3/cmp/environments/environments-id/',
     mockEnvironment
   )
 })
@@ -49,7 +54,7 @@ test('replace calls the correct endpoint', async () => {
   }
   await EnvironmentsService.replace('environments-id', mockEnvironment)
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/environments/environments-id/',
+    '/api/v3/cmp/environments/environments-id/',
     mockEnvironment
   )
 })
@@ -57,7 +62,9 @@ test('replace calls the correct endpoint', async () => {
 test('delete calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'delete').mockResolvedValue({})
   await EnvironmentsService.delete('environments-id')
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/environments/environments-id/')
+  expect(mockFn).toHaveBeenCalledWith(
+    '/api/v3/cmp/environments/environments-id/'
+  )
 })
 
 test('export calls the correct endpoint', async () => {
@@ -71,7 +78,7 @@ test('export calls the correct endpoint', async () => {
   await EnvironmentsService.export('environments-id')
 
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/environments/environments-id/export/',
+    '/api/v3/cmp/environments/environments-id/export/',
     {},
     { responseType: 'blob' }
   )
@@ -91,7 +98,7 @@ test('export with optional params calls the correct endpoint', async () => {
   await EnvironmentsService.export('environments-id', mockEnvironmentOptions)
 
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/environments/environments-id/export/',
+    '/api/v3/cmp/environments/environments-id/export/',
     mockEnvironmentOptions,
     { responseType: 'blob' }
   )
@@ -103,7 +110,7 @@ test('getTechParameters calls the correct endpoint', async () => {
   })
   await EnvironmentsService.getTechParameters('environments-id')
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/environments/environments-id/techSpecificParameters/'
+    '/api/v3/cmp/environments/environments-id/techSpecificParameters/'
   )
 })
 
@@ -114,7 +121,7 @@ test('refreshTechParameters calls the correct endpoint', async () => {
 
   await EnvironmentsService.refreshTechParameters('environments-id')
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/environments/environments-id/techSpecificParameters:refresh/',
+    '/api/v3/cmp/environments/environments-id/techSpecificParameters:refresh/',
     undefined
   )
 })
@@ -125,7 +132,7 @@ test('getNetworks calls the correct endpoint', async () => {
   })
   await EnvironmentsService.getNetworks('environments-id')
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/environments/environments-id/networks/'
+    '/api/v3/cmp/environments/environments-id/networks/'
   )
 })
 
@@ -140,7 +147,7 @@ test('setNetworks calls the correct endpoint', async () => {
 
   await EnvironmentsService.setNetworks('environments-id', mockNetwork)
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/environments/environments-id/networks/',
+    '/api/v3/cmp/environments/environments-id/networks/',
     mockNetwork
   )
 })
@@ -151,7 +158,7 @@ test('getParameters calls the correct endpoint', async () => {
   })
   await EnvironmentsService.getParameters('environments-id')
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/environments/environments-id/parameters/'
+    '/api/v3/cmp/environments/environments-id/parameters/'
   )
 })
 
@@ -169,7 +176,7 @@ test('setParameters calls the correct endpoint', async () => {
 
   await EnvironmentsService.setParameters('environments-id', mockParameters)
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/environments/environments-id/parameters/',
+    '/api/v3/cmp/environments/environments-id/parameters/',
     mockParameters
   )
 })

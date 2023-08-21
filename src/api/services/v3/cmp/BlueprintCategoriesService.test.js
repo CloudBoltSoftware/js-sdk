@@ -6,7 +6,7 @@ test('list calls the correct endpoint', async () => {
     data: { hello: 'world' }
   })
   await BlueprintCategoriesService.list()
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/blueprintCategories/')
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/blueprintCategories/')
 })
 
 test('get calls the correct endpoint', async () => {
@@ -15,7 +15,7 @@ test('get calls the correct endpoint', async () => {
   })
   await BlueprintCategoriesService.get('blueprintCategory-id')
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/blueprintCategories/blueprintCategory-id/'
+    '/api/v3/cmp/blueprintCategories/blueprintCategory-id/'
   )
 })
 
@@ -29,7 +29,7 @@ test('create calls the correct endpoint', async () => {
   }
   await BlueprintCategoriesService.create(mockBlueprintCategory)
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/blueprintCategories/',
+    '/api/v3/cmp/blueprintCategories/',
     mockBlueprintCategory
   )
 })
@@ -44,7 +44,7 @@ test('update calls the correct endpoint', async () => {
     mockBlueprintCategory
   )
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/blueprintCategories/blueprintCategory-id/',
+    '/api/v3/cmp/blueprintCategories/blueprintCategory-id/',
     mockBlueprintCategory
   )
 })
@@ -53,6 +53,6 @@ test('delete calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'delete').mockResolvedValue({})
   await BlueprintCategoriesService.delete('blueprintCategory-id')
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/blueprintCategories/blueprintCategory-id/'
+    '/api/v3/cmp/blueprintCategories/blueprintCategory-id/'
   )
 })

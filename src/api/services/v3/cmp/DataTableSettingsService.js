@@ -1,6 +1,6 @@
 import crud from '../../../crudOperations'
 
-const URL = 'v3/cmp/datatables/settings'
+const URL = 'api/v3/cmp/datatables/settings'
 
 export default {
   /**
@@ -16,7 +16,6 @@ export default {
    * @returns {Promise} resolves with a cloudbolt API Response object of the DataTableSettings object
    */
   get: (id) => crud.getItemById(URL, id),
-
 
   /**
    * Create a new DataTableSettings

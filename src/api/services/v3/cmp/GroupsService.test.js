@@ -6,7 +6,7 @@ test('list calls the correct endpoint', async () => {
     data: [{ hello: 'world' }]
   })
   await GroupsService.list()
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/groups/')
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/groups/')
 })
 
 test('get calls the correct endpoint', async () => {
@@ -14,7 +14,7 @@ test('get calls the correct endpoint', async () => {
     data: { hello: 'world' }
   })
   await GroupsService.get('group-id')
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/groups/group-id/')
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/groups/group-id/')
 })
 
 test('create calls the correct endpoint', async () => {
@@ -23,7 +23,7 @@ test('create calls the correct endpoint', async () => {
   })
   const mockGroup = { hello: 'world' }
   await GroupsService.create(mockGroup)
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/groups/', mockGroup)
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/groups/', mockGroup)
 })
 
 test('update calls the correct endpoint', async () => {
@@ -32,11 +32,11 @@ test('update calls the correct endpoint', async () => {
   })
   const mockGroup = { hello: 'world' }
   await GroupsService.update('group-id', mockGroup)
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/groups/group-id/', mockGroup)
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/groups/group-id/', mockGroup)
 })
 
 test('delete calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'delete').mockResolvedValue({})
   await GroupsService.delete('group-id')
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/groups/group-id/')
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/groups/group-id/')
 })

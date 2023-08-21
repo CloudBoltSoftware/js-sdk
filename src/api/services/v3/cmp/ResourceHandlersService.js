@@ -1,6 +1,6 @@
 import crud from '../../../crudOperations'
 
-const URL = 'v3/cmp/resourceHandlers'
+const URL = 'api/v3/cmp/resourceHandlers'
 
 export default {
   /**

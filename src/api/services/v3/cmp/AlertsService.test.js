@@ -6,7 +6,7 @@ test('list calls the correct endpoint', async () => {
     data: { hello: 'world' }
   })
   await AlertsService.list()
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/alerts/')
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/alerts/')
 })
 
 test('get calls the correct endpoint', async () => {
@@ -14,7 +14,7 @@ test('get calls the correct endpoint', async () => {
     data: { hello: 'world' }
   })
   await AlertsService.get('alert-id')
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/alerts/alert-id/')
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/alerts/alert-id/')
 })
 
 test('create calls the correct endpoint', async () => {
@@ -26,7 +26,7 @@ test('create calls the correct endpoint', async () => {
     name: 'worldAlert'
   }
   await AlertsService.create(mockAlert)
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/alerts/', mockAlert)
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/alerts/', mockAlert)
 })
 
 test('update calls the correct endpoint', async () => {
@@ -35,7 +35,7 @@ test('update calls the correct endpoint', async () => {
   })
   const mockAlert = { hello: 'world' }
   await AlertsService.update('alert-id', mockAlert)
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/alerts/alert-id/', mockAlert)
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/alerts/alert-id/', mockAlert)
 })
 
 test('replace calls the correct endpoint', async () => {
@@ -44,11 +44,11 @@ test('replace calls the correct endpoint', async () => {
   })
   const mockAlert = { hello: 'world' }
   await AlertsService.replace('alert-id', mockAlert)
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/alerts/alert-id/', mockAlert)
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/alerts/alert-id/', mockAlert)
 })
 
 test('delete calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'delete').mockResolvedValue({})
   await AlertsService.delete('alert-id')
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/alerts/alert-id/')
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/alerts/alert-id/')
 })

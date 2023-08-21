@@ -6,7 +6,7 @@ test('list calls the correct endpoint', async () => {
     data: { hello: 'world' }
   })
   await ApplicationRatesService.list()
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/rates/applicationRates/')
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/rates/applicationRates/')
 })
 
 test('get calls the correct endpoint', async () => {
@@ -15,7 +15,7 @@ test('get calls the correct endpoint', async () => {
   })
   await ApplicationRatesService.get('applicationRate-id')
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/rates/applicationRates/applicationRate-id/'
+    '/api/v3/cmp/rates/applicationRates/applicationRate-id/'
   )
 })
 
@@ -29,7 +29,7 @@ test('create calls the correct endpoint', async () => {
   }
   await ApplicationRatesService.create(mockApplicationRate)
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/rates/applicationRates/',
+    '/api/v3/cmp/rates/applicationRates/',
     mockApplicationRate
   )
 })
@@ -44,7 +44,7 @@ test('update calls the correct endpoint', async () => {
     mockApplicationRate
   )
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/rates/applicationRates/applicationRate-id/',
+    '/api/v3/cmp/rates/applicationRates/applicationRate-id/',
     mockApplicationRate
   )
 })
@@ -53,6 +53,6 @@ test('delete calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'delete').mockResolvedValue({})
   await ApplicationRatesService.delete('applicationRate-id')
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/rates/applicationRates/applicationRate-id/'
+    '/api/v3/cmp/rates/applicationRates/applicationRate-id/'
   )
 })

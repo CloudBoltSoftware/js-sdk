@@ -1,7 +1,7 @@
 import { baseApi } from '../../../baseApi'
 import ServerService from './ServerService'
 
-const URL = '/v3/cmp/servers/'
+const URL = '/api/v3/cmp/servers/'
 
 test('list calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'get').mockResolvedValue({
