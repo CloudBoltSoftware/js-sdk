@@ -4,7 +4,7 @@ import SettingsService from './SettingsService'
 test('settings calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'get').mockResolvedValue({})
   await SettingsService.list()
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/settings/')
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/settings/')
 })
 
 test('settings list passes options correctly', async () => {
@@ -13,5 +13,7 @@ test('settings list passes options correctly', async () => {
     data: { runQuickSetup: 'true' }
   })
   await SettingsService.list(testOptions)
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/settings/?fields=runQuickSetup')
+  expect(mockFn).toHaveBeenCalledWith(
+    '/api/v3/cmp/settings/?fields=runQuickSetup'
+  )
 })

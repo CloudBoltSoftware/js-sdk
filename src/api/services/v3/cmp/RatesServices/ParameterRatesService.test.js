@@ -6,7 +6,7 @@ test('list calls the correct endpoint', async () => {
     data: { hello: 'world' }
   })
   await ParameterRatesService.list()
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/rates/parameterRates/')
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/rates/parameterRates/')
 })
 
 test('get calls the correct endpoint', async () => {
@@ -15,7 +15,7 @@ test('get calls the correct endpoint', async () => {
   })
   await ParameterRatesService.get('parameterRate-id')
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/rates/parameterRates/parameterRate-id/'
+    '/api/v3/cmp/rates/parameterRates/parameterRate-id/'
   )
 })
 
@@ -29,7 +29,7 @@ test('create calls the correct endpoint', async () => {
   }
   await ParameterRatesService.create(mockParameterRate)
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/rates/parameterRates/',
+    '/api/v3/cmp/rates/parameterRates/',
     mockParameterRate
   )
 })
@@ -41,7 +41,7 @@ test('update calls the correct endpoint', async () => {
   const mockParameterRate = { rate: 'biggerWorld' }
   await ParameterRatesService.update('parameterRate-id', mockParameterRate)
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/rates/parameterRates/parameterRate-id/',
+    '/api/v3/cmp/rates/parameterRates/parameterRate-id/',
     mockParameterRate
   )
 })
@@ -50,6 +50,6 @@ test('delete calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'delete').mockResolvedValue({})
   await ParameterRatesService.delete('parameterRate-id')
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/rates/parameterRates/parameterRate-id/'
+    '/api/v3/cmp/rates/parameterRates/parameterRate-id/'
   )
 })

@@ -6,7 +6,7 @@ test('list calls the correct endpoint', async () => {
     data: { hello: 'world' }
   })
   await ResourceHandlersService.list()
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/resourceHandlers/')
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/resourceHandlers/')
 })
 
 test('get calls the correct endpoint', async () => {
@@ -15,6 +15,6 @@ test('get calls the correct endpoint', async () => {
   })
   await ResourceHandlersService.get('resourceHandler-id')
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/resourceHandlers/resourceHandler-id/'
+    '/api/v3/cmp/resourceHandlers/resourceHandler-id/'
   )
 })

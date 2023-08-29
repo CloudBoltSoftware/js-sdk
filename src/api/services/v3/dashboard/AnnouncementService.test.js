@@ -1,7 +1,7 @@
 import { baseApi } from '../../../baseApi'
 import AnnouncementService from './AnnouncementService'
 
-const BASE_URL = '/v3/dashboard/announcements/'
+const BASE_URL = '/api/v3/dashboard/announcements/'
 
 test('list calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'get').mockResolvedValue({

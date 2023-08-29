@@ -6,7 +6,7 @@ test('list calls the correct endpoint', async () => {
     data: { hello: 'world' }
   })
   await BlueprintsService.list()
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/blueprints/')
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/blueprints/')
 })
 
 test('get calls the correct endpoint', async () => {
@@ -14,7 +14,7 @@ test('get calls the correct endpoint', async () => {
     data: { hello: 'world' }
   })
   await BlueprintsService.get('blueprint-id')
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/blueprints/blueprint-id/')
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/blueprints/blueprint-id/')
 })
 
 test('create calls the correct endpoint', async () => {
@@ -24,7 +24,7 @@ test('create calls the correct endpoint', async () => {
   const mockBlueprintObject = { zipFile: 'world.zip' }
   await BlueprintsService.create(mockBlueprintObject)
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/blueprints/',
+    '/api/v3/cmp/blueprints/',
     mockBlueprintObject
   )
 })
@@ -39,7 +39,7 @@ test('export calls the correct endpoint', async () => {
 
   await BlueprintsService.export('blueprint-id')
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/blueprints/blueprint-id/export/',
+    '/api/v3/cmp/blueprints/blueprint-id/export/',
     {},
     { responseType: 'blob' }
   )
@@ -58,7 +58,7 @@ test('export with options calls the correct endpoint', async () => {
   }
   await BlueprintsService.export('blueprint-id', mockBlueprintObject)
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/blueprints/blueprint-id/export/',
+    '/api/v3/cmp/blueprints/blueprint-id/export/',
     mockBlueprintObject,
     { responseType: 'blob' }
   )
@@ -74,7 +74,7 @@ test('deploymentSchema calls the correct endpoint', async () => {
 
   await BlueprintsService.deploymentSchema('blueprint-id')
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/blueprints/blueprint-id/deploymentSchema/',
+    '/api/v3/cmp/blueprints/blueprint-id/deploymentSchema/',
     undefined
   )
 })
@@ -86,7 +86,7 @@ test('deploy calls the correct endpoint', async () => {
 
   await BlueprintsService.deploy('blueprint-id')
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/blueprints/blueprint-id/deploy/',
+    '/api/v3/cmp/blueprints/blueprint-id/deploy/',
     undefined
   )
 })
@@ -100,7 +100,7 @@ test('custom deploy calls the correct endpoint', async () => {
 
   await BlueprintsService.deploy('blueprint-id', mockCustomDeploy)
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/blueprints/blueprint-id/deploy/',
+    '/api/v3/cmp/blueprints/blueprint-id/deploy/',
     mockCustomDeploy
   )
 })
@@ -113,7 +113,7 @@ test('samplePayload calls the correct endpoint', async () => {
   const mockPayloadType = { order: 'world' }
   await BlueprintsService.samplePayload('blueprint-id', mockPayloadType)
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/blueprints/blueprint-id/samplePayload/',
+    '/api/v3/cmp/blueprints/blueprint-id/samplePayload/',
     mockPayloadType
   )
 })

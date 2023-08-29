@@ -1,6 +1,6 @@
 import crud from '../../../crudOperations'
 
-const URL = 'v3/cmp/histories'
+const URL = 'api/v3/cmp/histories'
 
 export default {
   /**

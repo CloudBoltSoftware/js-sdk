@@ -6,7 +6,7 @@ test('list calls the correct endpoint', async () => {
     data: { hello: 'world' }
   })
   await ResourceTypesService.list()
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/resourceTypes/')
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/resourceTypes/')
 })
 
 test('get calls the correct endpoint', async () => {
@@ -14,7 +14,9 @@ test('get calls the correct endpoint', async () => {
     data: { hello: 'world' }
   })
   await ResourceTypesService.get('resourceType-id')
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/resourceTypes/resourceType-id/')
+  expect(mockFn).toHaveBeenCalledWith(
+    '/api/v3/cmp/resourceTypes/resourceType-id/'
+  )
 })
 
 test('create calls the correct endpoint', async () => {
@@ -27,7 +29,7 @@ test('create calls the correct endpoint', async () => {
   }
   await ResourceTypesService.create(mockResourceType)
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/resourceTypes/',
+    '/api/v3/cmp/resourceTypes/',
     mockResourceType
   )
 })
@@ -39,7 +41,7 @@ test('update calls the correct endpoint', async () => {
   const mockResourceType = { name: 'biggerWorld' }
   await ResourceTypesService.update('resourceType-id', mockResourceType)
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/resourceTypes/resourceType-id/',
+    '/api/v3/cmp/resourceTypes/resourceType-id/',
     mockResourceType
   )
 })
@@ -47,5 +49,7 @@ test('update calls the correct endpoint', async () => {
 test('delete calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'delete').mockResolvedValue({})
   await ResourceTypesService.delete('resourceType-id')
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/resourceTypes/resourceType-id/')
+  expect(mockFn).toHaveBeenCalledWith(
+    '/api/v3/cmp/resourceTypes/resourceType-id/'
+  )
 })

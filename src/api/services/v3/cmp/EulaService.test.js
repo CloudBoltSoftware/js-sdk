@@ -1,7 +1,7 @@
 import crud from '../../../crudOperations'
 import EulaService from './EulaService'
 
-const EULA_URL = 'v3/cmp/eula'
+const EULA_URL = 'api/v3/cmp/eula'
 
 describe('EulaService', () => {
   it('getEulaInfo calls crud.getItemByEndpoint and returns result', async () => {

@@ -6,7 +6,7 @@ test('list calls the correct endpoint', async () => {
     data: { hello: 'world' }
   })
   await CustomFormsService.list()
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/customForms/')
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/customForms/')
 })
 
 test('get calls the correct endpoint', async () => {
@@ -14,7 +14,7 @@ test('get calls the correct endpoint', async () => {
     data: { hello: 'world' }
   })
   await CustomFormsService.get('customForm-id')
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/customForms/customForm-id/')
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/customForms/customForm-id/')
 })
 
 test('submit order calls the correct endpoint', async () => {
@@ -27,7 +27,7 @@ test('submit order calls the correct endpoint', async () => {
   }
   await CustomFormsService.submitOrder('customForm-id', mockCustomFormOrder)
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/customForms/customForm-id/submit/',
+    '/api/v3/cmp/customForms/customForm-id/submit/',
     mockCustomFormOrder
   )
 })
@@ -35,5 +35,5 @@ test('submit order calls the correct endpoint', async () => {
 test('delete calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'delete').mockResolvedValue({})
   await CustomFormsService.delete('customForm-id')
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/customForms/customForm-id/')
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/customForms/customForm-id/')
 })

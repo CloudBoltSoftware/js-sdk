@@ -2,8 +2,8 @@ import crud from '../../../crudOperations'
 import { RETRIEVE_ALL_DATA_AND_SORT_BY_NAME } from '../../../helpers/RestOptionsBuilder'
 import LicensingService from './LicensingService'
 
-const GET_LICENSES_URL = 'v3/cmp/productLicenses'
-const GET_LICENSING_STATUS_URL = 'v3/cmp/productLicenses/status'
+const GET_LICENSES_URL = 'api/v3/cmp/productLicenses'
+const GET_LICENSING_STATUS_URL = 'api/v3/cmp/productLicenses/status'
 
 describe('LicensingService', () => {
   it('getLicenses calls getItems and returns items if in response', async () => {

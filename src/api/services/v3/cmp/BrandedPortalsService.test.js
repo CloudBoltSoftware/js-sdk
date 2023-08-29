@@ -6,7 +6,7 @@ test('list calls the correct endpoint', async () => {
     data: { hello: 'world' }
   })
   await BrandedPortalsService.list()
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/brandedPortals/')
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/brandedPortals/')
 })
 
 test('get calls the correct endpoint', async () => {
@@ -15,7 +15,7 @@ test('get calls the correct endpoint', async () => {
   })
   await BrandedPortalsService.get('brandedPortal-id')
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/brandedPortals/brandedPortal-id/'
+    '/api/v3/cmp/brandedPortals/brandedPortal-id/'
   )
 })
 
@@ -24,7 +24,9 @@ test('get current portal calls the correct endpoint', async () => {
     data: { hello: 'world' }
   })
   await BrandedPortalsService.getCurrentPortal()
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/brandedPortals/currentPortal/')
+  expect(mockFn).toHaveBeenCalledWith(
+    '/api/v3/cmp/brandedPortals/currentPortal/'
+  )
 })
 
 test('create calls the correct endpoint', async () => {
@@ -37,7 +39,7 @@ test('create calls the correct endpoint', async () => {
   }
   await BrandedPortalsService.create(mockBrandedPortal)
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/brandedPortals/',
+    '/api/v3/cmp/brandedPortals/',
     mockBrandedPortal
   )
 })
@@ -49,7 +51,7 @@ test('update calls the correct endpoint', async () => {
   const mockBrandedPortal = { name: 'biggerWorld' }
   await BrandedPortalsService.update('brandedPortal-id', mockBrandedPortal)
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/brandedPortals/brandedPortal-id/',
+    '/api/v3/cmp/brandedPortals/brandedPortal-id/',
     mockBrandedPortal
   )
 })
@@ -64,7 +66,7 @@ test('replace calls the correct endpoint', async () => {
   }
   await BrandedPortalsService.replace('brandedPortal-id', mockBrandedPortal)
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/brandedPortals/brandedPortal-id/',
+    '/api/v3/cmp/brandedPortals/brandedPortal-id/',
     mockBrandedPortal
   )
 })
@@ -73,6 +75,6 @@ test('delete calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'delete').mockResolvedValue({})
   await BrandedPortalsService.delete('brandedPortal-id')
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/brandedPortals/brandedPortal-id/'
+    '/api/v3/cmp/brandedPortals/brandedPortal-id/'
   )
 })

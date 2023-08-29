@@ -1,6 +1,6 @@
 import crud from '../../../crudOperations'
 
-const URL = 'v3/cmp/inboundWebHooks'
+const URL = 'api/v3/cmp/inboundWebHooks'
 
 export default {
   /**
@@ -34,8 +34,7 @@ export default {
    * @param {object} payload Inbound Web Hook object definition
    * @returns {Promise} resolves with a cloudbolt API Run Inbound Web Hook Success Response
    */
-  runPost: (id, payload) =>
-    crud.postItem(`${URL}/${id}/run`, payload),
+  runPost: (id, payload) => crud.postItem(`${URL}/${id}/run`, payload),
 
   /**
    * Run an Inbound Web Hook via GET
@@ -43,6 +42,5 @@ export default {
    * @param {object} options querystring name value pairs to be used as Action input values
    * @returns {Promise} resolves with a cloudbolt API Run Inbound Web Hook Success Response
    */
-  runGet: (id, options) =>
-    crud.getItemByEndpoint(`${URL}/${id}/run`, options),
+  runGet: (id, options) => crud.getItemByEndpoint(`${URL}/${id}/run`, options)
 }

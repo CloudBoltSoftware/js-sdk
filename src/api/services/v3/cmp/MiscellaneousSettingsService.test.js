@@ -6,7 +6,7 @@ test('list calls the correct endpoint', async () => {
     data: { hello: 'world' }
   })
   await MiscellaneousSettingsService.list()
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/miscellaneousSettings/')
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/miscellaneousSettings/')
 })
 
 test('update calls the correct endpoint', async () => {
@@ -16,7 +16,7 @@ test('update calls the correct endpoint', async () => {
   const mockMiscSettings = { defaultUserDisplayScheme: 'world' }
   await MiscellaneousSettingsService.update(mockMiscSettings)
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/miscellaneousSettings/',
+    '/api/v3/cmp/miscellaneousSettings/',
     mockMiscSettings
   )
 })

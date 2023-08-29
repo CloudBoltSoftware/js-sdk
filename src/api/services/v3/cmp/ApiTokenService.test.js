@@ -2,8 +2,8 @@ import { baseApi } from '../../../baseApi'
 import crud from '../../../crudOperations'
 import ApiTokenService from './ApiTokenService'
 
-const LOGIN_URL = 'v3/cmp/apiToken'
-const REFRESH_URL = 'v3/cmp/apiTokenRefresh'
+const LOGIN_URL = 'api/v3/cmp/apiToken'
+const REFRESH_URL = 'api/v3/cmp/apiTokenRefresh'
 
 describe('ApiTokenService', () => {
   it('obtainToken calls API and returns a token', async () => {
@@ -43,13 +43,13 @@ describe('ApiTokenService', () => {
     expect(response).toBe('token')
   })
 
-  it('obtainTokenWithSessionCookie uses withCredentials to pass cookie and no post body to API', async() => {
-    jest.spyOn(baseApi, 'post').mockResolvedValue({ data: {token: 'token' }})
+  it('obtainTokenWithSessionCookie uses withCredentials to pass cookie and no post body to API', async () => {
+    jest.spyOn(baseApi, 'post').mockResolvedValue({ data: { token: 'token' } })
 
     const response = await ApiTokenService.obtainTokenWithSessionCookie()
 
     expect(baseApi.post).toBeCalledWith(
-      LOGIN_URL+'/',
+      LOGIN_URL + '/',
       {},
       { withCredentials: true }
     )

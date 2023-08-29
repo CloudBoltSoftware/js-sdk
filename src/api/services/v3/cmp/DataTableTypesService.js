@@ -1,6 +1,6 @@
 import crud from '../../../crudOperations'
 
-const URL = 'v3/cmp/datatables/types'
+const URL = 'api/v3/cmp/datatables/types'
 
 export default {
   /**
@@ -16,7 +16,6 @@ export default {
    * @returns {Promise} resolves with a cloudbolt API Response object of the DataTableType object
    */
   get: (id) => crud.getItemById(URL, id),
-
 
   /**
    * Create a new DataTableType

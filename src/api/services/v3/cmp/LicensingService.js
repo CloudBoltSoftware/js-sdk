@@ -9,7 +9,7 @@ export default {
    */
   getLicenses: async (options) => {
     const result = await crud.getItems(
-      'v3/cmp/productLicenses',
+      'api/v3/cmp/productLicenses',
       options ? options : RETRIEVE_ALL_DATA_AND_SORT_BY_NAME
     )
     return result?.items
@@ -20,5 +20,5 @@ export default {
    * @returns
    */
   getLicensingStatus: async () =>
-    await crud.getItemByEndpoint('v3/cmp/productLicenses/status')
+    await crud.getItemByEndpoint('api/v3/cmp/productLicenses/status')
 }

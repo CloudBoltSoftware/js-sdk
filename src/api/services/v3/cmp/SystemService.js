@@ -1,7 +1,7 @@
 import crud from '../../../crudOperations'
 
-const statusURL = 'v3/cmp/system/status'
-const settingsURL = 'v3/cmp/system/settings'
+const statusURL = 'api/v3/cmp/system/status'
+const settingsURL = 'api/v3/cmp/system/settings'
 
 export default {
   /**

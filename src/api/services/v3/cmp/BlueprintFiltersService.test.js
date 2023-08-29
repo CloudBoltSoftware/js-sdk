@@ -6,7 +6,7 @@ test('list calls the correct endpoint', async () => {
     data: { hello: 'world' }
   })
   await BlueprintFiltersService.list()
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/blueprintFilters/')
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/blueprintFilters/')
 })
 
 test('list passes options correctly', async () => {
@@ -15,7 +15,7 @@ test('list passes options correctly', async () => {
   })
   await BlueprintFiltersService.list({ attributes: 'choices' })
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/blueprintFilters/?attributes=choices'
+    '/api/v3/cmp/blueprintFilters/?attributes=choices'
   )
 })
 
@@ -24,7 +24,9 @@ test('get calls the correct endpoint', async () => {
     data: { hello: 'world' }
   })
   await BlueprintFiltersService.get('blueprint-id')
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/blueprintFilters/blueprint-id/')
+  expect(mockFn).toHaveBeenCalledWith(
+    '/api/v3/cmp/blueprintFilters/blueprint-id/'
+  )
 })
 
 test('get passes options correctly', async () => {
@@ -33,6 +35,6 @@ test('get passes options correctly', async () => {
   })
   await BlueprintFiltersService.get('blueprint-id', { attributes: 'choices' })
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/blueprintFilters/blueprint-id/?attributes=choices'
+    '/api/v3/cmp/blueprintFilters/blueprint-id/?attributes=choices'
   )
 })

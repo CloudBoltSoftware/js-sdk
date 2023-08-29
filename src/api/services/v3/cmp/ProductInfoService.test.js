@@ -1,7 +1,7 @@
 import crud from '../../../crudOperations'
 import ProductInfoService from './ProductInfoService'
 
-const PRODUCT_INFO_URL = 'v3/cmp/productInfo'
+const PRODUCT_INFO_URL = 'api/v3/cmp/productInfo'
 
 describe('ProductInfoService', () => {
   it('getProductInfo calls crud.getItemByEndpoint and returns result', async () => {

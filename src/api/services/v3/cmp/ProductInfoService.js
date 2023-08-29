@@ -5,5 +5,6 @@ export default {
    * Gets the product info (version) currently being used
    * @returns
    */
-  getProductInfo: async () => await crud.getItemByEndpoint('v3/cmp/productInfo')
+  getProductInfo: async () =>
+    await crud.getItemByEndpoint('api/v3/cmp/productInfo')
 }

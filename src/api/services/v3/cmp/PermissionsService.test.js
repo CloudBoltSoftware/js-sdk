@@ -6,7 +6,7 @@ test('list calls the correct endpoint', async () => {
     data: { hello: 'world' }
   })
   await PermissionsService.list()
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/permissions/')
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/permissions/')
 })
 
 test('get calls the correct endpoint', async () => {
@@ -14,5 +14,5 @@ test('get calls the correct endpoint', async () => {
     data: { hello: 'world' }
   })
   await PermissionsService.get('permission-id')
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/permissions/permission-id/')
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/permissions/permission-id/')
 })

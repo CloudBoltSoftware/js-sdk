@@ -6,7 +6,7 @@ test('list calls the correct endpoint', async () => {
     data: { hello: 'world' }
   })
   await OsBuildsService.list()
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/osBuilds/')
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/osBuilds/')
 })
 
 test('get calls the correct endpoint', async () => {
@@ -14,7 +14,7 @@ test('get calls the correct endpoint', async () => {
     data: { hello: 'world' }
   })
   await OsBuildsService.get('osBuild-id')
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/osBuilds/osBuild-id/')
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/osBuilds/osBuild-id/')
 })
 
 test('create calls the correct endpoint', async () => {
@@ -23,7 +23,7 @@ test('create calls the correct endpoint', async () => {
   })
   const mockOsBuild = { name: 'world' }
   await OsBuildsService.create(mockOsBuild)
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/osBuilds/', mockOsBuild)
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/osBuilds/', mockOsBuild)
 })
 
 test('update calls the correct endpoint', async () => {
@@ -33,7 +33,7 @@ test('update calls the correct endpoint', async () => {
   const mockOsBuild = { hello: 'world' }
   await OsBuildsService.update('osBuild-id', mockOsBuild)
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/osBuilds/osBuild-id/',
+    '/api/v3/cmp/osBuilds/osBuild-id/',
     mockOsBuild
   )
 })
@@ -45,7 +45,7 @@ test('replace calls the correct endpoint', async () => {
   const mockOsBuild = { hello: 'world' }
   await OsBuildsService.replace('osBuild-id', mockOsBuild)
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/osBuilds/osBuild-id/',
+    '/api/v3/cmp/osBuilds/osBuild-id/',
     mockOsBuild
   )
 })
@@ -53,5 +53,5 @@ test('replace calls the correct endpoint', async () => {
 test('delete calls the correct endpoint', async () => {
   const mockFn = jest.spyOn(baseApi, 'delete').mockResolvedValue({})
   await OsBuildsService.delete('osBuild-id')
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/osBuilds/osBuild-id/')
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/osBuilds/osBuild-id/')
 })

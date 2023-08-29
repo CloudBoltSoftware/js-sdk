@@ -37,15 +37,19 @@ export default {
    */
   obtainToken: async (username, password) => {
     const requestBody = createTokenRequestBody(username, password)
-    let response = await crud.createNewItem('v3/cmp/apiToken', requestBody)
+    let response = await crud.createNewItem('api/v3/cmp/apiToken', requestBody)
     const token = response.token
     return token
   },
 
   obtainTokenWithSessionCookie: async () => {
-    let response = await baseApi.post('v3/cmp/apiToken/', {}, {withCredentials: true})
+    let response = await baseApi.post(
+      'api/v3/cmp/apiToken/',
+      {},
+      { withCredentials: true }
+    )
     const token = response?.data?.token
-    if(token) {
+    if (token) {
       return token
     } else {
       throw new Error('Invalid response from API')
@@ -57,7 +61,7 @@ export default {
    * @returns {string | undefined} - Returns the api token or undefined
    */
   refreshToken: async () => {
-    let response = await crud.createNewItem('v3/cmp/apiTokenRefresh', null)
+    let response = await crud.createNewItem('api/v3/cmp/apiTokenRefresh', null)
     if (response?.token) {
       return response?.token
     }

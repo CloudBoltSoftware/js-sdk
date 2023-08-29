@@ -11,7 +11,7 @@ export default {
    * @returns {Promise} resolves with a cloudbolt API Response object of Blueprint objects
    */
   getBlueprints: (options) =>
-    crud.getItems('v3/dashboard/blueprints', { page_size: 12, ...options }),
+    crud.getItems('api/v3/dashboard/blueprints', { page_size: 12, ...options }),
 
   /**
    * Retrieve environments to display on the Environments Widget
@@ -19,14 +19,15 @@ export default {
    * @returns {Promise} resolves with a cloudbolt API Response object of Environment objects
    */
   getEnvironments: (options) =>
-    crud.getItems('v3/dashboard/environments', { ...options }),
+    crud.getItems('api/v3/dashboard/environments', { ...options }),
 
   /**
    * Retrieve events to display on the Events Widget
    * @param options anything parsable by URLSearchParams. See useful options here https://docs.cloudbolt.io/articles/#!cloudbolt-latest-docs/api-conventions/a/h2__904191799
    * @returns {Promise} resolves with a cloudbolt API Response object of Event objects
    */
-  getEvents: (options) => crud.getItems('v3/dashboard/events', { ...options }),
+  getEvents: (options) =>
+    crud.getItems('api/v3/dashboard/events', { ...options }),
 
   /**
    * Retrieve groups to display on the Groups Widget
@@ -34,7 +35,7 @@ export default {
    * @returns {Promise} resolves with a cloudbolt API Response object of Group objects
    */
   getGroups: (options) =>
-    crud.getItems('v3/dashboard/groups', { page_size: 100, ...options }),
+    crud.getItems('api/v3/dashboard/groups', { page_size: 100, ...options }),
 
   /**
    * Retrieve jobs to display on the Jobs Widget
@@ -42,7 +43,7 @@ export default {
    * @returns {Promise} resolves with a cloudbolt API Response object of Job objects
    */
   getJobs: (options) =>
-    crud.getItemByEndpoint('v3/dashboard/jobs', { ...options }),
+    crud.getItemByEndpoint('api/v3/dashboard/jobs', { ...options }),
 
   /**
    * Retrieve Orders to display on the Orders Widget
@@ -50,7 +51,7 @@ export default {
    * @returns {Promise} resolves with a cloudbolt API Response object of Order objects
    */
   getOrders: (options) =>
-    crud.getItems('v3/dashboard/orders', { page_size: 100, ...options }),
+    crud.getItems('api/v3/dashboard/orders', { page_size: 100, ...options }),
 
   /**
    * Retrieve reports to display on the Reports Widget
@@ -58,7 +59,7 @@ export default {
    * @returns {Promise} resolves with a cloudbolt API Response object of Report objects
    */
   getReports: (options) =>
-    crud.getItems('v3/dashboard/reports', { limit: 12, ...options }),
+    crud.getItems('api/v3/dashboard/reports', { limit: 12, ...options }),
 
   /**
    * Retrieve Servers to display on the Servers Widget
@@ -66,7 +67,7 @@ export default {
    * @returns {Promise} resolves with a cloudbolt API Response object of Server objects
    */
   getServers: (options) =>
-    crud.getItems('v3/dashboard/servers', { page_size: 20, ...options }),
+    crud.getItems('api/v3/dashboard/servers', { page_size: 20, ...options }),
 
   // Misc
 

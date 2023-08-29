@@ -6,7 +6,7 @@ test('get calls the correct endpoint', async () => {
     data: { hello: 'world' }
   })
   await RateSettingsService.get()
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/rates/settings/')
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/rates/settings/')
 })
 
 test('update calls the correct endpoint', async () => {
@@ -19,7 +19,7 @@ test('update calls the correct endpoint', async () => {
   }
   await RateSettingsService.update(mockRatesSettings)
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/rates/settings/',
+    '/api/v3/cmp/rates/settings/',
     mockRatesSettings
   )
 })

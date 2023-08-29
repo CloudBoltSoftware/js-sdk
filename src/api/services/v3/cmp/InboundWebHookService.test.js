@@ -6,7 +6,7 @@ test('list calls the correct endpoint', async () => {
     data: { hello: 'world' }
   })
   await InboundWebHook.list()
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/inboundWebHooks/')
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/inboundWebHooks/')
 })
 
 test('get calls the correct endpoint', async () => {
@@ -14,7 +14,9 @@ test('get calls the correct endpoint', async () => {
     data: { hello: 'world' }
   })
   await InboundWebHook.get('inboundWebHook-id')
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/inboundWebHooks/inboundWebHook-id/')
+  expect(mockFn).toHaveBeenCalledWith(
+    '/api/v3/cmp/inboundWebHooks/inboundWebHook-id/'
+  )
 })
 
 test('export calls the correct endpoint', async () => {
@@ -27,7 +29,7 @@ test('export calls the correct endpoint', async () => {
 
   await InboundWebHook.export('inboundWebHook-id')
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/inboundWebHooks/inboundWebHook-id/export/',
+    '/api/v3/cmp/inboundWebHooks/inboundWebHook-id/export/',
     {},
     { responseType: 'blob' }
   )
@@ -46,7 +48,7 @@ test('export with options calls the correct endpoint', async () => {
   }
   await InboundWebHook.export('inboundWebHook-id', mockinboundWebHookOptions)
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/inboundWebHooks/inboundWebHook-id/export/',
+    '/api/v3/cmp/inboundWebHooks/inboundWebHook-id/export/',
     mockinboundWebHookOptions,
     { responseType: 'blob' }
   )
@@ -57,11 +59,11 @@ test('run calls the correct endpoint', async () => {
     data: { hello: 'world' }
   })
   const mockParameters = {
-      param1: 'value1'
-  }   
+    param1: 'value1'
+  }
   await InboundWebHook.runGet('inboundWebHook-id', mockParameters)
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/inboundWebHooks/inboundWebHook-id/run/?param1=value1',
+    '/api/v3/cmp/inboundWebHooks/inboundWebHook-id/run/?param1=value1'
   )
 })
 
@@ -70,11 +72,11 @@ test('run calls the correct endpoint', async () => {
     data: { hello: 'world' }
   })
   const mockPayload = {
-      param1: 'value1'
+    param1: 'value1'
   }
   await InboundWebHook.runPost('inboundWebHook-id', mockPayload)
   expect(mockFn).toHaveBeenCalledWith(
-    '/v3/cmp/inboundWebHooks/inboundWebHook-id/run/',
+    '/api/v3/cmp/inboundWebHooks/inboundWebHook-id/run/',
     mockPayload
   )
 })

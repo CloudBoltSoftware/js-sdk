@@ -8,7 +8,7 @@ test('getApplicationLog calls the correct endpoint for zipfile', async () => {
   const mockLogZipOptions = true
 
   await LoggingService.getApplicationLog(mockLogZipOptions)
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/logs/application/?zip=true')
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/logs/application/?zip=true')
 })
 
 test('getApplicationLog calls the correct endpoint', async () => {
@@ -17,7 +17,7 @@ test('getApplicationLog calls the correct endpoint', async () => {
   })
 
   await LoggingService.getApplicationLog()
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/logs/application/?zip=false')
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/logs/application/?zip=false')
 })
 
 test('getWebLog calls the correct endpoint', async () => {
@@ -26,7 +26,7 @@ test('getWebLog calls the correct endpoint', async () => {
   })
 
   await LoggingService.getWebLog()
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/logs/web/')
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/logs/web/')
 })
 
 test('getSupportBundleLog calls the correct endpoint', async () => {
@@ -35,6 +35,6 @@ test('getSupportBundleLog calls the correct endpoint', async () => {
   })
 
   await LoggingService.getSupportBundleLog()
-  expect(mockFn).toHaveBeenCalledWith('/v3/cmp/logs/supportBundle/')
+  expect(mockFn).toHaveBeenCalledWith('/api/v3/cmp/logs/supportBundle/')
 })
 // Not actually checking/getting zipfile

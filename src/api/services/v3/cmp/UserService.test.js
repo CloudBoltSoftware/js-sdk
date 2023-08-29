@@ -2,11 +2,11 @@ import { baseApi } from '../../../baseApi'
 import crud from '../../../crudOperations'
 import UserService from './UserService'
 
-const USERS_URL = 'v3/cmp/users'
-const USER_URL = 'v3/cmp/user'
-const WIDGETS_URL = 'v3/cmp/users/1/dashboardWidgets'
-const DASHBOARD_URL = 'v3/cmp/users/1/cuiDashboard'
-const USER_PERMISSION_URL = 'v3/cmp/users/1/permissions'
+const USERS_URL = 'api/v3/cmp/users'
+const USER_URL = 'api/v3/cmp/user'
+const WIDGETS_URL = 'api/v3/cmp/users/1/dashboardWidgets'
+const DASHBOARD_URL = 'api/v3/cmp/users/1/cuiDashboard'
+const USER_PERMISSION_URL = 'api/v3/cmp/users/1/permissions'
 
 const mockApiResponse = {
   _links: {
