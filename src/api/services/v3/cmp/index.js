@@ -5,6 +5,7 @@ import BlueprintCategoriesService from './BlueprintCategoriesService'
 import BlueprintFiltersService from './BlueprintFiltersService'
 import BlueprintsService from './BlueprintsService'
 import BrandedPortalsService from './BrandedPortalsService'
+import CUIPortalsService from './CUIPortalsService'
 import CatalogBlueprintsService from './CatalogBlueprintsService'
 import CitService from './CitService'
 import CustomFormsService from './CustomFormsService'
@@ -52,6 +53,7 @@ export default {
   blueprintFilters: BlueprintFiltersService,
   blueprints: BlueprintsService,
   brandedPortals: BrandedPortalsService,
+  cuiPortals: CUIPortalsService,
   catalogBlueprints: CatalogBlueprintsService,
   citService: CitService,
   customForms: CustomFormsService,

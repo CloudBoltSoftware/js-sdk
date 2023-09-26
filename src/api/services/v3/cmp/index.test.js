@@ -14,6 +14,7 @@ const services = [
   'blueprintFilters',
   'blueprints',
   'brandedPortals',
+  'cuiPortals',
   'catalogBlueprints',
   'citService',
   'customForms',
