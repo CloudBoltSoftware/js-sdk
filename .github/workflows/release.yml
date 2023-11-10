@@ -1,0 +1,27 @@
+name: 'Publish to JS-SDK'
+
+on:
+  release:
+    types: [released]
+
+jobs:
+  publish-to-npm:
+    name: Publish to JS-SDK
+    runs-on: 'ubuntu-latest'
+    environment: Production
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup, Authenticate, and Install
+        uses: ./.github/actions/setup-runner
+
+      - run: npm run test
+
+      - run: npm run build
+
+      - uses: JS-DevTools/npm-publish@v3
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          access: public
+          dry-run: ${{ vars.DRY_RUN }}
