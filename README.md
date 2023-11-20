@@ -167,31 +167,27 @@ await api.base.instance.delete('/api/v3/cmp/networks/ET-12345678/')
 ```
 
 ## Development (for maintainers)
+
 ### Publishing a New Release to NPM
 
-Follow these steps to publish a new version of the package to NPM:
+Follow these steps to publish a new version of the package to NPM. This process ensures version consistency between GitHub and NPM and is essential for effective release management:
 
-1. **Prepare the Local Environment**
-   - **Delete Local Folders**: Start by removing any existing `types` and `lib` folders in your directory.
-   
-2. **Update Version in `package.json`**
+1. **Update Version in `package.json`**
+
    - **Increment Version**: Run `npm version patch` to update the version in `package.json`. This command also updates `package-lock.json` and creates a Git tag.
    - **For Beta Versions**: Use `npm version prepatch --preid beta` to create a beta version.
 
-3. **Build the Package**
-   - **Run Build Command**: Execute `npm run build`. This command will regenerate the `types` and `lib` folders with the updated code for the version you're about to publish.
+1. **Create a New Release on GitHub**
 
-4. **Create a New Release on GitHub**
    - Navigate to the 'Releases' section of your GitHub repository.
    - Click 'Draft a new release'.
    - Tag the release with the same version number as in `package.json`, ensuring the tag is on the main branch.
    - Complete the release title and description, then publish it.
 
-5. **Automated NPM Publishing**
+1. **Automated NPM Publishing**
+
    - An automated workflow is triggered when you create a new release with the correct tag, which will publish the new version to NPM.
    - Ensure all necessary checks for the release are in place.
 
-6. **Verification**
+1. **Verification**
    - After the automated process, verify that the new version is available on NPM.
-
-Remember: This process ensures version consistency between GitHub and NPM and is essential for effective release management.
