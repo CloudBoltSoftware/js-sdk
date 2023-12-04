@@ -1,4 +1,5 @@
 import crud from '../../../crudOperations'
+import parameterValues from './ResourceStructuredParameterValueService'
 
 const URL = 'api/v3/cmp/resourcesStructured'
 
@@ -16,5 +17,7 @@ export default {
    * @param {Object} options anything parsable by URLSearchParams. See useful options here https://docs.cloudbolt.io/articles/#!cloudbolt-latest-docs/api-conventions/a/h2__904191799
    * @returns {Promise} resolves with a cloudbolt API Response object of the Structured Resource object
    */
-  get: (id, options) => crud.getItemById(URL, id, options)
+  get: (id, options) => crud.getItemById(URL, id, options),
+
+  parameterValues
 }

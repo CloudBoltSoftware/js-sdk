@@ -20,3 +20,7 @@ test('get calls the correct endpoint', async () => {
     `${RESOURCES_STRUCTURED_ENDPOINT}resource-id/`
   )
 })
+
+test('has a parameterValues service', () => {
+  expect(ResourcesStructuredService.parameterValues).toBeDefined()
+})
