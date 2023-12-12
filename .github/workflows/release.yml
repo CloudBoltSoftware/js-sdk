@@ -2,7 +2,7 @@ name: 'Publish to JS-SDK'
 
 on:
   release:
-    types: [released]
+    types: [released, prereleased]
 
 jobs:
   publish-to-npm:
