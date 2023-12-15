@@ -48,7 +48,8 @@ export default {
    */
   editParameter: (id, options) =>
     crud.patchItemById(
-      `api/v3/cmp/resourcesStructured/${id}/parameterValues/${options.customFieldId}`,
+      `api/v3/cmp/resourcesStructured/${id}/parameterValues`,
+      options.customFieldId,
       options
     ),
 
@@ -60,6 +61,7 @@ export default {
    */
   deleteParameter: (id, customFieldId) =>
     crud.deleteItemById(
-      `api/v3/cmp/resourcesStructured/${id}/parameterValues/${customFieldId}`
+      `api/v3/cmp/resourcesStructured/${id}/parameterValues`,
+      customFieldId
     )
 }

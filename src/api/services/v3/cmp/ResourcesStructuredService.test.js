@@ -47,3 +47,31 @@ test('create parameter values calls the correct endpoint', async () => {
     options
   )
 })
+
+test('edit parameter values calls the correct endpoint', async () => {
+  const mockFn = jest.spyOn(baseApi, 'patch').mockResolvedValue({
+    data: { hello: 'world' }
+  })
+  const options = {
+    customFieldId: 'CF-7m1gvvpg',
+    value: 'deletion'
+  }
+  await ResourcesStructuredService.editParameter(
+    'resource-id',
+    options.customFieldId,
+    options
+  )
+  expect(mockFn).toHaveBeenCalledWith(
+    '/api/v3/cmp/resourcesStructured/resource-id/parameterValues/',
+    options.customFieldId
+  )
+})
+
+test('delete parameter values calls the correct endpoint', async () => {
+  const mockFn = jest.spyOn(baseApi, 'delete').mockResolvedValue({})
+  const customFieldId = 'CF-7m1gvvpg'
+  await ResourcesStructuredService.deleteParameter('resource-id', customFieldId)
+  expect(mockFn).toHaveBeenCalledWith(
+    '/api/v3/cmp/resourcesStructured/resource-id/parameterValues/CF-7m1gvvpg/'
+  )
+})
