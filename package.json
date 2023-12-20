@@ -1,6 +1,6 @@
 {
   "name": "@cloudbolt/js-sdk",
-  "version": "0.6.7",
+  "version": "0.6.8-beta.3",
   "description": "CloudBolt Javascript package for interacting with the CloudBolt API",
   "scripts": {
     "husky:install": "husky install",
@@ -38,7 +38,7 @@
     "eslint-config-prettier": "^8.3.0",
     "husky": "^7.0.4",
     "jest": "^29.2.2",
-    "jest-environment-jsdom": "^29.2.2",
+    "jest-environment-jsdom": "^29.7.0",
     "jsdoc": "^4.0.2",
     "prettier": "^2.5.1",
     "pretty-quick": "^3.1.3",
