@@ -42,16 +42,14 @@ export default {
   /**
    * Edit a parameter for a resource
    * @param {string} id id of the resource
-   * @param {Object} options Additional options for customization
-   * @param {string} options.customFieldId - The ID of a custom field parameter
+   * @param {string} customFieldId - The ID of a custom field parameter
+   * @param {any} value - The new value to set for the parameter
    * @returns {Promise} resolves with a cloudbolt API Response object of the Structured Resource object
    */
-  editParameter: (id, options) =>
-    crud.patchItemById(
-      `api/v3/cmp/resourcesStructured/${id}/parameterValues`,
-      options.customFieldId,
-      options
-    ),
+  editParameter: (id, { customFieldId, value }) => {
+    const url = `api/v3/cmp/resourcesStructured/${id}/parameterValues/${customFieldId}`
+    crud.patchItemById(url, null, { value })
+  },
 
   /**
    * Delete a parameter for a resource

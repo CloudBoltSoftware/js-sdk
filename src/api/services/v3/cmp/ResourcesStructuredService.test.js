@@ -56,15 +56,11 @@ test('edit parameter values calls the correct endpoint', async () => {
     customFieldId: 'CF-7m1gvvpg',
     value: 'deletion'
   }
-  await ResourcesStructuredService.editParameter(
-    'resource-id',
-    options.customFieldId,
-    options
-  )
-  expect(mockFn).toHaveBeenCalledWith(
-    '/api/v3/cmp/resourcesStructured/resource-id/parameterValues/',
-    options.customFieldId
-  )
+  await ResourcesStructuredService.editParameter('resource-id', options)
+  const expectedUrl = `/api/v3/cmp/resourcesStructured/resource-id/parameterValues/${options.customFieldId}/`
+  expect(mockFn).toHaveBeenCalledWith(expectedUrl, {
+    value: options.value
+  })
 })
 
 test('delete parameter values calls the correct endpoint', async () => {
