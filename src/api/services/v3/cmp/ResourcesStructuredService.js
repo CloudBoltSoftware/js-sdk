@@ -23,7 +23,18 @@ export default {
    * @param {string} id id of the resource
    * @returns {Promise} resolves with a cloudbolt API Response object of the Structured Resource object
    */
-
   getResourceParameters: (id) =>
-    crud.getItemById(`api/v3/cmp/resourcesStructured/${id}/resourceParameters`)
+    crud.getItemById(`api/v3/cmp/resourcesStructured/${id}/resourceParameters`),
+
+  /**
+   * Saves resource parameter.
+   * @param {string} id - The ID of the resource.
+   * @param {Object} options - The options to be saved i.e. the globaId and the value of the parameter.
+   * @returns {Promise} resolves with a cloudbolt API Response object of the Structured Resource object
+   */
+  saveResourceParameters: (id, options) =>
+    crud.postItem(
+      `api/v3/cmp/resourcesStructured/${id}/resourceParameters`,
+      options
+    )
 }
