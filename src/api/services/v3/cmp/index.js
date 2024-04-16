@@ -40,6 +40,7 @@ import ServerActionsService from './ServerActionsService'
 import ServerService from './ServerService'
 import ServerSummaryService from './ServerSummaryService'
 import SettingsService from './SettingsService'
+import StructuredResourcesService from './StructuredResourcesService'
 import SystemService from './SystemService'
 import UiExtensionComponentsService from './UiExtensionComponentsService'
 import UserService from './UserService'
@@ -88,6 +89,7 @@ export default {
   serverSummary: ServerSummaryService,
   servers: ServerService,
   settings: SettingsService,
+  structuredResources: StructuredResourcesService,
   uiExtensionComponents: UiExtensionComponentsService,
   users: UserService
 }
