@@ -50,6 +50,7 @@ const services = [
   'serverSummary',
   'servers',
   'settings',
+  'structuredResources',
   'uiExtensionComponents',
   'users'
 ]
