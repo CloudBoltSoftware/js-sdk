@@ -83,7 +83,7 @@ test('run calls the correct endpoint', async () => {
   }
   await ResourceActionsService.run('resourceAction-id', mockResourceAction)
   expect(mockFn).toHaveBeenCalledWith(
-    '/api/v3/cmp/resourceActions/resourceAction-id/runAction/',
+    '/api/v3/cmp/resourceActions/resourceAction-id/runActionSSP/',
     mockResourceAction
   )
 })

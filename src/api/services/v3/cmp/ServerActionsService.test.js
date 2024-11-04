@@ -80,7 +80,7 @@ test('run calls the correct endpoint', async () => {
   }
   await ServerActionsService.run('serverAction-id', mockServerAction)
   expect(mockFn).toHaveBeenCalledWith(
-    '/api/v3/cmp/serverActions/serverAction-id/runAction/',
+    '/api/v3/cmp/serverActions/serverAction-id/runActionSSP/',
     mockServerAction
   )
 })

@@ -47,7 +47,7 @@ export default {
    * @returns {Promise} resolves with a cloudbolt API Run Server Action Success Response
    */
   run: (id, runServerAction) =>
-    crud.postItem(`${URL}/${id}/runAction`, runServerAction),
+    crud.postItem(`${URL}/${id}/runActionSSP`, runServerAction),
 
   /**
    * Run a Server Action

@@ -47,7 +47,7 @@ export default {
    * @returns {Promise} resolves with a cloudbolt API Run Resource Action Success Response
    */
   run: (id, runResourceAction) =>
-    crud.postItem(`${URL}/${id}/runAction`, runResourceAction),
+    crud.postItem(`${URL}/${id}/runActionSSP`, runResourceAction),
 
   /**
    * Run a Resource Action
