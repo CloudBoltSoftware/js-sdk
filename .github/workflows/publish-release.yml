@@ -1,0 +1,59 @@
+name: Publish JS-SDK (manual)
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Git tag to publish (e.g. v0.6.11)"
+        required: true
+      package_path:
+        description: "Path to the package (e.g. packages/js-sdk or .)"
+        default: "packages/js-sdk"
+      dry_run:
+        description: "If true, do not actually publish to npm"
+        type: boolean
+        default: false
+      npm_dist_tag:
+        description: "npm dist-tag (latest, next, beta...)"
+        default: "latest"
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      TAG: ${{ inputs.tag }}
+      PACKAGE_PATH: ${{ inputs.package_path }}
+      DRY_RUN: ${{ inputs.dry_run }}
+      NPM_DIST_TAG: ${{ inputs.npm_dist_tag }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TAG }}
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org
+          cache: npm
+
+      - name: Verify tag matches package.json
+        working-directory: ${{ env.PACKAGE_PATH }}
+        run: |
+          PKG_VERSION=$(node -p "require('./package.json').version")
+          TAG_STRIPPED="${TAG#v}"
+          test "$PKG_VERSION" = "$TAG_STRIPPED" || { echo "::error ::Tag ($TAG_STRIPPED) ≠ package.json ($PKG_VERSION)"; exit 1; }
+
+      - name: Install, build, publish
+        working-directory: ${{ env.PACKAGE_PATH }}
+        run: |
+          npm ci
+          npm run build --if-present
+        # publish with action (handles dist-tags, dry-run)
+      - uses: JS-DevTools/npm-publish@v3
+        with:
+          package: ${{ env.PACKAGE_PATH }}
+          token: ${{ secrets.NPM_TOKEN }}
+          access: public
+          tag: ${{ env.NPM_DIST_TAG }}
+          dry-run: ${{ env.DRY_RUN }}
