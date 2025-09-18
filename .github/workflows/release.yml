@@ -28,7 +28,6 @@ jobs:
       TAG: ${{ github.event_name == 'release' && github.event.release.tag_name || inputs.tag }}
       PACKAGE_PATH: ${{ inputs.package_path || '.' }}
       DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || vars.DRY_RUN }}
-      NPM_DIST_TAG: ${{ inputs.npm_dist_tag || 'latest' }}
 
     steps:
       - name: Checkout tag
