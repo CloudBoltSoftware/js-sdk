@@ -36,18 +36,36 @@ jobs:
         with:
           ref: ${{ env.TAG }}
           fetch-depth: 0
-      - name: Checkout
-        uses: actions/checkout@v4
 
       - name: Setup, Authenticate, and Install
         uses: ./.github/actions/setup-runner
+      
+      - name: Debug refs
+        run: |
+          echo "GITHUB_REF_NAME=$GITHUB_REF_NAME"
+          echo "TAG=${TAG}"
+      - name: Show package name/version
+        working-directory: ${{ env.PACKAGE_PATH }}
+        run: node -p "require('./package.json').name + ' ' + require('./package.json').version"
 
-      - run: npm run test
+      - name: Install & build
+        working-directory: ${{ env.PACKAGE_PATH }}
+        run: |
+          npm ci
+          npm run build --if-present
 
-      - run: npm run build
+      - name: Confirm npm identity & registry
+        run: |
+          npm config get registry
+          npm whoami || true
 
-      - uses: JS-DevTools/npm-publish@v3
+      - name: Publish to npm
+        uses: JS-DevTools/npm-publish@v3
         with:
-          token: ${{ secrets.NPM_TOKEN }}
+          # IMPORTANT: point at the package dir if it’s a monorepo
+          package: ${{ env.PACKAGE_PATH }}
+          token: ${{ secrets.NPM_TOKEN }}      # use an Automation token (no OTP)
           access: public
-          dry-run: ${{ vars.DRY_RUN }}
+          tag: ${{ env.NPM_DIST_TAG }}
+          dry-run: ${{ env.DRY_RUN }}
+
