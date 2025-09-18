@@ -67,6 +67,5 @@ jobs:
           package: ${{ env.PACKAGE_PATH }}
           token: ${{ secrets.NPM_TOKEN }}      # use an Automation token (no OTP)
           access: public
-          tag: ${{ env.NPM_DIST_TAG }}
           dry-run: ${{ env.DRY_RUN }}
 
