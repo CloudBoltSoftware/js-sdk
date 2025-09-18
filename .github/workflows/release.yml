@@ -55,6 +55,8 @@ jobs:
           npm run build --if-present
 
       - name: Confirm npm identity & registry
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}   # <-- required here
         run: |
           npm config get registry
           npm whoami || true
