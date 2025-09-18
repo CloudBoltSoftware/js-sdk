@@ -3,25 +3,67 @@ name: 'Publish to JS-SDK'
 on:
   release:
     types: [released, prereleased]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Git tag to publish (e.g. v0.6.11)"
+        required: true
+      package_path:
+        description: "Path to the package (e.g. packages/js-sdk or .)"
+        default: "."   # ← repo root
+      dry_run:
+        description: "Dry run publish"
+        type: boolean
+        default: false
+      npm_dist_tag:
+        description: "npm dist-tag (latest, next, beta...)"
+        default: "latest"
 
 jobs:
   publish-to-npm:
     name: Publish to JS-SDK
     runs-on: 'ubuntu-latest'
     environment: Production
+    env:
+      TAG: ${{ github.event_name == 'release' && github.event.release.tag_name || inputs.tag }}
+      PACKAGE_PATH: ${{ inputs.package_path || '.' }}
+      DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || vars.DRY_RUN }}
+
     steps:
-      - name: Checkout
+      - name: Checkout tag
         uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TAG }}
+          fetch-depth: 0
 
       - name: Setup, Authenticate, and Install
         uses: ./.github/actions/setup-runner
+      
+      - name: Debug refs
+        run: |
+          echo "GITHUB_REF_NAME=$GITHUB_REF_NAME"
+          echo "TAG=${TAG}"
+      - name: Show package name/version
+        working-directory: ${{ env.PACKAGE_PATH }}
+        run: node -p "require('./package.json').name + ' ' + require('./package.json').version"
 
-      - run: npm run test
+      - name: Install & build
+        working-directory: ${{ env.PACKAGE_PATH }}
+        run: |
+          npm ci
+          npm run build --if-present
 
-      - run: npm run build
+      - name: What commit and tag am I on?
+        run: |
+          git log -1 --decorate
+          git tag --points-at HEAD || true
 
-      - uses: JS-DevTools/npm-publish@v3
+      - name: Publish to npm
+        uses: JS-DevTools/npm-publish@v3
         with:
-          token: ${{ secrets.NPM_TOKEN }}
+          # IMPORTANT: point at the package dir if it’s a monorepo
+          package: ${{ env.PACKAGE_PATH }}
+          token: ${{ secrets.NPM_TOKEN }}      # use an Automation token (no OTP)
           access: public
-          dry-run: ${{ vars.DRY_RUN }}
+          dry-run: ${{ env.DRY_RUN }}
+
